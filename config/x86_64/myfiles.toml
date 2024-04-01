@@ -1,0 +1,52 @@
+# Default desktop configuration
+
+include = ["../desktop.toml"]
+
+# Override the default settings here
+
+# General settings
+[general]
+# Filesystem size in MiB
+filesystem_size = 19000
+
+# Package settings
+[packages]
+bootloader = "recipe"
+uutils = {}
+cosmic-edit = {}
+cosmic-files = {}
+periodictable = {}
+
+# GUI Data
+cosmic-icons = {}
+intel-one-mono = {}
+pop-icon-theme = {}
+shared-mime-info = {}
+
+# Shell Apps
+curl = {}
+git = {}
+gnu-grep = {}
+ripgrep = {}
+sodium = {}
+vim = {}
+
+# Games
+dosbox = {}
+freedoom = {}
+prboom = {}
+redox-games = {}
+sopwith = {}
+syobonaction = {}
+
+# Demos
+acid = {}
+nushell = {}
+orbclient = {}
+pixelcannon = {}
+rodioplay = {}
+gears = {}
+
+
+# my stuff
+helloworld = "recipe"
