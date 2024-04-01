@@ -1,3 +1,7 @@
-build
-bin
+/build
+source
+source.tmp
+source-new
+source.tar
+source.tar.tmp
 target
