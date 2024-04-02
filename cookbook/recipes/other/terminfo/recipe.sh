@@ -1,4 +1,5 @@
 GIT=https://github.com/sajattack/terminfo
+BRANCH=master
 
 function recipe_version {
     printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"

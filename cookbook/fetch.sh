@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
-echo "starting fetch.sh"
+
 set -e
-echo "source from config.sh..."
+
 source config.sh
-echo "sourced!"
 
 if [ $# = 0 ]
 then
@@ -16,8 +15,10 @@ for recipe_path in $recipes
 do
     if [ -e "$recipe_path/recipe.toml" ]
     then
+        echo "$recipe_path: using target/release/cook"
         target/release/cook --fetch-only "$recipe_path"
     else
+        echo "$recipe_path": using ./cook.sh\"
         ./cook.sh "$recipe_path" fetch
     fi
 done

@@ -37,13 +37,11 @@ freedoom = {}
 prboom = {}
 redox-games = {}
 sopwith = {}
-syobonaction = {}
 
 # Demos
 acid = {}
 nushell = {}
 orbclient = {}
-pixelcannon = {}
 rodioplay = {}
 
 

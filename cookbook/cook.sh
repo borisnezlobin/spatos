@@ -104,6 +104,7 @@ function op {
                     fi
                 elif [ -n "$GIT" ]
                 then
+                    echo "using git: $GIT"
                     if [ ! -d source ]
                     then
                         if [ -n "$BRANCH" ]
@@ -119,6 +120,7 @@ function op {
                     git fetch origin
                     if [ -n "$GIT_UPSTREAM" ]
                     then
+                        echo "upstream: $GIT_UPSTREAM"
                         git remote set-url upstream "$GIT_UPSTREAM" &> /dev/null ||
                         git remote add upstream "$GIT_UPSTREAM"
                         git fetch upstream
@@ -130,10 +132,15 @@ function op {
                         ORIGIN_BRANCH="origin/$BRANCH"
                     fi
 
+                    echo "branch (from command line): '$BRANCH'"
+                    echo "branch: '$ORIGIN_BRANCH'"
                     if [ "$(git rev-parse HEAD)" != "$(git rev-parse $ORIGIN_BRANCH)" ]
                     then
+                        echo "checking out '$ORIGIN_BRANCH'"
                         git checkout -B "$(echo "$ORIGIN_BRANCH" | cut -d / -f 2-)" "$ORIGIN_BRANCH"
                     fi
+
+                    echo "updating submodules"
                     git submodule sync --recursive
                     git submodule update --init --recursive
                     popd > /dev/null

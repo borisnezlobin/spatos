@@ -1,13 +1,27 @@
+# $(BUILD)/fetch.tag: prefix $(FSTOOLS_TAG) $(FILESYSTEM_CONFIG) $(CONTAINER_TAG)
+# ifeq ($(PODMAN_BUILD),1)
+# 	$(PODMAN_RUN) $(MAKE) $@
+# else
+# 	PACKAGES="$$($(INSTALLER) --list-packages -c $(FILESYSTEM_CONFIG))" && \
+# 	cd cookbook && \
+# 	./fetch.sh "$${PACKAGES}"
+# 	mkdir -p $(BUILD)
+# 	touch $@
+# endif
+
+PACKAGES := $(shell $(INSTALLER) --list-packages -c $(FILESYSTEM_CONFIG))
+
 $(BUILD)/fetch.tag: prefix $(FSTOOLS_TAG) $(FILESYSTEM_CONFIG) $(CONTAINER_TAG)
 ifeq ($(PODMAN_BUILD),1)
 	$(PODMAN_RUN) $(MAKE) $@
 else
-	PACKAGES="$$($(INSTALLER) --list-packages -c $(FILESYSTEM_CONFIG))" && \
+	@echo "PACKAGES: $(PACKAGES)"
 	cd cookbook && \
-	./fetch.sh "$${PACKAGES}"
+	./fetch.sh "$(PACKAGES)"
 	mkdir -p $(BUILD)
 	touch $@
 endif
+
 
 $(BUILD)/repo.tag: $(BUILD)/fetch.tag $(FSTOOLS_TAG) $(CONTAINER_TAG)
 ifeq ($(PODMAN_BUILD),1)
