@@ -1,0 +1,5 @@
+#TODO missing script for building
+[source]
+tar = "https://github.com/unicode-org/icu/releases/download/release-74-1/icu4c-74_1-src.tgz"
+[build]
+template = "custom"

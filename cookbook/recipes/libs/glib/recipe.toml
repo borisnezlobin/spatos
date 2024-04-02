@@ -1,0 +1,27 @@
+[source]
+tar = "https://download.gnome.org/sources/glib/2.59/glib-2.59.0.tar.xz"
+blake3 = "4b10f071bad767bbed9dc3ca742aac4de1f5746c03d515908e7dad4ea8334cbf"
+patches = [
+    "redox.patch"
+]
+
+[build]
+template = "custom"
+dependencies = [
+    "gettext",
+    "libffi",
+    "libiconv",
+    "pcre",
+    "zlib",
+]
+script = """
+"${COOKBOOK_SOURCE}/autogen.sh" \
+    "${COOKBOOK_CONFIGURE_FLAGS[@]}" \
+    glib_cv_stack_grows=no \
+    glib_cv_uscore=no
+
+sed -i 's/#define HAVE_SYS_RESOURCE_H 1/#undef HAVE_SYS_RESOURCE_H/' config.h
+
+COOKBOOK_CONFIGURE="true"
+cookbook_configure
+"""

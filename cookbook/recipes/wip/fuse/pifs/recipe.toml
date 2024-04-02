@@ -1,0 +1,13 @@
+#TODO make libfuse 2.x works
+#TODO probably wrong script, see https://github.com/philipl/pifs#readme
+[source]
+git = "https://github.com/philipl/pifs"
+[build]
+template = "custom"
+dependencies = [
+    "libfuse2",
+]
+script = """
+./autogen.sh
+cookbook_configure
+"""

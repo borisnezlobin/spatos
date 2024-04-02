@@ -1,0 +1,5 @@
+#TODO xdg-home crate error
+[source]
+git = "https://github.com/topgrade-rs/topgrade"
+[build]
+template = "cargo"

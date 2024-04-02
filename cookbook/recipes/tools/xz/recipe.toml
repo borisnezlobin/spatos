@@ -1,0 +1,25 @@
+[source]
+tar = "https://tukaani.org/xz/xz-5.4.3.tar.xz"
+blake3 = "4b1b814bcf3794973fe9076d549a0edfbee01d2fd57821fe3280537ef6c7deae"
+script = """
+./autogen.sh
+"""
+
+[build]
+template = "custom"
+script = """
+export CFLAGS="-static"
+COOKBOOK_CONFIGURE_FLAGS=(
+    --host="${TARGET}"
+    --prefix=""
+    --disable-lzmadec
+    --disable-lzmainfo
+    --disable-xz
+    --disable-xzdec
+    --enable-shared=no
+    --enable-static=yes
+    --enable-threads=no
+    --with-pic=no
+)
+cookbook_configure
+"""

@@ -1,0 +1,15 @@
+#TODO Make neovim and freeglut work
+[source]
+git = "https://github.com/neovide/neovide"
+rev = "113955bb68bf6715c784ea0b7ee75011c55471c9"
+[build]
+template = "cargo"
+dependencies = [
+    "neovim",
+    "openssl1",
+    "freetype2",
+    "expat",
+    "bzip2",
+    "freeglut",
+    "fontconfig",
+]
