@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
+echo "starting fetch.sh"
 set -e
-
+echo "source from config.sh..."
 source config.sh
+echo "sourced!"
 
 if [ $# = 0 ]
 then
