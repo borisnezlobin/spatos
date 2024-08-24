@@ -1,0 +1,11 @@
+#TODO compiled but not tested
+#TODO missing script to properly move the binary
+#TODO require WebAssembly
+[source]
+git = "https://github.com/sile/pixcil"
+rev = "2309661977c3191f44e730c5a17639874e497b69"
+[build]
+template = "custom"
+script = """
+cookbook_cargo_packages pixcil
+"""

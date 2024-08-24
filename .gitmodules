@@ -1,7 +1,7 @@
-[submodule "cookbook"]
-	path = cookbook
-	url = https://gitlab.redox-os.org/redox-os/cookbook.git
-	branch = master
+# [submodule "cookbook"]
+# 	path = cookbook
+# 	url = https://gitlab.redox-os.org/redox-os/cookbook.git
+# 	branch = master
 [submodule "installer"]
 	path = installer
 	url = https://gitlab.redox-os.org/redox-os/installer.git

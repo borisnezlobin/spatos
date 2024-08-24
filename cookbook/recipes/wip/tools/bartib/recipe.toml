@@ -1,0 +1,5 @@
+#TODO move to proper category
+[source]
+git = "https://github.com/nikolassv/bartib"
+[build]
+template = "cargo"
