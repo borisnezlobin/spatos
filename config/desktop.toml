@@ -13,10 +13,10 @@ audiod = {}
 installer-gui = {}
 netsurf = {}
 orbdata = {}
-orbital = {}
-orbterm = {}
-orbutils = {}
-rustpython = {}
+orbital = "recipe"
+orbterm = "recipe"
+orbutils = "recipe"
+helloworld = {}
 
 [[files]]
 path = "/usr/lib/init.d/20_orbital"

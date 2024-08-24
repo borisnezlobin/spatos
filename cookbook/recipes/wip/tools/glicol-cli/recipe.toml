@@ -1,0 +1,5 @@
+#TODO failed to find output device
+[source]
+git = "https://github.com/glicol/glicol-cli"
+[build]
+template = "cargo"

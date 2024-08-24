@@ -1,0 +1,24 @@
+[source]
+git = "https://git.tukaani.org/xz.git"
+rev = "2327a461e1afce862c22269b80d3517801103c1b"
+
+[build]
+template = "custom"
+script = """
+(cd ${COOKBOOK_SOURCE} && ./autogen.sh)
+export CFLAGS="-static"
+COOKBOOK_CONFIGURE_FLAGS=(
+    --host="${TARGET}"
+
+    --prefix=""
+    --disable-lzmadec
+    --disable-lzmainfo
+    --disable-xz
+    --disable-xzdec
+    --enable-shared=no
+    --enable-static=yes
+    --enable-threads=no
+    --with-pic=no
+)
+cookbook_configure
+"""

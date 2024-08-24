@@ -1,0 +1,26 @@
+#TODO probably wrong script, see https://github.com/KhronosGroup/Vulkan-Tools/blob/main/BUILD.md
+[source]
+git = "https://github.com/KhronosGroup/Vulkan-Tools"
+rev = "7e75f4d389799129b79f90d1401f15f511796dbd"
+[build]
+template = "custom"
+dependencies = [
+    "libwayland",
+    "libx11",
+]
+script = """
+COOKBOOK_CONFIGURE="cmake"
+COOKBOOK_CONFIGURE_FLAGS=(
+    -DCMAKE_BUILD_TYPE=Release
+    -DCMAKE_CROSSCOMPILING=True
+    -DCMAKE_EXE_LINKER_FLAGS="-static"
+    -DCMAKE_INSTALL_PREFIX="/"
+    -DCMAKE_PREFIX_PATH="${COOKBOOK_SYSROOT}"
+    -DCMAKE_SYSTEM_NAME=Generic
+    -DCMAKE_SYSTEM_PROCESSOR="$(echo "${TARGET}" | cut -d - -f1)"
+    -DCMAKE_VERBOSE_MAKEFILE=On
+    -DUPDATE_DEPS=ON
+"${COOKBOOK_SOURCE}"
+)
+cookbook_configure
+"""

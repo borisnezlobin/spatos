@@ -1,0 +1,15 @@
+[source]
+tar = "https://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.15.tar.gz"
+blake3 = "b736af4e8245ae9f1618ef226a3bf2a998334b745520565cf413c0a7d54b6924"
+patches = [
+    "01_redox.patch"
+]
+
+[build]
+template = "custom"
+script = """
+COOKBOOK_CONFIGURE_FLAGS+=(
+    ac_cv_have_decl_program_invocation_name=no
+)
+cookbook_configure
+"""

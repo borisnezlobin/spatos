@@ -11,11 +11,11 @@ filesystem_size = 128
 [packages]
 drivers = {}
 orbdata = {}
-orbital = {}
+orbital = "recipe"
 orbterm = {}
-orbutils-background = {}
-orbutils-launcher = {}
-orbutils-orblogin = {}
+orbutils-background = "recipe"
+orbutils-launcher = "recipe"
+orbutils-orblogin = "recipe"
 
 [[files]]
 path = "/usr/lib/init.d/00_drivers"

@@ -1,0 +1,11 @@
+#TODO missing script for CMake, see https://flameshot.org/docs/installation/source-code/#compilation
+[source]
+git = "https://github.com/flameshot-org/flameshot"
+rev = "70be63d478a271da549597d69bd4868607c0a395"
+[build]
+template = "custom"
+dependencies = [
+    "qt5-base",
+    "qt5-tools",
+    "qt5-svg",
+]

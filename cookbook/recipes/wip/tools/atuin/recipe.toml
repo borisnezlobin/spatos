@@ -1,0 +1,8 @@
+#TODO require Wayland
+[source]
+git = "https://github.com/ellie/atuin"
+[build]
+template = "custom"
+script = """
+cookbook_cargo_packages atuin
+"""

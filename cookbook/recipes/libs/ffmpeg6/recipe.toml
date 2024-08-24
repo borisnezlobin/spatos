@@ -1,0 +1,33 @@
+[source]
+tar = "https://ffmpeg.org/releases/ffmpeg-6.0.tar.xz"
+blake3 = "4879074c357102f85932673044c57c144b0c188ae58edec2a115965536ee340f"
+patches = [
+    "ffmpeg.patch",
+    "binutils-2.41.patch",
+]
+
+[build]
+template = "custom"
+dependencies = [
+    "liborbital",
+    "llvm",
+    "mesa",
+    "sdl2",
+    "zlib",
+]
+script = """
+ARCH="${TARGET%%-*}"
+COOKBOOK_CONFIGURE_FLAGS=(
+    --enable-cross-compile
+    --target-os=redox
+    --arch="${ARCH}"
+    --cross_prefix="${TARGET}-"
+    --prefix=/
+    --disable-network
+    --enable-sdl2
+    --enable-zlib
+    --enable-encoder=png
+    --enable-decoder=png
+)
+cookbook_configure
+"""
