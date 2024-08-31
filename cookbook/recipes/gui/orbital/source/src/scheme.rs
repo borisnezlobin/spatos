@@ -10,6 +10,7 @@ use std::{
     slice,
     str
 };
+use std::cmp::Ordering::{Equal, Greater, Less};
 use std::rc::Rc;
 
 use log::{error, info, warn};
@@ -31,12 +32,12 @@ use crate::core::{
 };
 use crate::core::image::ImageRef;
 use crate::scheme::TilePosition::{BottomHalf, FullScreen, LeftHalf, RightHalf, TopHalf};
-use crate::window::{Window, WindowZOrder};
+use crate::window::Window;
 
 fn schedule(redraws: &mut Vec<Rect>, request: Rect) {
     let mut push = true;
     for rect in redraws.iter_mut() {
-        //If contained, ignore new redraw request
+        // If contained, ignore new redraw request
         let container = rect.container(&request);
         if container.area() <= rect.area() + request.area() {
             *rect = container;
@@ -116,7 +117,7 @@ pub struct OrbitalScheme {
     next_id: isize,
     hover: Option<usize>,
     order: VecDeque<usize>,
-    zbuffer: Vec<(usize, WindowZOrder, usize)>,
+    zbuffer: Vec<(usize, i32, usize)>,
     pub windows: BTreeMap<usize, Window>,
     redraws: Vec<Rect>,
     font: orbfont::Font,
@@ -211,14 +212,22 @@ impl OrbitalScheme {
 
         for (i, id) in self.order.iter().enumerate() {
             if let Some(window) = self.windows.get(id) {
-                self.zbuffer.push((*id, window.zorder, i));
+                self.zbuffer.push((*id, window.z, i));
             }
         }
 
-        self.zbuffer.sort_by(|a, b| b.1.cmp(&a.1));
+        self.zbuffer.sort_by(|a, b| {
+            if (a.1 == b.1) { return Equal; }
+            if (a.1 == -1) { return Greater; }
+            if (b.1 == -1) { return Less; }
+            
+            if (a.1 - b.1 < 0){ return Greater; }
+
+            Less
+        });
     }
 
-    //TODO: update cursor in more places to ensure consistency:
+    // TODO: update cursor in more places to ensure consistency:
     // - Window resizes
     // - Window sets cursor on/off
     // - Window moves
@@ -443,14 +452,14 @@ impl Handler for OrbitalScheme {
         res
     }
     fn handle_clipboard_new(&mut self, _orb: &mut Orbital, id: usize) -> Result<usize> {
-        //TODO: implement better clipboard mechanism
+        // TODO: implement better clipboard mechanism
         let window = self.windows.get_mut(&id).ok_or(Error::new(EBADF))?;
         window.clipboard_seek = 0;
         Ok(id)
     }
 
     fn handle_clipboard_read(&mut self, _orb: &mut Orbital, id: usize, buf: &mut [u8]) -> Result<usize> {
-        //TODO: implement better clipboard mechanism
+        // TODO: implement better clipboard mechanism
         let window = self.windows.get_mut(&id).ok_or(Error::new(EBADF))?;
         let mut i = 0;
         while i < buf.len() && window.clipboard_seek < self.clipboard.len() {
@@ -462,7 +471,7 @@ impl Handler for OrbitalScheme {
     }
 
     fn handle_clipboard_write(&mut self, _orb: &mut Orbital, id: usize, buf: &[u8]) -> Result<usize> {
-        //TODO: implement better clipboard mechanism
+        // TODO: implement better clipboard mechanism
         let window = self.windows.get_mut(&id).ok_or(Error::new(EBADF))?;
         let mut i = 0;
         self.clipboard.truncate(window.clipboard_seek);
@@ -475,7 +484,7 @@ impl Handler for OrbitalScheme {
     }
 
     fn handle_clipboard_close(&mut self, _orb: &mut Orbital, id: usize) -> Result<usize> {
-        //TODO: implement better clipboard mechanism
+        // TODO: implement better clipboard mechanism
         if self.windows.contains_key(&id) {
             Ok(0)
         } else {
@@ -543,17 +552,17 @@ impl<'a> OrbitalSchemeEvent<'a> {
         }
 
         if self.scheme.win_tabbing {
-            //TODO: add to total_redraw?
+            // TODO: add to total_redraw?
             self.draw_window_list_osd();
         }
 
         if self.scheme.volume_osd {
-            //TODO: add to total_redraw?
+            // TODO: add to total_redraw?
             self.draw_volume_osd();
         }
 
         if self.scheme.shortcuts_osd {
-            //TODO: add to total_redraw?
+            // TODO: add to total_redraw?
             self.draw_shortcuts_osd();
         }
 
@@ -651,7 +660,7 @@ impl<'a> OrbitalSchemeEvent<'a> {
 
     // Tab through the list of selectable windows, changing window order and focus to bring
     // the next one to the front and push the previous one to the back.
-    // Note that the selectable windows maybe interlaced in the stack with non-selectable windows,
+    // Note that the selectable windows may be interlaced in the stack with non-selectable windows,
     // the first selectable window may not be the first in the stack and the bottom selectable
     // window may not be the last in the stack
     fn super_tab(&mut self) {
@@ -661,7 +670,7 @@ impl<'a> OrbitalSchemeEvent<'a> {
         let mut selectable_window_indexes: Vec<usize> = vec![];
         for (index, id) in self.scheme.order.iter().enumerate() {
             if let Some(window) = self.scheme.windows.get(id) {
-                if !window.title.is_empty() {
+                if !window.title.is_empty() { // lol so "selectable" windows just have a title
                     selectable_window_indexes.push(index);
                 }
             }
@@ -676,7 +685,7 @@ impl<'a> OrbitalSchemeEvent<'a> {
             // in self.scheme.order
             let front_index = selectable_window_indexes[0];
             let next_index = selectable_window_indexes[1];
-            let last_index = selectable_window_indexes[selectable_window_indexes.len()-1];
+            let last_index = selectable_window_indexes[selectable_window_indexes.len() - 1];
             if let Some(front_id) = self.scheme.order.remove(front_index) {
                 self.scheme.order.insert(last_index, front_id);
                 self.focus(front_id, false); // remove focus from it
@@ -948,7 +957,7 @@ impl<'a> OrbitalSchemeEvent<'a> {
         }
     }
 
-    // undraw any overlay that was being displayed and exit the mode causing it to be displayed
+    /// undraw any overlay that was being displayed and exit the mode causing it to be displayed
     fn close_overlays(&mut self) {
         // redraw the area that was occupied by the popup
         schedule(&mut self.scheme.redraws, self.scheme.popup_rect);
@@ -1391,14 +1400,13 @@ impl<'a> OrbitalSchemeEvent<'a> {
                     // Reorder windows
                     if let Some(id) = self.scheme.order.remove(focus) {
                         if let Some(window) = self.scheme.windows.get(&id){
-                            match window.zorder {
-                                WindowZOrder::Front | WindowZOrder::Normal => {
-                                    // Transfer focus if a front or normal window
-                                    self.scheme.order.push_front(id);
+                            
+                            match window.z {
+                                -1 => {
+                                    self.scheme.order.push_back(id);
                                 },
-                                WindowZOrder::Back => {
-                                    // Return to original position if a background window
-                                    self.scheme.order.insert(focus, id);
+                                default => {
+                                    self.scheme.order.push_front(id);
                                 }
                             }
                         }
@@ -1519,7 +1527,7 @@ impl<'a> OrbitalSchemeEvent<'a> {
         let id = self.scheme.next_id as usize;
         self.scheme.next_id += 1;
         if self.scheme.next_id < 0 {
-            //TODO: should this be an error?
+            // TODO: should this be an error?
             self.scheme.next_id = 1;
         }
 
@@ -1548,13 +1556,10 @@ impl<'a> OrbitalSchemeEvent<'a> {
         schedule(&mut self.scheme.redraws, window.title_rect());
         schedule(&mut self.scheme.redraws, window.rect());
 
-        match window.zorder {
-            WindowZOrder::Front | WindowZOrder::Normal => {
-                self.scheme.order.push_front(id);
-            },
-            WindowZOrder::Back => {
-                self.scheme.order.push_back(id);
-            }
+        if (window.z == -1) {
+            self.scheme.order.push_back(id);
+        } else {
+            self.scheme.order.push_front(id);
         }
 
         self.scheme.windows.insert(id, window);

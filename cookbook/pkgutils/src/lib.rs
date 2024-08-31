@@ -60,7 +60,7 @@ impl Repo {
 
         Repo {
             local: format!("/tmp/pkg"),
-            remotes: remotes,
+            remotes,
             target: target.to_string(),
         }
     }
