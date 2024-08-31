@@ -43,7 +43,7 @@ pub struct Config {
     pub text_highlight_color: ConfigColor,
 }
 
-fn background_color_default() -> ConfigColor { Color::rgb(0, 0, 0).into() }
+fn background_color_default() -> ConfigColor { Color::rgba(0, 0, 0, 0).into() }
 fn bar_color_default() -> ConfigColor { Color::rgba(47, 52, 63, 224).into() }
 fn bar_highlight_color_default() -> ConfigColor { Color::rgba(80, 86, 102, 224).into() }
 fn text_color_default() -> ConfigColor { Color::rgb(204, 210, 224).into() }
@@ -81,13 +81,10 @@ impl Default for Config {
 impl Config {
     // returns the default config if the string passed is not a valid config
     fn config_from_string(config: &str) -> Config {
-        match toml::from_str(config) {
-            Ok(config) => config,
-            Err(err) => {
-                error!("failed to parse config '{}'", err);
-                Config::default()
-            }
-        }
+        toml::from_str(config).unwrap_or_else(|err| {
+            error!("failed to parse config '{}'", err);
+            Config::default()
+        })
     }
 
     /// Read an Orbital configuration from a toml file at `path`

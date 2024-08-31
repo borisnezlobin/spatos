@@ -107,6 +107,7 @@ else
 		--program-prefix="$(TARGET)-" \
 		--prefix="" \
 		--disable-werror \
+                --with-libgmp-prefix=/opt/homebrew/Cellar/gmp/6.3.0 \
 		&& \
 	$(MAKE) -j `$(NPROC)` all && \
 	$(MAKE) -j `$(NPROC)` install DESTDIR="$(ROOT)/$@.partial"

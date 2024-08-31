@@ -16,7 +16,7 @@ use std::rc::Rc;
 // use theme::{BAR_COLOR, BAR_HIGHLIGHT_COLOR, TEXT_COLOR, TEXT_HIGHLIGHT_COLOR};
 use crate::config::Config;
 
-//TODO: move to orbclient?
+// TODO: move to orbclient?
 pub const ORBITAL_FLAG_ASYNC: char = 'a';
 pub const ORBITAL_FLAG_BACK: char = 'b';
 pub const ORBITAL_FLAG_FRONT: char = 'f';
@@ -27,16 +27,11 @@ pub const ORBITAL_FLAG_RESIZABLE: char = 'r';
 pub const ORBITAL_FLAG_TRANSPARENT: char = 't';
 pub const ORBITAL_FLAG_UNCLOSABLE: char = 'u';
 
-#[derive(Copy, Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
-pub enum WindowZOrder {
-    Back,
-    Normal,
-    Front,
-}
-
 pub struct Window {
     pub x: i32,
     pub y: i32,
+    /// distance from the front, in CM. defaults to 2m
+    pub z: i32,
     pub scale: i32,
     pub title: String,
     pub asynchronous: bool,
@@ -45,8 +40,6 @@ pub struct Window {
     pub resizable: bool,
     pub transparent: bool,
     pub unclosable: bool,
-    pub zorder: WindowZOrder,
-    pub depth: i32,
     pub rot_z: f64,
     pub restore: Option<Rect>,
     image: ImageAligned,
@@ -54,12 +47,13 @@ pub struct Window {
     title_image_unfocused: Image,
     pub events: VecDeque<Event>,
     pub notified_read: bool,
-    //TODO: implement better clipboard mechanism
+    // TODO: implement better clipboard mechanism
     pub clipboard_seek: usize,
     pub mouse_cursor: bool,
     pub mouse_grab: bool,
     pub mouse_relative: bool,
     pub maps: usize,
+    pub focused: bool,
 
     config: Rc<Config>
 }
@@ -74,6 +68,9 @@ impl Window {
         Window {
             x,
             y,
+            z: 200,
+            rot_z: 0.0,
+            focused: false,
             scale,
             title: String::new(),
             asynchronous: false,
@@ -82,7 +79,6 @@ impl Window {
             resizable: false,
             transparent: false,
             unclosable: false,
-            zorder: WindowZOrder::Normal,
             restore: None,
             // TODO: get a system constant for the page size
             image: ImageAligned::new(w, h, 4096), // Ensure that image data is page aligned at beginning and end
@@ -281,15 +277,6 @@ impl Window {
         if self.resizable { flags.push(ORBITAL_FLAG_RESIZABLE) }
         if self.transparent { flags.push(ORBITAL_FLAG_TRANSPARENT) }
         if self.unclosable { flags.push(ORBITAL_FLAG_UNCLOSABLE) }
-        match self.zorder {
-            WindowZOrder::Back => {
-                 flags.push(ORBITAL_FLAG_BACK)
-            },
-            WindowZOrder::Normal => {},
-            WindowZOrder::Front => {
-                 flags.push(ORBITAL_FLAG_FRONT)
-            },
-        }
         Properties {
             flags,
             x: self.x,
@@ -320,8 +307,6 @@ impl Window {
     pub fn set_flag(&mut self, flag: char, value: bool) {
         match flag {
             ORBITAL_FLAG_ASYNC => self.asynchronous = value,
-            ORBITAL_FLAG_BACK => self.zorder = if value { WindowZOrder::Back } else { WindowZOrder::Normal },
-            ORBITAL_FLAG_FRONT => self.zorder = if value { WindowZOrder::Front } else { WindowZOrder::Normal },
             ORBITAL_FLAG_HIDDEN => self.hidden = value,
             ORBITAL_FLAG_BORDERLESS => self.borderless = value,
             ORBITAL_FLAG_RESIZABLE => self.resizable = value,
