@@ -1,0 +1,5 @@
+/target
+Cargo.lock
+# TODO: Maybe use an OUT_DIR environment variable, or mktemp, rather than
+# writing directly to the git repository root?
+/out.img

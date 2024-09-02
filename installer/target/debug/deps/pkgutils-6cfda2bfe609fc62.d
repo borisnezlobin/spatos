@@ -1,0 +1,9 @@
+/home/randomletters/redox/redox/installer/target/debug/deps/pkgutils-6cfda2bfe609fc62.rmeta: /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/redox_pkgutils-0.1.8/src/lib.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/redox_pkgutils-0.1.8/src/database.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/redox_pkgutils-0.1.8/src/download.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/redox_pkgutils-0.1.8/src/package.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/redox_pkgutils-0.1.8/src/packagemeta.rs
+
+/home/randomletters/redox/redox/installer/target/debug/deps/pkgutils-6cfda2bfe609fc62.d: /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/redox_pkgutils-0.1.8/src/lib.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/redox_pkgutils-0.1.8/src/database.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/redox_pkgutils-0.1.8/src/download.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/redox_pkgutils-0.1.8/src/package.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/redox_pkgutils-0.1.8/src/packagemeta.rs
+
+/home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/redox_pkgutils-0.1.8/src/lib.rs:
+/home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/redox_pkgutils-0.1.8/src/database.rs:
+/home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/redox_pkgutils-0.1.8/src/download.rs:
+/home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/redox_pkgutils-0.1.8/src/package.rs:
+/home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/redox_pkgutils-0.1.8/src/packagemeta.rs:

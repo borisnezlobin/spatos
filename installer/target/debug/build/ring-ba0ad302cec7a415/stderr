@@ -1,0 +1,14 @@
+third_party/fiat/curve25519.c:1877:61: warning: argument 2 of type ‘const uint8_t *’ {aka ‘const unsigned char *’} declared as a pointer [-Warray-parameter=]
+ 1877 | void GFp_x25519_ge_scalarmult_base(ge_p3 *h, const uint8_t *a) {
+      |                                              ~~~~~~~~~~~~~~~^
+In file included from third_party/fiat/curve25519.c:43:
+third_party/fiat/internal.h:129:60: note: previously declared as an array ‘const uint8_t[32]’ {aka ‘const unsigned char[32]’}
+  129 | void GFp_x25519_ge_scalarmult_base(ge_p3 *h, const uint8_t a[32]);
+      |                                              ~~~~~~~~~~~~~~^~~~~
+third_party/fiat/curve25519.c:3013:36: warning: argument 1 of type ‘uint8_t[32]’ {aka ‘unsigned char[32]’} with mismatched bound [-Warray-parameter=]
+ 3013 | void GFp_x25519_fe_tobytes(uint8_t s[32], const fe *h) {
+      |                            ~~~~~~~~^~~~~
+In file included from third_party/fiat/curve25519.c:43:
+third_party/fiat/internal.h:124:37: note: previously declared as ‘uint8_t *’ {aka ‘unsigned char *’}
+  124 | void GFp_x25519_fe_tobytes(uint8_t *s, const fe *h);
+      |                            ~~~~~~~~~^

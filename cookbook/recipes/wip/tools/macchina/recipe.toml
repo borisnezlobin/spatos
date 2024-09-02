@@ -1,0 +1,5 @@
+#TODO libmacchina crate error (after cargo update)
+[source]
+git = "https://github.com/Macchina-CLI/macchina"
+[build]
+template = "cargo"

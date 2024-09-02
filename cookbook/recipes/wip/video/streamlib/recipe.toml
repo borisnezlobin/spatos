@@ -1,0 +1,8 @@
+#TODO shared_child crate error
+[source]
+git = "https://github.com/streamlib/streamlib"
+[build]
+template = "cargo"
+dependencies = [
+    "openssl1",
+]

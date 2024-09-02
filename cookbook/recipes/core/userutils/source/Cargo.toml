@@ -1,0 +1,66 @@
+[package]
+name = "userutils"
+version = "0.1.0"
+
+[[bin]]
+name = "id"
+path = "src/bin/id.rs"
+
+[[bin]]
+name = "getty"
+path = "src/bin/getty.rs"
+
+[[bin]]
+name = "groupadd"
+path = "src/bin/groupadd.rs"
+
+[[bin]]
+name = "groupdel"
+path = "src/bin/groupdel.rs"
+
+[[bin]]
+name = "groupmod"
+path = "src/bin/groupmod.rs"
+
+[[bin]]
+name = "login"
+path = "src/bin/login.rs"
+
+[[bin]]
+name = "passwd"
+path = "src/bin/passwd.rs"
+
+[[bin]]
+name = "su"
+path = "src/bin/su.rs"
+
+[[bin]]
+name = "sudo"
+path = "src/bin/sudo.rs"
+
+[[bin]]
+name = "useradd"
+path = "src/bin/useradd.rs"
+
+[[bin]]
+name = "userdel"
+path = "src/bin/userdel.rs"
+
+[[bin]]
+name = "usermod"
+path = "src/bin/usermod.rs"
+
+[dependencies]
+clap = "2.33.0"
+extra = { git = "https://gitlab.redox-os.org/redox-os/libextra.git" }
+orbclient = "0.3.47"
+redox-daemon = "0.1.2"
+redox_liner = "0.5.2"
+libredox = "0.0.2"
+redox_termios = "0.1.3"
+redox_event = "0.2"
+redox_users = "0.4.4"
+termion = "2.0.3"
+
+[profile.release]
+lto = true

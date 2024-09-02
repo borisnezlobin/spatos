@@ -1,0 +1,11 @@
+/home/randomletters/redox/redox/installer/target/debug/deps/base64-148a9ca4ad1cc7f0.rmeta: /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/base64-0.9.3/src/lib.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/base64-0.9.3/src/chunked_encoder.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/base64-0.9.3/src/display.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/base64-0.9.3/src/line_wrap.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/base64-0.9.3/src/tables.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/base64-0.9.3/src/encode.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/base64-0.9.3/src/decode.rs
+
+/home/randomletters/redox/redox/installer/target/debug/deps/base64-148a9ca4ad1cc7f0.d: /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/base64-0.9.3/src/lib.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/base64-0.9.3/src/chunked_encoder.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/base64-0.9.3/src/display.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/base64-0.9.3/src/line_wrap.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/base64-0.9.3/src/tables.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/base64-0.9.3/src/encode.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/base64-0.9.3/src/decode.rs
+
+/home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/base64-0.9.3/src/lib.rs:
+/home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/base64-0.9.3/src/chunked_encoder.rs:
+/home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/base64-0.9.3/src/display.rs:
+/home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/base64-0.9.3/src/line_wrap.rs:
+/home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/base64-0.9.3/src/tables.rs:
+/home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/base64-0.9.3/src/encode.rs:
+/home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/base64-0.9.3/src/decode.rs:

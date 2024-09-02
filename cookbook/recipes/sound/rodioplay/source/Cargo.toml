@@ -1,0 +1,12 @@
+[package]
+name = "rodioplay"
+version = "0.1.0"
+authors = ["Jeremy Soller <jackpot51@gmail.com>"]
+
+[dependencies.rodio]
+version = "0.8"
+default-features = false
+features = ["flac", "vorbis", "wav"]
+
+[patch.crates-io]
+cpal = { git = "https://gitlab.redox-os.org/redox-os/cpal.git", branch = "redox" }

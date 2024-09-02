@@ -1,0 +1,70 @@
+##############################################################################
+#                          Redox Demo Configuration                          #
+#                                                                            #
+# This file defines the setup of the Redox Demo system.                      #
+#                                                                            #
+# The "[packages]" section specifies what packages are installed in the      #
+# filesystem prior to booting the system. During build, these packages must  #
+# have a recipe defined in the config folder (see the Redox Book,            #
+# Chapter 5.1). The first group of packages is mandatory for the system to   #
+# function, although some items can be removed for special builds,           #
+# e.g. The Orbital GUI is not required for a headless server.                #
+#                                                                            #
+# Items in the "Developer Tools" and "Games" section are optional. You can   #
+# add your own programs here.                                                #
+#                                                                            #
+# The "[users]" section creates user id's and passwords. Each user will have #
+# a home directory at boot.                                                  #
+#                                                                            #
+# The "[[files]]" section contains files needed by the system. If you need   #
+# create a file, e.g. a config file for a program you are adding, you can do #
+# it here.                                                                   #
+#                                                                            #
+##############################################################################
+
+include = ["../desktop.toml"]
+
+# General settings
+[general]
+# Filesystem size in MiB
+filesystem_size = 512
+
+# Package settings
+[packages]
+# Games
+dosbox = {}
+freedoom = {}
+prboom = {}
+redox-games = {}
+
+# Demos
+pixelcannon = {}
+
+# MIDI
+freepats = {}
+
+[[files]]
+path = "/home/user/Welcome.txt"
+data = """
+##############################################################################
+#                                                                            #
+#                             Welcome to Redox!                              #
+#                                                                            #
+# Redox is an operating system written in Rust, a language with focus        #
+# on safety and high performance. Redox, following the microkernel design,   #
+# aims to be secure, usable, and free. Redox is inspired by previous kernels #
+# and operating systems, such as SeL4, MINIX, Plan 9, and BSD.               #
+#                                                                            #
+# Redox _is not_ just a kernel, it's a full-featured Operating System,       #
+# providing packages (memory allocator, file system, display manager, core   #
+# utilities, etc.) that together make up a functional and convenient         #
+# operating system. You can loosely think of it as the GNU or BSD ecosystem, #
+# but in a memory safe language and with modern technology.                  #
+#                                                                            #
+# The website can be found at https://www.redox-os.org.                      #
+#                                                                            #
+# For things to try on Redox, please see                                     #
+# https://doc.redox-os.org/book/ch02-06-trying-out-redox.html                #
+#                                                                            #
+##############################################################################
+"""

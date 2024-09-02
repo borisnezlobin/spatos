@@ -1,0 +1,11 @@
+[package]
+name = "zerod"
+version = "0.1.0"
+authors = ["Alex Lyon <arcterus@mail.com>"]
+edition = "2021"
+
+[dependencies]
+redox_syscall = "0.5"
+redox-scheme = "0.2"
+redox-daemon = "0.1.2"
+libredox = "0.1.3"
