@@ -1,0 +1,12 @@
+/home/randomletters/redox/redox/installer/target/debug/deps/fatfs-1e7d6b8a90d167dc.rmeta: /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/fatfs-0.3.6/src/lib.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/fatfs-0.3.6/src/boot_sector.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/fatfs-0.3.6/src/dir.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/fatfs-0.3.6/src/dir_entry.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/fatfs-0.3.6/src/file.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/fatfs-0.3.6/src/fs.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/fatfs-0.3.6/src/table.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/fatfs-0.3.6/src/time.rs
+
+/home/randomletters/redox/redox/installer/target/debug/deps/fatfs-1e7d6b8a90d167dc.d: /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/fatfs-0.3.6/src/lib.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/fatfs-0.3.6/src/boot_sector.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/fatfs-0.3.6/src/dir.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/fatfs-0.3.6/src/dir_entry.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/fatfs-0.3.6/src/file.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/fatfs-0.3.6/src/fs.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/fatfs-0.3.6/src/table.rs /home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/fatfs-0.3.6/src/time.rs
+
+/home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/fatfs-0.3.6/src/lib.rs:
+/home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/fatfs-0.3.6/src/boot_sector.rs:
+/home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/fatfs-0.3.6/src/dir.rs:
+/home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/fatfs-0.3.6/src/dir_entry.rs:
+/home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/fatfs-0.3.6/src/file.rs:
+/home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/fatfs-0.3.6/src/fs.rs:
+/home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/fatfs-0.3.6/src/table.rs:
+/home/randomletters/.cargo/registry/src/index.crates.io-6f17d22bba15001f/fatfs-0.3.6/src/time.rs:

@@ -1,0 +1,13 @@
+[package]
+name = "alxd"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+bitflags = "2"
+redox_event = "0.4.1"
+redox_syscall = "0.5"
+redox-daemon = "0.1"
+
+common = { path = "../../common" }
+libredox = "0.1.3"

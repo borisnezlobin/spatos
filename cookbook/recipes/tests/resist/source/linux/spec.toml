@@ -1,0 +1,7 @@
+name = "Linux System Interface"
+
+[tests.uname]
+source = "uname -sm"
+output = """
+Linux x86_64
+"""

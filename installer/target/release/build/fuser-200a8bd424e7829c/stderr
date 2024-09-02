@@ -1,0 +1,11 @@
+
+pkg-config exited with status code 1
+> PKG_CONFIG_PATH=/usr/share/pkgconfig PKG_CONFIG_ALLOW_SYSTEM_LIBS=1 PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1 pkg-config --libs --cflags fuse3 fuse3 >= 3.0.0
+
+The system library `fuse3` required by crate `fuser` was not found.
+The file `fuse3.pc` needs to be installed and the PKG_CONFIG_PATH environment variable must contain its parent directory.
+PKG_CONFIG_PATH contains the following:
+    - /usr/share/pkgconfig
+
+HINT: you may need to install a package such as fuse3, fuse3-dev or fuse3-devel.
+

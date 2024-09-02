@@ -1,0 +1,115 @@
+# Jeremy's configuration
+
+include = ["../desktop.toml"]
+
+# General settings
+[general]
+# Filesystem size in MiB
+filesystem_size = 8192
+
+# Package settings
+[packages]
+# apps
+boxedwine = {}
+cosmic-edit = {}
+cosmic-files = {}
+cosmic-term = {}
+cosmic-text = {}
+periodictable = {}
+pixelcannon = {}
+schismtracker = {}
+sodium = {}
+
+# cli
+acid = {}
+cleye = {}
+ffmpeg6 = {}
+gnu-grep = {}
+lua54 = {}
+nano = {}
+nushell = {}
+perg = {}
+relibc-tests = {}
+ripgrep = {}
+sed = {}
+shellharden = {}
+xz = {}
+
+# demos
+cairodemo = {}
+#cmatrix = {} # addwstr
+cpal = {}
+gears = {}
+glium = {} # does not show anything
+glutin = {}
+hematite = {}
+iced = {}
+libcosmic = {}
+orbclient = {}
+osdemo = {} # does not show anything
+pathfinder = {}
+procedural-wallpapers-rs = {}
+rodioplay = {}
+rust-cairo = {}
+rust-cairo-demo = {}
+sdl2-gears = {}
+vttest = {}
+webrender = {}
+winit = {}
+
+# dev
+autoconf = {}
+automake = {}
+#cargo = {} # openssl issues
+#gcc13 = {} # libiberty errors
+gnu-binutils = {}
+gnu-make = {}
+nasm = {}
+patch = {}
+pkg-config = {}
+#rust = {} # takes too long to compile
+rustpython = {}
+
+# games
+devilutionx = {}
+dosbox = {}
+eduke32 = {}
+flycast = {}
+freedoom = {}
+gigalomania = {}
+mednafen = {}
+mgba = {}
+neverball = {}
+openjazz = {}
+openjk = {}
+openttd = {}
+openttd-opengfx = {}
+openttd-openmsx = {}
+openttd-opensfx = {}
+prboom = {}
+redox-games = {}
+#retroarch = {} # need to package cores
+rs-nes = {} # need game for testing
+rust64 = {} # need roms
+rustual-boy = {} # need game for testing
+scummvm = {} # need game for testing
+sm64ex = {}
+sopwith = {}
+spacecadetpinball = {}
+syobonaction = {}
+#vice = {} # broken on new toolchain
+vvvvvv = {}
+
+# stuff
+cosmic-icons = {}
+freepats = {}
+generaluser-gs = {}
+intel-one-mono = {}
+jeremy = {}
+keyboard-sfx = {}
+libc-bench = {}
+noto-color-emoji = {}
+pop-icon-theme = {}
+shared-mime-info = {}
+timidity = {}
+ttf-hack = {}

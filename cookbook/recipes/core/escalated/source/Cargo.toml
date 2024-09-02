@@ -1,0 +1,17 @@
+[package]
+name = "escalated"
+authors = ["4lDO2 <4lDO2@protonmail.com>"]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+libc = "0.2"
+redox-daemon = "0.1.1"
+redox_syscall = "0.4"
+redox-exec = { git = "https://gitlab.redox-os.org/redox-os/relibc.git" }
+
+[patch.crates-io]
+redox_syscall = { git = "https://gitlab.redox-os.org/redox-os/syscall.git" }

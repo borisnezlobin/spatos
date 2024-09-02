@@ -1,0 +1,15 @@
+[package]
+name = "ramfs"
+version = "0.1.0"
+authors = ["4lDO2 <4lDO2@protonmail.com>"]
+edition = "2018"
+license = "MIT"
+description = "In-memory filesystem for Redox, which is useful for early logging"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+redox-daemon = "0.1.2"
+redox_syscall = "0.5.1"
+redox-scheme = "0.2"
+libredox = "0.1.3"

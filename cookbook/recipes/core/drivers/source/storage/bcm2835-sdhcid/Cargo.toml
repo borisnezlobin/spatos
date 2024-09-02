@@ -1,0 +1,15 @@
+[package]
+name = "bcm2835-sdhcid"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+fdt = "0.1.5"
+redox_syscall = "0.5"
+common = { path = "../../common" }
+driver-block = { path = "../driver-block" }
+
+redox-daemon = "0.1"
+libredox = "0.1.3"

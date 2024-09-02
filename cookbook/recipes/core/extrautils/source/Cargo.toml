@@ -1,0 +1,102 @@
+[package]
+name = "extrautils"
+version = "0.1.0"
+authors = ["Ticki <Ticki@users.noreply.github.com>"]
+
+[[bin]]
+name = "calc"
+path = "src/bin/calc.rs"
+
+[[bin]]
+name = "cur"
+path = "src/bin/cur.rs"
+
+[[bin]]
+name = "dmesg"
+path = "src/bin/dmesg.rs"
+
+[[bin]]
+name = "grep"
+path = "src/bin/grep.rs"
+
+[[bin]]
+name = "gunzip"
+path = "src/bin/gunzip.rs"
+
+[[bin]]
+name = "gzip"
+path = "src/bin/gzip.rs"
+
+[[bin]]
+name = "info"
+path = "src/bin/info.rs"
+
+[[bin]]
+name = "keymap"
+path = "src/bin/keymap.rs"
+
+[[bin]]
+name = "less"
+path = "src/bin/less.rs"
+
+[[bin]]
+name = "man"
+path = "src/bin/man.rs"
+
+[[bin]]
+name = "mdless"
+path = "src/bin/mdless.rs"
+
+[[bin]]
+name = "mtxt"
+path = "src/bin/mtxt.rs"
+
+[[bin]]
+name = "rem"
+path = "src/bin/rem.rs"
+
+[[bin]]
+name = "resize"
+path = "src/bin/resize.rs"
+
+[[bin]]
+name = "screenfetch"
+path = "src/bin/screenfetch.rs"
+
+[[bin]]
+name = "tar"
+path = "src/bin/tar.rs"
+
+[[bin]]
+name = "unzip"
+path = "src/bin/unzip.rs"
+
+[[bin]]
+name = "watch"
+path = "src/bin/watch.rs"
+
+[dependencies]
+arg_parser = { git = "https://gitlab.redox-os.org/redox-os/arg-parser.git" }
+extra = { git = "https://gitlab.redox-os.org/redox-os/libextra.git" }
+libflate = "0.1.4"
+os-release = "0.1.0"
+pager = { git = "https://gitlab.redox-os.org/redox-os/libpager.git" }
+libredox = "0.1"
+tar = { version = "0.4.27", default-features = false }
+filetime = { git = "https://github.com/jackpot51/filetime.git" }
+termion = "3"
+rust-lzma = "0.5"
+tree_magic = { git = "https://github.com/aahancoc/tree_magic.git", rev = "56fd014b4e4aefea7d1e37d4216595624511cefc" }
+bzip2 = "0.3"
+zip = "0.3"
+
+[dev-dependencies]
+assert_cmd = "1"
+predicates = "1"
+tempfile = "3"
+
+[target.'cfg(any(target_arch = "x86", target_arch = "x86_64"))'.dependencies]
+raw-cpuid = "10.2.0"
+
+[patch.crates-io]
+filetime = { git = "https://github.com/jackpot51/filetime.git" }

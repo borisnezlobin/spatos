@@ -1,0 +1,9 @@
+#TODO require XWayland
+[source]
+git = "https://github.com/sassman/t-rec-rs"
+rev = "da911b978e9e87a917c7c865e5aa4d833209d9e0"
+[build]
+template = "cargo"
+dependencies = [
+    "imagemagick",
+]

@@ -1,0 +1,7 @@
+name = "Redox System Interface"
+
+[tests.uname]
+source = "uname -sm"
+output = """
+Redox x86_64
+"""
