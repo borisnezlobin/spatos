@@ -1,0 +1,5 @@
+/build/
+/prefix/
+.config
+**/my_*
+/xfce-source/
