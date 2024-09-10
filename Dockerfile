@@ -34,6 +34,8 @@ RUN apt-get update && apt-mark hold iptables && \
       x11-xserver-utils \
       x11-utils
 
+RUN apt install build-essential intltool -y
+
 # install xfce from ./xfce-source
 # from https://docs.xfce.org/xfce/building, ${PREFIX}=$HOME/local
 COPY ./xfce-source /root/xfce-source
