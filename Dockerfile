@@ -55,6 +55,7 @@ RUN env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommend
       libxv1 \
       mesa-utils \
       mesa-utils-extra && \
+    touch /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml && \
     sed -i 's%<property name="ThemeName" type="string" value="Xfce"/>%<property name="ThemeName" type="string" value="Raleigh"/>%' /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
 
 # disable xfwm4 compositing if X extension COMPOSITE is missing and no config file exists
