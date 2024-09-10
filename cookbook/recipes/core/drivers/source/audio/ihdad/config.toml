@@ -1,5 +1,0 @@
-[[drivers]]
-name = "Intel HD Audio"
-class = 0x04
-subclass = 0x03
-command = ["ihdad"]

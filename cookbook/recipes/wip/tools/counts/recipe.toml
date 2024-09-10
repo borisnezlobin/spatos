@@ -1,5 +1,0 @@
-#TODO move to proper category
-[source]
-git = "https://github.com/nnethercote/counts"
-[build]
-template = "cargo"

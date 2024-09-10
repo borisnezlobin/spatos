@@ -1,8 +1,0 @@
-prefix=@prefix@
-
-Name: shared-mime-info
-Description: Freedesktop common MIME database
-Version: @VERSION@
-Requires:
-Libs:
-Cflags:

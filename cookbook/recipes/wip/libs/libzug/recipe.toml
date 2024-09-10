@@ -1,8 +1,0 @@
-#TODO missing script for CMake, see https://github.com/arximboldi/zug#usage
-[source]
-git = "https://github.com/arximboldi/zug"
-[build]
-template = "custom"
-dependencies = [
-    "boost",
-]

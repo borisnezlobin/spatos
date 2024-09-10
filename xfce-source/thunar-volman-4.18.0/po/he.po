@@ -1,0 +1,539 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Elishai Eliyahu <elishai@mailfence.com>, 2016-2018
+# koby vurgaft <slipperygate@gmail.com>, 2012
+# Omer I.S. <omeritzicschwartz@gmail.com>, 2020
+# Yaron Shahrabani <sh.yaron@gmail.com>, 2012-2013
+# Yaron Shahrabani <sh.yaron@gmail.com>, 2012
+msgid ""
+msgstr ""
+"Project-Id-Version: Thunar-volman\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-08-19 12:45+0200\n"
+"PO-Revision-Date: 2020-08-19 10:45+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"Language-Team: Hebrew (http://www.transifex.com/xfce/thunar-volman/language/he/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: he\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
+
+#: ../thunar-volman/main.c:59
+msgid "The sysfs path of the newly added device"
+msgstr "The sysfs path of the newly added device"
+
+#: ../thunar-volman/main.c:60
+#: ../thunar-volman-settings/thunar-volman-settings.desktop.in.in.h:2
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:103
+msgid "Configure management of removable drives and media"
+msgstr "הגדר ניהול של כוננים ומדיה נשלפים"
+
+#: ../thunar-volman/main.c:61
+msgid "Print version information and exit"
+msgstr "הדפס מידע גרסה וצא"
+
+#. setup application name
+#: ../thunar-volman/main.c:93
+msgid "Thunar Volume Manager"
+msgstr "מנהל כרכים תונאר"
+
+#: ../thunar-volman/main.c:121
+msgid "All rights reserved."
+msgstr "כל הזכויות שמורות."
+
+#: ../thunar-volman/main.c:122
+#, c-format
+msgid "Please report bugs to <%s>."
+msgstr "אנא דווח על באגים ל־ <%s>."
+
+#: ../thunar-volman/main.c:176
+#, c-format
+msgid "There is no device with the sysfs path \"%s\""
+msgstr "אין התקן עם נתיב sysfs \"%s\""
+
+#: ../thunar-volman/main.c:188
+#, c-format
+msgid "Must specify the sysfs path of new devices with --device-added"
+msgstr "חייב לציין את נתיב sysfs של התקנים חדשים עם --device-added"
+
+#. ...so we need to prompt what to do
+#: ../thunar-volman/tvm-block-device.c:204
+msgid "Photos and Music"
+msgstr "תצלומים ומוזיקה"
+
+#: ../thunar-volman/tvm-block-device.c:205
+msgid "Photos were found on your portable music player"
+msgstr "נמצאו תצלומים על נגן מוזיקה נייד"
+
+#: ../thunar-volman/tvm-block-device.c:206
+msgid "Would you like to import the photos or manage the music?"
+msgstr "האם ברצונך לייבא את התצלומים או לנהל את המוזיקה?"
+
+#: ../thunar-volman/tvm-block-device.c:208
+#: ../thunar-volman/tvm-block-device.c:277
+#: ../thunar-volman/tvm-block-device.c:379
+#: ../thunar-volman/tvm-block-device.c:426
+#: ../thunar-volman/tvm-block-device.c:508
+#: ../thunar-volman/tvm-block-device.c:838 ../thunar-volman/tvm-run.c:192
+#: ../thunar-volman/tvm-run.c:203
+msgid "Ig_nore"
+msgstr "הת_עלם"
+
+#: ../thunar-volman/tvm-block-device.c:209
+#: ../thunar-volman/tvm-block-device.c:278
+msgid "Import _Photos"
+msgstr "י_בוא תמונות"
+
+#: ../thunar-volman/tvm-block-device.c:210
+msgid "Manage _Music"
+msgstr "_נהל מוזיקה"
+
+#. ask the user to import photos
+#: ../thunar-volman/tvm-block-device.c:273
+msgid "Photo Import"
+msgstr "יבוא תצלום"
+
+#: ../thunar-volman/tvm-block-device.c:274
+msgid "A photo card has been detected"
+msgstr "כרטיס תצלום אותר"
+
+#: ../thunar-volman/tvm-block-device.c:275
+msgid ""
+"There are photos on the card. Would you like to add these photos to your "
+"album?"
+msgstr "ישנם תצלומים על הכרטיס. האם ברצונך להוסיף את אלה לאלבום שלך?"
+
+#. prompt the user to execute the file
+#. prompt the user to execute this file
+#: ../thunar-volman/tvm-block-device.c:374
+#: ../thunar-volman/tvm-block-device.c:421
+#, c-format
+msgid "Would you like to allow \"%s\" to run?"
+msgstr "האם ברצונך לאפשר להריץ את \"%s\""
+
+#: ../thunar-volman/tvm-block-device.c:377
+#: ../thunar-volman/tvm-block-device.c:424
+msgid "Auto-Run Confirmation"
+msgstr "אישור הרצה אוטומטית"
+
+#: ../thunar-volman/tvm-block-device.c:378
+#: ../thunar-volman/tvm-block-device.c:425
+msgid "Auto-Run capability detected"
+msgstr "יכולת הרצה אוטומטית אותרה"
+
+#: ../thunar-volman/tvm-block-device.c:380
+#: ../thunar-volman/tvm-block-device.c:427
+msgid "_Allow Auto-Run"
+msgstr "_אפשר הרצה אוטומטית"
+
+#. prompt the user whether to autoopen this file
+#: ../thunar-volman/tvm-block-device.c:503
+#, c-format
+msgid "Would you like to open \"%s\"?"
+msgstr "האם ברצונך לפתוח את \"%s\"?"
+
+#: ../thunar-volman/tvm-block-device.c:506
+msgid "Auto-Open Confirmation"
+msgstr "אישור פתיחה אוטומטית"
+
+#: ../thunar-volman/tvm-block-device.c:507
+msgid "Auto-Open capability detected"
+msgstr "יכולת פתיחה אוטומטית אותרה"
+
+#: ../thunar-volman/tvm-block-device.c:509
+msgid "_Open"
+msgstr "_פתח"
+
+#. generate notification info
+#: ../thunar-volman/tvm-block-device.c:617
+msgid "CD mounted"
+msgstr "תקליטור מעוגן"
+
+#: ../thunar-volman/tvm-block-device.c:618
+msgid "The CD was mounted automatically"
+msgstr "התקליטור עוגן אוטומטית"
+
+#. generate notification info
+#: ../thunar-volman/tvm-block-device.c:623
+msgid "DVD mounted"
+msgstr "‏DVD מעוגן"
+
+#: ../thunar-volman/tvm-block-device.c:624
+msgid "The DVD was mounted automatically"
+msgstr "ה־DVD עוגן אוטומטית"
+
+#. generate notification info
+#: ../thunar-volman/tvm-block-device.c:629
+msgid "Blu-ray mounted"
+msgstr "בלו-ריי מעוגן"
+
+#: ../thunar-volman/tvm-block-device.c:630
+msgid "The Blu-ray was mounted automatically"
+msgstr "הבלו-ריי עוגן אוטומטית"
+
+#: ../thunar-volman/tvm-block-device.c:640
+msgid "Volume mounted"
+msgstr "כרך עוגן"
+
+#: ../thunar-volman/tvm-block-device.c:643
+#, c-format
+msgid "The volume \"%s\" was mounted automatically"
+msgstr "הכרך \"%s\" עוגן אוטומטית"
+
+#: ../thunar-volman/tvm-block-device.c:648
+#, c-format
+msgid "The inserted volume was mounted automatically"
+msgstr "הכרך שהוכנס עוגן אוטומטית"
+
+#: ../thunar-volman/tvm-block-device.c:702
+#, c-format
+msgid "Unable to locate mount point"
+msgstr "לא ניתן לאתר נקודת עיגון"
+
+#: ../thunar-volman/tvm-block-device.c:748
+#, c-format
+msgid "Unable to mount the device"
+msgstr "לא ניתן לעגן את ההתקן"
+
+#: ../thunar-volman/tvm-block-device.c:757
+#, c-format
+msgid "Could not detect the volume corresponding to the device"
+msgstr "לא ניתן לאתר את הכרך התואם את ההתקן"
+
+#: ../thunar-volman/tvm-block-device.c:833
+msgid "Audio/Data CD"
+msgstr "תקליטור שמע/נתונים"
+
+#: ../thunar-volman/tvm-block-device.c:834
+msgid "The CD in the drive contains both music and files"
+msgstr "התקליטור שבכונן מכיל גם מוזיקה וגם קבצים"
+
+#: ../thunar-volman/tvm-block-device.c:836
+msgid "Would you like to listen to music or browse the files?"
+msgstr "האם ברצונך להאזין למוזיקה או לעיין בקבצים?"
+
+#: ../thunar-volman/tvm-block-device.c:839
+msgid "_Browse Files"
+msgstr "_עיין בקבצים"
+
+#: ../thunar-volman/tvm-block-device.c:840
+msgid "_Play CD"
+msgstr "_נגן תקליטור"
+
+#: ../thunar-volman/tvm-block-device.c:928
+#, c-format
+msgid "Unknown block device type \"%s\""
+msgstr "טיפוס התקן בלוק \"%s\" לא מוכר"
+
+#: ../thunar-volman/tvm-device.c:139
+#, c-format
+msgid "Device type \"%s\" not supported"
+msgstr "טיפוס התקן \"%s\" לא נתמך"
+
+#: ../thunar-volman/tvm-input-device.c:75
+msgid "Keyboard detected"
+msgstr "מקלדת אותרה"
+
+#: ../thunar-volman/tvm-input-device.c:76
+msgid "A keyboard was detected"
+msgstr "אותרה מקלדת אותרה"
+
+#: ../thunar-volman/tvm-input-device.c:87
+#: ../thunar-volman/tvm-input-device.c:101
+msgid "Tablet detected"
+msgstr "טאבלט אותר"
+
+#: ../thunar-volman/tvm-input-device.c:88
+#: ../thunar-volman/tvm-input-device.c:102
+msgid "A graphics tablet was detected"
+msgstr "אותר מחשב לוח גרפי"
+
+#: ../thunar-volman/tvm-input-device.c:111
+msgid "Mouse detected"
+msgstr "עכבר אותר"
+
+#: ../thunar-volman/tvm-input-device.c:112
+msgid "A mouse was detected"
+msgstr "אותר עכבר"
+
+#: ../thunar-volman/tvm-input-device.c:141
+#, c-format
+msgid "Unsupported input device type \"%s\""
+msgstr "טיפוס התקן קלט \"%s\" לא נתמך"
+
+#: ../thunar-volman/tvm-run.c:171
+#, c-format
+msgid "Autoburning of blank CDs and DVDs is disabled"
+msgstr "צריבה אוטומטית של תקליטורי CD/DVD מנוטרלת"
+
+#: ../thunar-volman/tvm-run.c:189
+msgid "Blank DVD inserted"
+msgstr "הוכנס ‏DVD ריק"
+
+#: ../thunar-volman/tvm-run.c:190
+msgid "You have inserted a blank DVD."
+msgstr "הכנסת DVD ריק."
+
+#: ../thunar-volman/tvm-run.c:191 ../thunar-volman/tvm-run.c:202
+msgid "What would you like to do?"
+msgstr "מה ברצונך לעשות?"
+
+#: ../thunar-volman/tvm-run.c:193
+msgid "Burn _DVD"
+msgstr "צרוב _DVD"
+
+#: ../thunar-volman/tvm-run.c:200
+msgid "Blank CD inserted"
+msgstr "הוכנס תקליטור ריק"
+
+#: ../thunar-volman/tvm-run.c:201
+msgid "You have inserted a blank CD."
+msgstr "הכנסת תקליטור ריק."
+
+#: ../thunar-volman/tvm-run.c:204
+msgid "Burn _Data CD"
+msgstr "צרוב תקליטור _מידע"
+
+#: ../thunar-volman/tvm-run.c:205
+msgid "Burn _Audio CD"
+msgstr "צרוב תקליטור _שמע"
+
+#: ../thunar-volman/tvm-run.c:229
+#, c-format
+msgid "The burn command may not be empty"
+msgstr "פקודת צריבה לא אמורה להישאר ריקה"
+
+#: ../thunar-volman/tvm-run.c:268
+#, c-format
+msgid "The CD player command is undefined"
+msgstr "פקודת נגן התקליטורים אינה מוגדרת"
+
+#: ../thunar-volman/tvm-usb-device.c:62
+msgid "Camera detected"
+msgstr "מצלמה אותרה"
+
+#: ../thunar-volman/tvm-usb-device.c:63
+msgid "A photo camera was detected"
+msgstr "אותרה מצלמת תצלומים"
+
+#: ../thunar-volman/tvm-usb-device.c:71
+msgid "Printer detected"
+msgstr "מדפסת אותרה"
+
+#: ../thunar-volman/tvm-usb-device.c:72
+msgid "A USB printer was detected"
+msgstr "אותרה מדפסת USB"
+
+#: ../thunar-volman/tvm-usb-device.c:100
+#, c-format
+msgid "Unsupported USB device type \"%s\""
+msgstr "טיפוס התקן USB ‏\"%s\" לא נתמך"
+
+#: ../thunar-volman-settings/main.c:44
+msgid "Settings manager socket"
+msgstr "סוקט מנהל הגדרות"
+
+#: ../thunar-volman-settings/main.c:44
+msgid "SOCKET ID"
+msgstr "SOCKET ID"
+
+#. setup application name
+#: ../thunar-volman-settings/main.c:60
+msgid "Thunar Volume Manager Settings"
+msgstr "הגדרות מנהל כרכים Thunar"
+
+#: ../thunar-volman-settings/thunar-volman-settings.desktop.in.in.h:1
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:101
+msgid "Removable Drives and Media"
+msgstr "כוננים ומדיה נשלפים"
+
+#: ../thunar-volman-settings/tvm-command-entry.c:237
+msgid "Select an Application"
+msgstr "בחירת יישום"
+
+#: ../thunar-volman-settings/tvm-command-entry.c:240
+msgid "Cancel"
+msgstr "ביטול"
+
+#: ../thunar-volman-settings/tvm-command-entry.c:241
+msgid "Select Application"
+msgstr "בחר יישום "
+
+#: ../thunar-volman-settings/tvm-command-entry.c:248
+msgid "All Files"
+msgstr "כל הקבצים"
+
+#: ../thunar-volman-settings/tvm-command-entry.c:253
+msgid "Executable Files"
+msgstr "קבצי הרצה"
+
+#: ../thunar-volman-settings/tvm-command-entry.c:268
+msgid "Perl Scripts"
+msgstr "תסריטי Perl"
+
+#: ../thunar-volman-settings/tvm-command-entry.c:274
+msgid "Python Scripts"
+msgstr "תסריטי Python"
+
+#: ../thunar-volman-settings/tvm-command-entry.c:280
+msgid "Ruby Scripts"
+msgstr "תסריטי Ruby"
+
+#: ../thunar-volman-settings/tvm-command-entry.c:286
+msgid "Shell Scripts"
+msgstr "תסריטי Shell"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:114
+msgid "Help"
+msgstr "עזרה"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:124
+msgid "Close"
+msgstr "סגירה"
+
+#. Storage
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:140
+msgid "Storage"
+msgstr "אחסון"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:151
+msgid "Removable Storage"
+msgstr "התקני אחסון נשלפים"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:170
+msgid "_Mount removable drives when hot-plugged"
+msgstr "_עגן כוננים נשלפים בעת חיבור"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:177
+msgid "Mount removable media when _inserted"
+msgstr "עגן מדיה נשלפת כאשר מו_כנסת"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:184
+msgid "B_rowse removable media when inserted"
+msgstr "_עיין במדיה נשלפת כאשר מוכנסת"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:191
+msgid "_Auto-run programs on new drives and media"
+msgstr "_הרץ אוטומטית תוכניות שעל כוננים ומדיה חדשים"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:197
+msgid "Auto-open files on new drives and media"
+msgstr "_פתח אוטומטית קבצים שעל כוננים ומדיה חדשים"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:208
+msgid "Blank CDs and DVDs"
+msgstr "תקליטורי CD/DVD ריקים"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:227
+msgid "_Burn a CD or DVD when a blank disc is inserted"
+msgstr "_צרוב תקליטור CD או DVD כאשר דיסק ריק מוכנס"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:237
+msgid "Command for _Data CDs:"
+msgstr "פקודה לתקליטור _נתונים:"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:246
+msgid "Command for A_udio CDs:"
+msgstr "פקודה לתקליטורי _שמע:"
+
+#. Multimedia
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:261
+msgid "Multimedia"
+msgstr "מולטימדיה"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:272
+msgid "Audio CDs"
+msgstr "תקליטורי שמע"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:291
+msgid "Play _audio CDs when inserted"
+msgstr "נגן תקליטורי _שמע כאשר מוכנסים"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:297
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:422
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:470
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:518
+msgid "_Command:"
+msgstr "_פקודה:"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:310
+msgid "Video CDs/DVDs/Blu-rays"
+msgstr "תקליטורים/די־וי־די/בלו־ריי של וידאו"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:329
+msgid "Play _video CDs, DVDs, and Blu-rays when inserted"
+msgstr "נגן תקליטור, די־וי־די, ובלו־ריי של _וידאו כאשר מוכנסים"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:336
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:374
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:557
+msgid "C_ommand:"
+msgstr "פ_קודה:"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:349
+msgid "Portable Music Players"
+msgstr "נגני מוזיקה ניידים"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:368
+msgid "Play _music files when connected"
+msgstr "נגן קבצי _מוזיקה כאשר מחוברים"
+
+#. Cameras
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:385
+msgid "Cameras"
+msgstr "מצלמות"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:396
+msgid "Digital Cameras"
+msgstr "מצלמות דיגיטליות"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:415
+msgid "Import digital photographs when connected"
+msgstr "יבא תמונות דיגיטליות כאשר מחוברות"
+
+#. Printers
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:433
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:444
+msgid "Printers"
+msgstr "מדפסות"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:463
+msgid "Automatically run a program when a _printer is connected"
+msgstr "הרץ אוטומטית תוכנית כאשר _מדפסת מחוברת"
+
+#. Input Devices
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:481
+msgid "Input Devices"
+msgstr "התקני קלט"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:492
+msgid "Keyboards"
+msgstr "מקלדות"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:511
+msgid "Automatically run a program when a USB _keyboard is connected"
+msgstr "הרץ אוטומטית תוכנית כאשר _מקלדת USB מחוברת"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:531
+msgid "Mice"
+msgstr "עכברים"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:550
+msgid "Automatically run a program when a USB _mouse is connected"
+msgstr "הרץ אוטומטית תוכנית כאשר _עכבר USB מחובר"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:570
+msgid "Tablet"
+msgstr "טאבלטים"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:589
+msgid "Automatically run a program when a _tablet is connected"
+msgstr "הרץ תוכנית כאשר _מחשב לוח מחובר"
+
+#: ../thunar-volman-settings/tvm-preferences-dialog.c:596
+msgid "Com_mand:"
+msgstr "פקו_דה:"

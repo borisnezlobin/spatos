@@ -1,0 +1,139 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Kiril Kirilov <cybercop_montana@abv.bg>, 2017,2021
+# Любомир Василев, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: Tumbler\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-19 00:47+0100\n"
+"PO-Revision-Date: 2021-12-18 23:47+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"Language-Team: Bulgarian (http://www.transifex.com/xfce/tumbler/language/bg/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: bg\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../tumblerd/tumbler-specialized-thumbnailer.c:438
+msgid "Failed to call the specialized thumbnailer: timeout"
+msgstr "Не мога да се свържа със специалната услуга за умалени изображения: изтекло време"
+
+#: ../tumblerd/tumbler-specialized-thumbnailer.c:447
+#, c-format
+msgid "Failed to call the specialized thumbnailer: %s"
+msgstr "Не мога да се свържа със специалната услуга за умалени изображения: %s"
+
+#: ../tumbler/tumbler-enum-types.c:49
+msgid "Invalid format"
+msgstr "Невалиден формат"
+
+#: ../tumbler/tumbler-enum-types.c:50
+msgid "PNG"
+msgstr "PNG"
+
+#: ../tumbler/tumbler-enum-types.c:71
+msgid "RGB Colorspace"
+msgstr "RGB гама"
+
+#: ../tumbler/tumbler-error.h:41
+msgid "Thumbnail could not be inferred from file contents"
+msgstr "Умаленото изображение не може да се заключи към съдържанието на файла"
+
+#: ../tumbler/tumbler-error.h:42
+msgid "Only local files are supported"
+msgstr "Поддържат се само локални файлове"
+
+#: ../tumbler/tumbler-error.h:43
+#, c-format
+msgid "Corrupt thumbnail PNG: '%s'"
+msgstr "Повредена PNG миниатюра: \"%s\""
+
+#: ../tumbler/tumbler-error.h:44
+#, c-format
+msgid "Could not save thumbnail to \"%s\""
+msgstr "Умаленото изображение не може да се запази в „%s“"
+
+#: ../tumbler/tumbler-error.h:45
+#, c-format
+msgid "The file \"%s\" is a thumbnail itself"
+msgstr "Файлът „%s“ е умалено изображение"
+
+#: ../tumbler/tumbler-error.h:46
+#, c-format
+msgid "No thumbnailer available for \"%s\""
+msgstr "Няма услуга за умалени изображения за „%s“ "
+
+#: ../tumbler/tumbler-error.h:47
+msgid "The thumbnailer service is shutting down"
+msgstr "Услугата за умалени изображения се изключва"
+
+#: ../tumbler/tumbler-error.h:48
+msgid "Unsupported thumbnail flavor requested"
+msgstr "Неподдържан нюанс на  умалено изображение"
+
+#: ../plugins/cover-thumbnailer/cover-thumbnailer.c:394
+#, c-format
+msgid "Failed to load the poster image \"%s\""
+msgstr "Не може да се зареди изображението „%s“"
+
+#: ../plugins/cover-thumbnailer/cover-thumbnailer.c:430
+#, c-format
+msgid "Failed to load the metadata from \"%s\""
+msgstr "Не могат да се заредят метаданните от „%s“"
+
+#: ../plugins/cover-thumbnailer/cover-thumbnailer.c:626
+msgid ""
+"Invalid API key, you must be granted a valid key. The Movie DB backend will "
+"be disabled."
+msgstr "Невалиден API ключ, вие трябва да въведете валиден ключ. Филмовата база с данни ще бъде изключена."
+
+#: ../plugins/cover-thumbnailer/cover-thumbnailer.c:634
+msgid "No poster key found in metadata"
+msgstr "Не е намерен плаката в метаданните"
+
+#: ../plugins/cover-thumbnailer/cover-thumbnailer.c:689
+msgid "Movie title is too short"
+msgstr "Заглавието на филма е прекалено кратко"
+
+#. there was an error in the freetype initialization, abort
+#: ../plugins/font-thumbnailer/font-thumbnailer.c:463
+#, c-format
+msgid "Could not initialize freetype: %s"
+msgstr "Не може да се инициализира freetype: %s"
+
+#. there was an error, emit error signal
+#: ../plugins/font-thumbnailer/font-thumbnailer.c:475
+#, c-format
+msgid "Could not load file contents: %s"
+msgstr "Не може да се зареди съдържанието на файла: %s"
+
+#. the font file could not be loaded, emit an error signal
+#: ../plugins/font-thumbnailer/font-thumbnailer.c:494
+#, c-format
+msgid "Could not open font file: %s"
+msgstr "Не може да се отвори файлът на шрифта: %s"
+
+#. emit an error signal
+#: ../plugins/font-thumbnailer/font-thumbnailer.c:518
+#, c-format
+msgid "Could not set the character map: %s"
+msgstr "Не може да се зададе карта със символи: %s"
+
+#. emit an error signal
+#: ../plugins/font-thumbnailer/font-thumbnailer.c:545
+#, c-format
+msgid "Could not render glyphs: %s"
+msgstr "Не може да се начертаят фигурите: %s"
+
+#: ../plugins/poppler-thumbnailer/poppler-thumbnailer.c:337
+msgid "The document is empty"
+msgstr "Документът е празен"
+
+#: ../plugins/poppler-thumbnailer/poppler-thumbnailer.c:349
+msgid "First page of the document could not be read"
+msgstr "Първата страница от документа не може да се прочете"

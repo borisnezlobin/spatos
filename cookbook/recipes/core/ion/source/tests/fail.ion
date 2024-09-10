@@ -1,5 +1,0 @@
-if test 3 -eq 2
-    echo pass
-else
-    echo fail
-end
