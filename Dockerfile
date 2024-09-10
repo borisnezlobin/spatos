@@ -1,29 +1,3 @@
-# x11docker/xfce
-# 
-# Run XFCE desktop in docker. 
-# Use x11docker to run image. 
-# Get x11docker from github: 
-#   https://github.com/mviereck/x11docker 
-#
-# Examples: 
-#   - Run desktop:
-#       x11docker --desktop x11docker/xfce
-#   - Run single application:
-#       x11docker x11docker/xfce thunar
-#
-# Options:
-# Persistent home folder stored on host with   --home
-# Shared host folder with                      --share DIR
-# Hardware acceleration with option            --gpu
-# Clipboard sharing with option                --clipboard
-# ALSA sound support with option               --alsa
-# Pulseaudio sound support with option         --pulseaudio
-# Language setting with                        --lang [=$LANG]
-# Printing over CUPS with                      --printer
-# Webcam support with                          --webcam
-#
-# Look at x11docker --help for further options.
-
 FROM debian:bullseye
 
 RUN apt-get update && apt-mark hold iptables && \
@@ -31,21 +5,25 @@ RUN apt-get update && apt-mark hold iptables && \
       dbus-x11 \
       psmisc \
       xdg-utils \
+      xorg \
+      xorg-dev \
       x11-xserver-utils \
       x11-utils
 
-RUN apt install build-essential intltool dbus-x11 dbus-user-session dbus-session-bus-common dbus-system-bus-common dbus-daemon dbus-bin -y
+# I HATE dependencies
+RUN apt install build-essential intltool dbus dbus-system-bus-common libglib2.0-dev libgtk2.0-dev libxfce4util-dev -y
 
 # install xfce from ./xfce-source
 # from https://docs.xfce.org/xfce/building, ${PREFIX}=$HOME/local
 COPY ./xfce-source /root/xfce-source
 COPY ./run-config.sh /root/run-config.sh
 
-RUN export PKG_CONFIG_PATH="/root/local/lib/pkgconfig:$PKG_CONFIG_PATH" 
-RUN ls /root
-RUN export CFLAGS="-02 -pipe"
-# todo: find a better way? for now I think just run this bash script is the strat
+ENV PKG_CONFIG_PATH="/root/local/lib/pkgconfig:$PKG_CONFIG_PATH"
+ENV export CFLAGS="-02 -pipe"
 RUN bash /root/run-config.sh
+
+# todo: find a better way? for now I think just run this bash script is the strat
+# RUN bash /root/run-config.sh
 
 RUN env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
       libgtk-3-bin \
