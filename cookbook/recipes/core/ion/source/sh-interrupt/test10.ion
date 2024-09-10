@@ -1,4 +1,0 @@
-#!./testshell
-
-echo 'You should be able to end the script with one SIGINT'
-../target/debug/ion -c 'while true; wc ../target/debug/ion > /dev/null ; end'

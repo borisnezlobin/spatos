@@ -1,5 +1,0 @@
-#TODO missing script for CMake, see https://github.com/tunabrain/tungsten#compilation
-[source]
-git = "https://github.com/tunabrain/tungsten"
-[build]
-template = "custom"

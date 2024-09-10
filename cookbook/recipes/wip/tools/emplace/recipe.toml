@@ -1,5 +1,0 @@
-#TODO sys-info crate error
-[source]
-git = "https://github.com/tversteeg/emplace"
-[build]
-template = "cargo"

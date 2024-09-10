@@ -1,5 +1,0 @@
-#TODO missing script for CMake, see https://github.com/gflags/gflags/blob/master/INSTALL.md#compiling-the-source-code-with-cmake
-[source]
-git = "https://github.com/gflags/gflags"
-[build]
-template = "custom"

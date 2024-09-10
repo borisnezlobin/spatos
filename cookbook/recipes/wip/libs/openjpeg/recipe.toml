@@ -1,6 +1,0 @@
-#TODO missing script for CMake, see https://github.com/uclouvain/openjpeg/blob/master/INSTALL.md
-[source]
-git = "https://github.com/uclouvain/openjpeg"
-rev = "a5891555eb49ed7cc26b2901ea680acda136d811"
-[build]
-template = "custom"

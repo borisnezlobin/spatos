@@ -1,5 +1,0 @@
-#TODO curve25519-dalek crate error
-[source]
-git = "https://github.com/ricott1/sshattrick"
-[build]
-template = "cargo"

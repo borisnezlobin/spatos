@@ -1,3 +1,0 @@
-[submodule "smoltcp"]
-	path = smoltcp
-	url = https://gitlab.redox-os.org/redox-os/smoltcp.git

@@ -1,5 +1,0 @@
-#TODO termios crate error
-[source]
-git = "https://github.com/kyu08/fzf-make"
-[build]
-template = "cargo"

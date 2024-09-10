@@ -1,3 +1,0 @@
-# Configuration for using resist
-
-include = ["../resist.toml"]

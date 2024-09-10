@@ -1,5 +1,0 @@
-#TODO missing script for "make", see https://luajit.org/install.html
-[source]
-tar = "https://luajit.org/download/LuaJIT-2.1.0-beta3.tar.gz"
-[build]
-template = "custom"

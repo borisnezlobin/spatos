@@ -1,7 +1,0 @@
-#TODO missing script for CMake, lacking build instructions
-#TODO missing dependencies
-[source]
-git = "https://invent.kde.org/utilities/okteta"
-rev = "fb6150f2dce791c96b95a12ee0c74942c1774c05"
-[build]
-template = "custom"

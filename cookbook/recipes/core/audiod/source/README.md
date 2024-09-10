@@ -1,3 +1,0 @@
-# audiod
-
-Redox audio server

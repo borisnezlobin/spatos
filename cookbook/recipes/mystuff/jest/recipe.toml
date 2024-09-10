@@ -1,5 +1,0 @@
-[build]
-template = "cargo"
-
-[dependencies]
-opencv = "0.92.2"

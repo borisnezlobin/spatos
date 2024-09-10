@@ -1,2 +1,0 @@
-mod du;
-mod kill;

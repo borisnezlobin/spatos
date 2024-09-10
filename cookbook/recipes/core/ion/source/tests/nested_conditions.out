@@ -1,3 +1,0 @@
-true a == a
-false b != b
-true 3 > 2
