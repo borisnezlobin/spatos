@@ -15,12 +15,12 @@ RUN apt install build-essential intltool dbus dbus-system-bus-common libglib2.0-
 
 # install xfce from ./xfce-source
 # from https://docs.xfce.org/xfce/building, ${PREFIX}=$HOME/local
-COPY ./xfce-source /root/xfce-source
-COPY ./run-config.sh /root/run-config.sh
+COPY ./xfce-source /usr/xfce-source
+COPY ./run-config.sh /usr/run-config.sh
 
-ENV PKG_CONFIG_PATH="/root/local/lib/pkgconfig:$PKG_CONFIG_PATH"
+ENV PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 ENV export CFLAGS="-02 -pipe"
-RUN bash /root/run-config.sh
+RUN bash /usr/run-config.sh
 
 # todo: find a better way? for now I think just run this bash script is the strat
 # RUN bash /root/run-config.sh
@@ -82,4 +82,8 @@ startxfce4\n\
 " > /usr/local/bin/start && \
 chmod +x /usr/local/bin/start
 
-CMD start
+RUN cat /usr/local/bin/start
+
+RUN which gcc
+
+CMD which start && start
