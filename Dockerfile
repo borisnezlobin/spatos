@@ -8,7 +8,15 @@ RUN apt-get update && apt-mark hold iptables && \
       xorg \
       xorg-dev \
       x11-xserver-utils \
-      x11-utils
+      x11-utils \
+      gtk+3.0 \
+      libgtk-3-dev \
+      libwnck-dev \
+      libwnck-3-0 \
+      libwnck-common \
+      libwnck-3-dev \
+      libwnck-3-common \
+      wmctrl
 
 # I HATE dependencies
 RUN apt install build-essential intltool dbus dbus-system-bus-common libglib2.0-dev libgtk2.0-dev libxfce4util-dev -y
@@ -20,10 +28,14 @@ COPY ./run-config.sh /usr/run-config.sh
 
 ENV PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 ENV export CFLAGS="-02 -pipe"
-RUN bash /usr/run-config.sh
 
-# todo: find a better way? for now I think just run this bash script is the strat
-# RUN bash /root/run-config.sh
+RUN apt install sudo -y
+RUN adduser --disabled-password --gecos '' docker
+RUN adduser docker sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+USER docker
+RUN sudo /usr/run-config.sh
 
 RUN env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
       libgtk-3-bin \
@@ -58,6 +70,8 @@ RUN env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommend
     touch /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml && \
     sed -i 's%<property name="ThemeName" type="string" value="Xfce"/>%<property name="ThemeName" type="string" value="Raleigh"/>%' /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
 
+USER root
+
 # disable xfwm4 compositing if X extension COMPOSITE is missing and no config file exists
 RUN Configfile="~/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml" && \
 echo "#! /bin/bash\n\
@@ -84,6 +98,4 @@ chmod +x /usr/local/bin/start
 
 RUN cat /usr/local/bin/start
 
-RUN which gcc
-
-CMD which start && start
+CMD start
