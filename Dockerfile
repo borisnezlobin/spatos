@@ -19,7 +19,10 @@ RUN apt-get update && apt-mark hold iptables && \
       wmctrl
 
 # I HATE dependencies
-RUN apt install build-essential intltool dbus dbus-system-bus-common libglib2.0-dev libgtk2.0-dev libxfce4util-dev -y
+RUN apt install build-essential intltool dbus dbus-system-bus-common \
+    libglib2.0-dev libgtk2.0-dev libxfce4util-dev \
+    at-spi2-core libxi-dev xfce4-settings libxfce4panel-2.0-dev \
+    libxi6 libxi-dev libxinerama1 libxinerama-dev libgtk-3-bin -y
 
 # install xfce from ./xfce-source
 # from https://docs.xfce.org/xfce/building, ${PREFIX}=$HOME/local
@@ -29,16 +32,15 @@ COPY ./run-config.sh /usr/run-config.sh
 ENV PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 ENV export CFLAGS="-02 -pipe"
 
-RUN apt install sudo -y
-RUN adduser --disabled-password --gecos '' docker
-RUN adduser docker sudo
-RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+# RUN apt install sudo -y
+# RUN adduser --disabled-password --gecos '' docker
+# RUN adduser docker sudo
+# RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-USER docker
-RUN sudo /usr/run-config.sh
+# USER docker
+RUN /usr/run-config.sh
 
 RUN env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-      libgtk-3-bin \
       libpulse0 \
       mousepad \
       xfce4-notifyd \
@@ -70,7 +72,6 @@ RUN env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommend
     touch /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml && \
     sed -i 's%<property name="ThemeName" type="string" value="Xfce"/>%<property name="ThemeName" type="string" value="Raleigh"/>%' /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
 
-USER root
 
 # disable xfwm4 compositing if X extension COMPOSITE is missing and no config file exists
 RUN Configfile="~/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml" && \
@@ -95,7 +96,5 @@ you might want to add option --composite.' >&2\n\
 startxfce4\n\
 " > /usr/local/bin/start && \
 chmod +x /usr/local/bin/start
-
-RUN cat /usr/local/bin/start
 
 CMD start
