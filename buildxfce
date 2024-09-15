@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# ignore formatting lol
+sudo apt install build-essential \psmisc \
+      xdg-utils \
+      xorg \
+      xorg-dev \
+      x11-xserver-utils \
+      x11-utils \
+      libgtk-3-0 \
+      libgtk-3-dev \
+      libwnck-dev \
+      libwnck-3-0 \
+      libwnck-common \
+      libwnck-3-dev \
+      libwnck-3-common \
+      wmctrl \intltool dbus dbus-system-bus-common \
+      libglib2.0-dev libgtk2.0-dev libxfce4util-dev \
+      at-spi2-core libxi-dev xfce4-settings libxfce4panel-2.0-dev \
+      libxi6 libxi-dev libxinerama1 libxinerama-dev libgtk-3-bin \
+      libxv1 \
+      mesa-utils \
+      mesa-utils-extra -y
+
+BUILD_ORDER=("xfce4-dev-tools-4.18.0" "libxfce4util-4.18.0" "xfconf-4.18.0" "libxfce4ui-4.18.0" "garcon-4.18.0" "exo-4.18.0" "xfce4-panel-4.18.0" "thunar-4.18.0" "xfce4-settings-4.18.0" "xfce4-session-4.18.0" "xfwm4-4.18.0" "xfdesktop-4.18.0" "xfce4-appfinder-4.18.0" "tumbler-4.18.0")
+
+sudo mkdir -p /usr/xfce-source
+
+for pack in "${BUILD_ORDER[@]}"; do
+    sudo cp "/home/debian/spatos/xfce-source/$pack" "/usr/xfce-source/$pack" -r
+    cd "/usr/xfce-source/$pack" && sudo ./configure --prefix=/usr/local && sudo make && sudo make install
+done
+
