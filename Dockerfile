@@ -9,14 +9,17 @@ RUN apt-get update && apt-mark hold iptables && \
       xorg-dev \
       x11-xserver-utils \
       x11-utils \
-      gtk+3.0 \
+      libgtk-3-0 \
       libgtk-3-dev \
       libwnck-dev \
       libwnck-3-0 \
       libwnck-common \
       libwnck-3-dev \
       libwnck-3-common \
-      wmctrl
+      wmctrl \
+      systemd \
+      dbus \
+      dbus-user-session
 
 # I HATE dependencies
 RUN apt install build-essential intltool dbus dbus-system-bus-common \
@@ -97,4 +100,6 @@ startxfce4\n\
 " > /usr/local/bin/start && \
 chmod +x /usr/local/bin/start
 
-CMD start
+RUN mkdir -p /run/dbus
+
+CMD ["dbus-daemon", "--system", "--nofork"] & start
