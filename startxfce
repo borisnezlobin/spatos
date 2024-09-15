@@ -1,12 +1,16 @@
-x11docker myxfce \
-    --home \
-    --webcam \
-    --desktop
-    --backend=BACKEND \
-    --xc=docker \
-    --clipboard \
-    --network \
-    --xpra \
-    --border=orange \
-    --composite=yes \
-    -V
+# x11docker myxfce \
+#    --home \
+#    --webcam \
+#    --desktop
+#    --xc=docker \
+#    --clipboard \
+#    --network \
+#    --xpra \
+#    --border=orange \
+#    --composite=yes \
+#    -V
+
+docker run -it --rm \
+    -e DISPLAY=:2 \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    myxfce
