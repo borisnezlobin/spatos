@@ -11,6 +11,7 @@ RUN apt-get update && apt-mark hold iptables && \
       x11-utils \
       libgtk-3-0 \
       libgtk-3-dev \
+      libgtk-3-bin \
       libwnck-dev \
       libwnck-3-0 \
       libwnck-common \
@@ -23,9 +24,11 @@ RUN apt-get update && apt-mark hold iptables && \
 
 # I HATE dependencies
 RUN apt install build-essential intltool dbus dbus-system-bus-common \
-    libglib2.0-dev libgtk2.0-dev libxfce4util-dev \
+    libglib2.0-0 libxfce4util-dev \
     at-spi2-core libxi-dev xfce4-settings libxfce4panel-2.0-dev \
-    libxi6 libxi-dev libxinerama1 libxinerama-dev libgtk-3-bin -y
+    libxi6 libxi-dev libxinerama1 libxinerama-dev -y
+
+RUN sudo apt install libgtop2-dev libstartup-notification0-dev libgladeui-dev liburi-perl libwnck-3-dev libpng-dev libexif-dev libnotify-dev libfreetype6-dev libjpeg-dev libxi-dev libxrandr-dev libxcursor-dev libxml-parser-perl -y
 
 # install xfce from ./xfce-source
 # from https://docs.xfce.org/xfce/building, ${PREFIX}=$HOME/local
@@ -102,4 +105,4 @@ chmod +x /usr/local/bin/start
 
 RUN mkdir -p /run/dbus
 
-CMD ["dbus-daemon", "--system", "--nofork"] & start
+CMD start

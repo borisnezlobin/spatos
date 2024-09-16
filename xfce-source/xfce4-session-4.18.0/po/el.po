@@ -1,0 +1,749 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Ápo. <apostolos.papadimitriu@gmail.com>, 2016-2017
+# Ápo. <apostolos.papadimitriu@gmail.com>, 2016
+# Ápo. <apostolos.papadimitriu@gmail.com>, 2017
+# ebal <ebalaskas@ebalaskas.gr>, 2009
+# Efstathios Iosifidis <iefstathios@gmail.com>, 2015
+# Efstathios Iosifidis <iosifidis@opensuse.org>, 2012
+# ebal <ebalaskas@ebalaskas.gr>, 2009
+# Ioannis LM, 2022
+# Ioannis LM, 2022
+# Stathis Kamperis <ekamperi@auth.gr>, 2006
+# Stavros Giannouris <stavrosg@hellug.gr>, 2005-2007
+# Πέτρος Σαμαράς <psamaras1@gmail.com>, 2017,2019
+# Στέργιος Γέμελας <sgemelas@protonmail.com>, 2021
+msgid ""
+msgstr ""
+"Project-Id-Version: Xfce4-session\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-04 12:47+0200\n"
+"PO-Revision-Date: 2013-07-02 20:44+0000\n"
+"Last-Translator: Ioannis LM, 2022\n"
+"Language-Team: Greek (http://www.transifex.com/xfce/xfce4-session/language/el/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: el\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../xfce.desktop.in.h:1
+msgid "Xfce Session"
+msgstr "Συνεδρία Xfce"
+
+#: ../xfce.desktop.in.h:2
+msgid "Use this session to run Xfce as your desktop environment"
+msgstr "Χρήση αυτής της συνεδρίας για εκτέλεση του Xfce ως περιβάλλον εργασίας"
+
+#: ../libxfsm/xfsm-util.c:331
+msgid "Session"
+msgstr "Συνεδρία"
+
+#: ../libxfsm/xfsm-util.c:342
+msgid "Last accessed"
+msgstr "Τελευταία πρόσβαση"
+
+#: ../scripts/xscreensaver.desktop.in.h:1
+msgid "Screensaver"
+msgstr "Προφύλαξη οθόνης"
+
+#: ../scripts/xscreensaver.desktop.in.h:2
+msgid "Launch screensaver and locker program"
+msgstr "Εκκίνηση προγράμματος προφύλαξης οθόνης και κλειδώματος"
+
+#: ../settings/main.c:99
+msgid "Settings manager socket"
+msgstr "Διαχείριση ρυθμίσεων υποδοχής"
+
+#: ../settings/main.c:99
+msgid "SOCKET ID"
+msgstr "ID ΥΠΟΔΟΧΗΣ"
+
+#: ../settings/main.c:100
+msgid "Version information"
+msgstr "Πληροφορίες έκδοσης"
+
+#: ../settings/main.c:111 ../xfce4-session/main.c:324
+#, c-format
+msgid "Type '%s --help' for usage."
+msgstr "Για πληροφορίες χρήσης πληκτρολογήστε '%s --help'."
+
+#: ../settings/main.c:123 ../xfce4-session/main.c:334
+#: ../xfce4-session-logout/main.c:146
+msgid "The Xfce development team. All rights reserved."
+msgstr "Η ομάδα ανάπτυξης του Xfce. Με την επιφύλαξη παντός νομίμου δικαιώματος."
+
+#: ../settings/main.c:124 ../xfce4-session/main.c:335
+#: ../xfce4-session-logout/main.c:149
+#, c-format
+msgid "Please report bugs to <%s>."
+msgstr "Παρακαλώ να αναφέρετε σφάλματα στο <%s>"
+
+#: ../settings/main.c:133 ../xfce4-session/main.c:343
+msgid "Unable to contact settings server"
+msgstr "Αδυναμία επικοινωνίας με τον διακομιστή ρυθμίσεων"
+
+#: ../settings/main.c:153
+msgid "Unable to create user interface from embedded definition data"
+msgstr "Αδυναμία δημιουργίας διεπαφής χρήστη από τα ενσωματωμένα δεδομένα προσδιορισμού"
+
+#: ../settings/main.c:167
+msgid "App_lication Autostart"
+msgstr "Αυτόματη εκκίνηση _εφαρμογής"
+
+#: ../settings/main.c:173
+msgid "Currently active session:"
+msgstr "Τρέχουσα ενεργή συνεδρία:"
+
+#: ../settings/session-editor.c:63
+msgid "If running"
+msgstr "Εάν εκτελείται"
+
+#: ../settings/session-editor.c:64
+msgid "Always"
+msgstr "Πάντα"
+
+#: ../settings/session-editor.c:65
+msgid "Immediately"
+msgstr "Αμέσως"
+
+#: ../settings/session-editor.c:66
+msgid "Never"
+msgstr "Ποτέ"
+
+#: ../settings/session-editor.c:138
+msgid "Session Save Error"
+msgstr "Σφάλμα αποθήκευσης συνεδρίας"
+
+#: ../settings/session-editor.c:139
+msgid "Unable to save the session"
+msgstr "Η αποθήκευση της συνεδρίας δεν είναι εφικτή"
+
+#: ../settings/session-editor.c:141 ../settings/session-editor.c:314
+#: ../xfce4-session/xfsm-manager.c:1282
+#: ../settings/xfce4-session-settings.ui.h:6
+msgid "_Close"
+msgstr "_Κλείσιμο"
+
+#: ../settings/session-editor.c:199
+msgid "Clear sessions"
+msgstr "Εκκαθάριση συνεδριών"
+
+#: ../settings/session-editor.c:200
+msgid "Are you sure you want to empty the session cache?"
+msgstr "Θέλετε σίγουρα να αδειάσετε την προσωρινή μνήμη της συνεδρίας;"
+
+#: ../settings/session-editor.c:201
+msgid ""
+"The saved states of your applications will not be restored during your next "
+"login."
+msgstr "Η αποθηκευμένη κατάσταση των εφαρμογών σας δεν θα επαναφερθεί στην επόμενη είσοδο σας."
+
+#: ../settings/session-editor.c:202 ../settings/session-editor.c:289
+#: ../settings/xfae-dialog.c:77 ../xfce4-session/xfsm-manager.c:683
+#: ../xfce4-session/xfsm-logout-dialog.c:221
+msgid "_Cancel"
+msgstr "_Ακύρωση"
+
+#: ../settings/session-editor.c:203
+msgid "_Proceed"
+msgstr "_Συνέχεια"
+
+#: ../settings/session-editor.c:241
+#, c-format
+msgid "You might need to delete some files manually in \"%s\"."
+msgstr "Μπορεί να χρειαστεί να διαγράψετε χειροκίνητα μερικά αρχεία στο \"%s\"."
+
+#: ../settings/session-editor.c:244
+msgid "All Xfce cache files could not be cleared"
+msgstr "Δεν ήταν δυνατή η εκκαθάριση όλων των αρχείων της προσωρινής μνήμης του Xfce"
+
+#: ../settings/session-editor.c:283
+#, c-format
+msgid "Are you sure you want to terminate \"%s\"?"
+msgstr "Θέλετε σίγουρα να τερματίσετε το \"%s\";"
+
+#: ../settings/session-editor.c:286 ../settings/session-editor.c:311
+msgid "Terminate Program"
+msgstr "Τερματισμός προγράμματος"
+
+#: ../settings/session-editor.c:288
+msgid ""
+"The application will lose any unsaved state and will not be restarted in "
+"your next session."
+msgstr "Η εφαρμογή θα χάσει την μη αποθηκευμένη κατάσταση και δεν θα ξεκινήσει στην επόμενη συνεδρία σας."
+
+#: ../settings/session-editor.c:290 ../settings/xfce4-session-settings.ui.h:21
+msgid "_Quit Program"
+msgstr "Τ_ερματισμός προγράμματος"
+
+#: ../settings/session-editor.c:312
+msgid "Unable to terminate program."
+msgstr "Αδυναμία τερματισμού προγράμματος."
+
+#: ../settings/session-editor.c:537
+msgid "(Unknown program)"
+msgstr "(Άγνωστο πρόγραμμα)"
+
+#: ../settings/session-editor.c:784
+msgid "Priority"
+msgstr "Προτεραιότητα"
+
+#: ../settings/session-editor.c:794
+msgid "PID"
+msgstr "PID"
+
+#: ../settings/session-editor.c:801 ../settings/xfae-window.c:190
+msgid "Program"
+msgstr "Πρόγραμμα"
+
+#: ../settings/session-editor.c:827
+msgid "Restart Style"
+msgstr "Στυλ επανεκκίνησης"
+
+#: ../settings/xfae-dialog.c:78 ../xfce4-session/xfsm-manager.c:685
+msgid "_OK"
+msgstr "_Εντάξει"
+
+#: ../settings/xfae-dialog.c:82 ../settings/xfae-window.c:244
+msgid "Add application"
+msgstr "Προσθήκη εφαρμογής"
+
+#: ../settings/xfae-dialog.c:96
+msgid "Name:"
+msgstr "Όνομα:"
+
+#: ../settings/xfae-dialog.c:111
+msgid "Description:"
+msgstr "Περιγραφή:"
+
+#: ../settings/xfae-dialog.c:125 ../settings/xfae-model.c:687
+msgid "Command:"
+msgstr "Εντολή:"
+
+#: ../settings/xfae-dialog.c:138
+msgid "Trigger:"
+msgstr "Ενεργοποίηση:"
+
+#: ../settings/xfae-dialog.c:209
+msgid "Select a command"
+msgstr "Επιλογή εντολής"
+
+#: ../settings/xfae-dialog.c:212
+msgid "Cancel"
+msgstr "Ακύρωση"
+
+#: ../settings/xfae-dialog.c:213
+msgid "OK"
+msgstr "Εντάξει"
+
+#: ../settings/xfae-dialog.c:260 ../settings/xfae-window.c:266
+msgid "Edit application"
+msgstr "Επεξεργασία εφαρμογής"
+
+#: ../settings/xfae-model.c:114
+msgid "on login"
+msgstr "με την είσοδο"
+
+#: ../settings/xfae-model.c:115
+msgid "on logout"
+msgstr "με την αποσύνδεση"
+
+#: ../settings/xfae-model.c:116
+msgid "on shutdown"
+msgstr "με την απενεργοποίηση"
+
+#: ../settings/xfae-model.c:117
+msgid "on restart"
+msgstr "με την επανεκκίνηση"
+
+#: ../settings/xfae-model.c:118
+msgid "on suspend"
+msgstr "με την αναστολή"
+
+#: ../settings/xfae-model.c:119
+msgid "on hibernate"
+msgstr "με την αδρανοποίηση"
+
+#: ../settings/xfae-model.c:120
+msgid "on hybrid sleep"
+msgstr "με την υβριδική αναμονή"
+
+#: ../settings/xfae-model.c:121
+msgid "on switch user"
+msgstr "με την εναλλαγή χρήστη"
+
+#: ../settings/xfae-model.c:463 ../settings/xfae-model.c:1182
+#: ../settings/xfae-model.c:1240
+#, c-format
+msgid "Failed to open %s for writing"
+msgstr "Απέτυχε το άνοιγμα για εγγραφή του %s"
+
+#: ../settings/xfae-model.c:820
+#, c-format
+msgid "Failed to unlink %s: %s"
+msgstr "Απέτυχε η απομάκρυνση του δεσμού %s: %s"
+
+#: ../settings/xfae-model.c:982
+#, c-format
+msgid "Failed to create file %s"
+msgstr "Απέτυχε η δημιουργία του αρχείου %s"
+
+#: ../settings/xfae-model.c:1006
+#, c-format
+msgid "Failed to write file %s"
+msgstr "Απέτυχε η εγγραφή του αρχείου %s"
+
+#: ../settings/xfae-model.c:1066
+#, c-format
+msgid "Failed to open %s for reading"
+msgstr "Απέτυχε το άνοιγμα για ανάγνωση του %s"
+
+#: ../settings/xfae-window.c:100
+msgid "Failed to set run hook"
+msgstr "Απέτυχε ο ορισμός αγκίστρου - hook"
+
+#: ../settings/xfae-window.c:215
+msgid "Trigger"
+msgstr "Ενεργοποίηση"
+
+#: ../settings/xfae-window.c:241 ../settings/xfae-window.c:330
+msgid "Add"
+msgstr "Προσθήκη"
+
+#: ../settings/xfae-window.c:250 ../settings/xfae-window.c:336
+msgid "Remove"
+msgstr "Αφαίρεση"
+
+#: ../settings/xfae-window.c:253
+msgid "Remove application"
+msgstr "Αφαίρεση εφαρμογής"
+
+#: ../settings/xfae-window.c:263
+msgid "Edit"
+msgstr "Επεξεργασία"
+
+#: ../settings/xfae-window.c:390
+#, c-format
+msgid "Failed adding \"%s\""
+msgstr "Απέτυχε η προσθήκη \"%s\""
+
+#: ../settings/xfae-window.c:421 ../settings/xfae-window.c:435
+msgid "Failed to remove item"
+msgstr "Απέτυχε η αφαίρεση αντικειμένου"
+
+#: ../settings/xfae-window.c:464
+msgid "Failed to edit item"
+msgstr "Απέτυχε η επεξεργασία αντικειμένου"
+
+#: ../settings/xfae-window.c:484
+#, c-format
+msgid "Failed to edit item \"%s\""
+msgstr "Απέτυχε η επεξεργασία του αντικειμένου \"%s\""
+
+#: ../settings/xfae-window.c:512
+msgid "Failed to toggle item"
+msgstr "Απέτυχε η εναλλαγή κατάστασης του αντικειμένου"
+
+#: ../xfce4-session/main.c:77
+msgid "Disable binding to TCP ports"
+msgstr "Απενεργοποίηση δέσμευσης θυρών TCP"
+
+#: ../xfce4-session/main.c:78 ../xfce4-session-logout/main.c:102
+msgid "Print version information and exit"
+msgstr "Εμφάνιση πληροφοριών έκδοσης"
+
+#: ../xfce4-session/xfsm-chooser.c:147
+msgid "Session Manager"
+msgstr "Διαχειριστής συνεδρίας"
+
+#: ../xfce4-session/xfsm-chooser.c:168
+msgid ""
+"Choose the session you want to restore. You can simply double-click the "
+"session name to restore it."
+msgstr "Επιλέξτε τη συνεδρία που θέλετε να επαναφέρετε. Μπορείτε απλώς να κάνετε διπλό κλικ στο όνομα της συνεδρίας για να την επαναφέρετε."
+
+#: ../xfce4-session/xfsm-chooser.c:184
+msgid "Create a new session."
+msgstr "Δημιουργία νέας συνεδρίας"
+
+#: ../xfce4-session/xfsm-chooser.c:191
+msgid "Delete a saved session."
+msgstr "Διαγραφή αποθηκευμένης συνεδρίας"
+
+#. "Logout" button
+#: ../xfce4-session/xfsm-chooser.c:202
+#: ../xfce4-session-logout/xfce4-session-logout.desktop.in.h:1
+msgid "Log Out"
+msgstr "Αποσύνδεση"
+
+#: ../xfce4-session/xfsm-chooser.c:204
+msgid "Cancel the login attempt and return to the login screen."
+msgstr "Ακύρωση προσπάθειας εισόδου και επιστροφή στην οθόνη εισόδου."
+
+#. "Start" button
+#: ../xfce4-session/xfsm-chooser.c:211
+msgid "Start"
+msgstr "Έναρξη"
+
+#: ../xfce4-session/xfsm-chooser.c:212
+msgid "Start an existing session."
+msgstr "Εκκίνηση υπάρχουσας συνεδρίας"
+
+#: ../xfce4-session/xfsm-dns.c:78
+msgid "(Unknown)"
+msgstr "(Άγνωστο)"
+
+#: ../xfce4-session/xfsm-dns.c:152
+#, c-format
+msgid ""
+"Could not look up internet address for %s.\n"
+"This will prevent Xfce from operating correctly.\n"
+"It may be possible to correct the problem by adding\n"
+"%s to the file /etc/hosts on your system."
+msgstr "Δεν ήταν δυνατό να εντοπιστεί η διεύθυνση internet για το %s.\nΑυτό αποτρέπει τη σωστή εκτέλεση του Xfce.\nΕίναι πιθανό να διορθωθεί το πρόβλημα εάν προσθέσετε το %s\nστο αρχείο /etc/hosts του συστήματός σας."
+
+#: ../xfce4-session/xfsm-dns.c:159
+msgid "Continue anyway"
+msgstr "Συνέχεια έτσι κι αλλιώς"
+
+#: ../xfce4-session/xfsm-dns.c:160
+msgid "Try again"
+msgstr "Προσπάθεια ξανά"
+
+#: ../xfce4-session/xfsm-manager.c:567
+#, c-format
+msgid ""
+"Unable to determine failsafe session name.  Possible causes: xfconfd isn't "
+"running (D-Bus setup problem); environment variable $XDG_CONFIG_DIRS is set "
+"incorrectly (must include \"%s\"), or xfce4-session is installed "
+"incorrectly."
+msgstr "Αδυναμία προσδιορισμού ονόματος ασφαλούς συνεδρίας. Πιθανές αιτίες: το xfconfd δεν τρέχει (πρόβλημα ρύθμισης D-BUS), οι μεταβλητές περιβάλλοντος $XDG_CONFIG_DIRS δεν είναι ορισμένες σωστά (πρέπει να συμπεριληφθεί το \"%s\"), ή το xfce4-session δεν έχει εγκατασταθεί σωστά."
+
+#: ../xfce4-session/xfsm-manager.c:578
+#, c-format
+msgid ""
+"The specified failsafe session (\"%s\") is not marked as a failsafe session."
+msgstr "Η συγκεκριμένη ασφαλής συνεδρία (\"%s\") δεν είναι σημειωμένη ως ασφαλής."
+
+#: ../xfce4-session/xfsm-manager.c:611
+msgid "The list of applications in the failsafe session is empty."
+msgstr "Η λίστα των εφαρμογών στην ασφαλή συνεδρία είναι κενή."
+
+#: ../xfce4-session/xfsm-manager.c:697
+msgid "Name for the new session"
+msgstr "Όνομα για τη νέα συνεδρία"
+
+#. FIXME: migrate this into the splash screen somehow so the
+#. * window doesn't look ugly (right now no WM is running, so it
+#. * won't have window decorations).
+#: ../xfce4-session/xfsm-manager.c:775
+msgid "Session Manager Error"
+msgstr "Σφάλμα διαχειριστή συνεδριών"
+
+#: ../xfce4-session/xfsm-manager.c:777
+msgid "Unable to load a failsafe session"
+msgstr "Αδυναμία φόρτωσης μίας ασφαλούς συνεδρίας"
+
+#: ../xfce4-session/xfsm-manager.c:779
+msgid "_Quit"
+msgstr "Έ_ξοδος"
+
+#: ../xfce4-session/xfsm-manager.c:1272
+msgid "Shutdown Failed"
+msgstr "Ο τερματισμός απέτυχε"
+
+#: ../xfce4-session/xfsm-manager.c:1275
+msgid "Failed to suspend session"
+msgstr "Αποτυχία να τεθεί η συνεδρία σε αναστολή"
+
+#: ../xfce4-session/xfsm-manager.c:1277
+msgid "Failed to hibernate session"
+msgstr "Αποτυχία να τεθεί η συνεδρία σε αδρανοποίηση"
+
+#: ../xfce4-session/xfsm-manager.c:1279
+msgid "Failed to hybrid sleep session"
+msgstr "Αποτυχία να τεθεί η συνεδρία σε υβριδική αναμονή"
+
+#: ../xfce4-session/xfsm-manager.c:1280
+msgid "Failed to switch user"
+msgstr "Απέτυχε η εναλλαγή χρήστη"
+
+#: ../xfce4-session/xfsm-manager.c:1586
+#, c-format
+msgid "Can only terminate clients when in the idle state"
+msgstr "Μπορείτε να τερματίσετε πελάτες μόνο όταν είναι σε κατάσταση αδράνειας"
+
+#: ../xfce4-session/xfsm-manager.c:2250
+msgid "Session manager must be in idle state when requesting a checkpoint"
+msgstr "Ο διαχειριστής συνεδριών μπορεί να είναι σε κατάσταση αδράνειας όταν φτάσει σε ένα σημείο ελέγχου"
+
+#: ../xfce4-session/xfsm-manager.c:2320 ../xfce4-session/xfsm-manager.c:2340
+msgid "Session manager must be in idle state when requesting a shutdown"
+msgstr "Ο διαχειριστής συνεδρίας πρέπει να είναι σε κατάσταση αδράνειας όταν αιτείται τερματισμός"
+
+#: ../xfce4-session/xfsm-manager.c:2385
+msgid "Session manager must be in idle state when requesting a restart"
+msgstr "Ο διαχειριστής συνεδρίας πρέπει να είναι σε κατάσταση αδράνειας όταν αιτείται επανεκκίνηση"
+
+#: ../xfce4-session/xfsm-logout-dialog.c:193
+#, c-format
+msgid "Log out %s"
+msgstr "Αποσύνδεση %s"
+
+#. *
+#. * Logout
+#. *
+#: ../xfce4-session/xfsm-logout-dialog.c:238
+msgid "_Log Out"
+msgstr "Α_ποσύνδεση"
+
+#: ../xfce4-session/xfsm-logout-dialog.c:258
+msgid "_Restart"
+msgstr "_Επανεκκίνηση"
+
+#: ../xfce4-session/xfsm-logout-dialog.c:278
+msgid "Shut _Down"
+msgstr "_Τερματισμός"
+
+#: ../xfce4-session/xfsm-logout-dialog.c:302
+msgid "Sus_pend"
+msgstr "Α_ναστολή"
+
+#: ../xfce4-session/xfsm-logout-dialog.c:336
+msgid "_Hibernate"
+msgstr "_Αδρανοποίηση"
+
+#: ../xfce4-session/xfsm-logout-dialog.c:367
+msgid "H_ybrid Sleep"
+msgstr "Υ_βριδική αναμονή"
+
+#: ../xfce4-session/xfsm-logout-dialog.c:398
+msgid "Switch _User"
+msgstr "Εναλλαγή _χρήστη"
+
+#: ../xfce4-session/xfsm-logout-dialog.c:423
+msgid "_Save session for future logins"
+msgstr "Αποθήκευ_ση της συνεδρίας"
+
+#: ../xfce4-session/xfsm-logout-dialog.c:451
+msgid "An error occurred"
+msgstr "Παρουσιάστηκε ένα σφάλμα"
+
+#: ../xfce4-session/xfsm-shutdown.c:159
+msgid "Shutdown is blocked by the kiosk settings"
+msgstr "Ο τερματισμός εμποδίζεται από τις ρυθμίσεις του kiosk"
+
+#: ../xfce4-session/xfsm-shutdown.c:216
+#, c-format
+msgid "Unknown shutdown method %d"
+msgstr "Άγνωστη μέθοδος τερματισμού %d"
+
+#: ../xfce4-session-logout/main.c:70
+msgid "Log out without displaying the logout dialog"
+msgstr "Αποσύνδεση χωρίς την εμφάνιση του διαλόγου αποσύνδεσης"
+
+#: ../xfce4-session-logout/main.c:74
+msgid "Halt without displaying the logout dialog"
+msgstr "Κλείσιμο χωρίς την εμφάνιση του διαλόγου αποσύνδεσης"
+
+#: ../xfce4-session-logout/main.c:78
+msgid "Reboot without displaying the logout dialog"
+msgstr "Επανεκκίνηση χωρίς την εμφάνιση του διαλόγου αποσύνδεσης"
+
+#: ../xfce4-session-logout/main.c:82
+msgid "Suspend without displaying the logout dialog"
+msgstr "Αναστολή χωρίς την εμφάνιση του διαλόγου αποσύνδεσης"
+
+#: ../xfce4-session-logout/main.c:86
+msgid "Hibernate without displaying the logout dialog"
+msgstr "Αδρανοποίηση χωρίς την εμφάνιση του διαλόγου αποσύνδεσης"
+
+#: ../xfce4-session-logout/main.c:90
+msgid "Hybrid Sleep without displaying the logout dialog"
+msgstr "Υβριδική αναμονή χωρίς την εμφάνιση του διαλόγου αποσύνδεσης"
+
+#: ../xfce4-session-logout/main.c:94
+msgid "Switch user without displaying the logout dialog"
+msgstr "Εναλλαγή χρήστη χωρίς την εμφάνιση του διαλόγου αποσύνδεσης"
+
+#: ../xfce4-session-logout/main.c:98
+msgid "Log out quickly; don't save the session"
+msgstr "Γρήγορη αποσύνδεση - να μην αποθηκευτεί η συνεδρία"
+
+#: ../xfce4-session-logout/main.c:121
+msgid "Unknown error"
+msgstr "Άγνωστο σφάλμα"
+
+#: ../xfce4-session-logout/main.c:147
+msgid "Written by Benedikt Meurer <benny@xfce.org>"
+msgstr "Γραμμένο από τον Benedikt Meuer <benny@xfce.org>"
+
+#: ../xfce4-session-logout/main.c:148
+msgid "and Brian Tarricone <kelnos@xfce.org>."
+msgstr "και τον Brian Tarricone <kelnos@xfce.org>."
+
+#: ../xfce4-session-logout/main.c:168 ../xfce4-session-logout/main.c:279
+msgid "Received error while trying to log out"
+msgstr "Λήφθηκε σφάλμα κατά την προσπάθεια αποσύνδεσης"
+
+#: ../xfce4-session-logout/main.c:244
+#, c-format
+msgid "Received error while trying to log out, error was %s"
+msgstr "Λήφθηκε σφάλμα κατά την προσπάθεια αποσύνδεσης. Σφάλμα: %s"
+
+#: ../xfce4-session-logout/xfce4-session-logout.desktop.in.h:2
+msgid "Log out of the Xfce Desktop"
+msgstr "Αποσύνδεση από το περιβάλλον εργασίας Xfce"
+
+#: ../settings/xfce-session-settings.desktop.in.h:1
+#: ../settings/xfce4-session-settings.ui.h:4
+msgid "Session and Startup"
+msgstr "Συνεδρία και εκκίνηση"
+
+#: ../settings/xfce-session-settings.desktop.in.h:2
+msgid "Customize desktop startup"
+msgstr "Διαμόρφωση εκκίνησης επιφάνειας εργασίας"
+
+#: ../settings/xfce-session-settings.desktop.in.h:3
+msgid ""
+"session;settings;preferences;manager;startup;login;logout;shutdown;lock "
+"screen;application;autostart;launch;services;daemon;agent;"
+msgstr ""
+
+#: ../settings/xfce4-session-settings.ui.h:1
+msgid ""
+"These applications are a part of the currently-running session,\n"
+"and can be saved now or when you log out.\n"
+"Changes below will only take effect when the session is saved."
+msgstr "Αυτές οι εφαρμογές είναι μέρος της τρέχουσας συνεδρίας και μπορεί\nνα αποθηκευτούν τώρα ή κατά την αποσύνδεση. Οι παρακάτω αλλαγές\nθα έχουν ισχύ μόνο όταν η συνεδρία αποθηκευτεί."
+
+#: ../settings/xfce4-session-settings.ui.h:5
+msgid "_Help"
+msgstr "_Βοήθεια"
+
+#: ../settings/xfce4-session-settings.ui.h:7
+msgid "_Display chooser on login"
+msgstr "Εμ_φάνιση επιλογέα κατά την είσοδο"
+
+#: ../settings/xfce4-session-settings.ui.h:8
+msgid "Display the session chooser every time Xfce starts"
+msgstr "Εμφάνιση του επιλογέα συνεδρίας κάθε φορά που ξεκινάει το xfce"
+
+#: ../settings/xfce4-session-settings.ui.h:9
+msgid "<b>Session Chooser</b>"
+msgstr "<b>Επιλογέας συνεδρίας</b>"
+
+#: ../settings/xfce4-session-settings.ui.h:10
+msgid "Automatically save session on logo_ut"
+msgstr "Αυτόματη αποθήκευση συνεδρίας κατά την έ_ξοδο"
+
+#: ../settings/xfce4-session-settings.ui.h:11
+msgid "Always save the session when logging out"
+msgstr "Να αποθηκεύεται πάντα η συνεδρία κατά την έξοδο"
+
+#: ../settings/xfce4-session-settings.ui.h:12
+msgid "Pro_mpt on logout"
+msgstr "Επι_βεβαίωση κατά την αποσύνδεση"
+
+#: ../settings/xfce4-session-settings.ui.h:13
+msgid "Prompt for confirmation when logging out"
+msgstr "Προτροπή για επιβεβαίωση κατά την αποσύνδεση"
+
+#: ../settings/xfce4-session-settings.ui.h:14
+msgid "<b>Logout Settings</b>"
+msgstr "<b>Ρυθμίσεις αποσύνδεσης</b>"
+
+#: ../settings/xfce4-session-settings.ui.h:15
+msgid "Lock screen be_fore sleep"
+msgstr "Κ_λείδωμα οθόνης πριν την αναμονή"
+
+#: ../settings/xfce4-session-settings.ui.h:16
+msgid "Run xflock4 before suspending or hibernating the system"
+msgstr "Εκτέλεση xflock4 πριν την αναστολή ή την αδράνεια του συστήματος"
+
+#: ../settings/xfce4-session-settings.ui.h:17
+msgid "<b>Shutdown</b>"
+msgstr "<b>Τερματισμός</b>"
+
+#: ../settings/xfce4-session-settings.ui.h:18
+msgid "_General"
+msgstr "_Γενικά"
+
+#: ../settings/xfce4-session-settings.ui.h:19
+msgid "Save Sess_ion"
+msgstr "Αποθήκευση συνε_δρίας"
+
+#: ../settings/xfce4-session-settings.ui.h:20
+msgid "Currently active session: <b>Default</b>"
+msgstr "Τρέχουσα ενεργή συνεδρία: <b>Προεπιλογή</b>"
+
+#: ../settings/xfce4-session-settings.ui.h:22
+msgid "Current Sessio_n"
+msgstr "_Τρέχουσα συνεδρία"
+
+#: ../settings/xfce4-session-settings.ui.h:23
+msgid "_Remove"
+msgstr "Α_φαίρεση"
+
+#: ../settings/xfce4-session-settings.ui.h:24
+msgid "Delete the selected session"
+msgstr "Διαγραφή της επιλεγμένης συνεδρίας"
+
+#: ../settings/xfce4-session-settings.ui.h:25
+msgid "Clear Save_d Sessions"
+msgstr "_Διαγραφή αποθηκευμένων συνεδριών"
+
+#: ../settings/xfce4-session-settings.ui.h:26
+msgid "Saved _Sessions"
+msgstr "_Αποθηκευμένες συνεδρίες"
+
+#: ../settings/xfce4-session-settings.ui.h:27
+msgid "Launch GN_OME services on startup"
+msgstr "Έναρξη των υπηρεσιών του GN_OME κατά την εκκίνηση"
+
+#: ../settings/xfce4-session-settings.ui.h:28
+msgid "Start GNOME services, such as gnome-keyring"
+msgstr "Εκκίνηση υπηρεσιών του GNOME, όπως το gnome-keyring"
+
+#: ../settings/xfce4-session-settings.ui.h:29
+msgid "Launch _KDE services on startup"
+msgstr "Έναρξη των υπηρεσιών του _KDE κατά την εκκίνηση"
+
+#: ../settings/xfce4-session-settings.ui.h:30
+msgid "Start KDE services, such as kdeinit"
+msgstr "Εκκίνηση υπηρεσιών του KDE, όπως το kdeinit"
+
+#: ../settings/xfce4-session-settings.ui.h:31
+msgid "<b>Compatibility</b>"
+msgstr "<b>Συμβατότητα</b>"
+
+#: ../settings/xfce4-session-settings.ui.h:32
+msgid "Manage _remote applications"
+msgstr "Διαχείριση α_πομακρυσμένων εφαρμογών"
+
+#: ../settings/xfce4-session-settings.ui.h:33
+msgid ""
+"Manage remote applications over the network (this may be a security risk)"
+msgstr "Διαχείριση απομακρυσμένων διαδικτυακών εφαρμογών (μπορεί να έχει ρίσκο ασφάλειας)"
+
+#: ../settings/xfce4-session-settings.ui.h:34
+msgid "<b>Security</b>"
+msgstr "<b>Ασφάλεια</b>"
+
+#: ../settings/xfce4-session-settings.ui.h:35
+msgid "Ad_vanced"
+msgstr "Για πρ_οχωρημένους"
+
+#: ../settings/xfce4-session-settings.ui.h:36
+msgid "Saving Session"
+msgstr "Αποθήκευση συνεδρίας"
+
+#: ../settings/xfce4-session-settings.ui.h:37
+msgid ""
+"Your session is being saved.  If you do not wish to wait, you may close this"
+" window."
+msgstr "Η συνεδρία σας αποθηκεύεται. Εάν δεν θέλετε να περιμένετε, θα πρέπει να κλείσετε το παράθυρο."

@@ -1,0 +1,740 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Daichi Kawahata <daichi@xfce.org>, 2005
+# Nobuhiro Iwamatsu <iwamatsu@nigauri.org>, 2008,2016-2019,2021
+# UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2019-2020
+# Zhao Ji <zhao-ji@awz.ne.jp>, 2003
+msgid ""
+msgstr ""
+"Project-Id-Version: Xfce4-session\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-04 12:47+0200\n"
+"PO-Revision-Date: 2021-05-04 10:47+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"Language-Team: Japanese (http://www.transifex.com/xfce/xfce4-session/language/ja/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../xfce.desktop.in.h:1
+msgid "Xfce Session"
+msgstr "Xfce セッション"
+
+#: ../xfce.desktop.in.h:2
+msgid "Use this session to run Xfce as your desktop environment"
+msgstr "Xfce をデスクトップ環境として起動するためにこのセッションを使用します"
+
+#: ../libxfsm/xfsm-util.c:331
+msgid "Session"
+msgstr "セッション"
+
+#: ../libxfsm/xfsm-util.c:342
+msgid "Last accessed"
+msgstr "最終アクセス日時"
+
+#: ../scripts/xscreensaver.desktop.in.h:1
+msgid "Screensaver"
+msgstr "スクリーンセーバー"
+
+#: ../scripts/xscreensaver.desktop.in.h:2
+msgid "Launch screensaver and locker program"
+msgstr "スクリーンセーバーおよび画面ロックプログラムを起動します。"
+
+#: ../settings/main.c:99
+msgid "Settings manager socket"
+msgstr "設定マネージャーソケット"
+
+#: ../settings/main.c:99
+msgid "SOCKET ID"
+msgstr "SOCKET ID"
+
+#: ../settings/main.c:100
+msgid "Version information"
+msgstr "バージョン情報を表示する"
+
+#: ../settings/main.c:111 ../xfce4-session/main.c:324
+#, c-format
+msgid "Type '%s --help' for usage."
+msgstr "'%s --help' と入力すると使用方法が表示されます。"
+
+#: ../settings/main.c:123 ../xfce4-session/main.c:334
+#: ../xfce4-session-logout/main.c:146
+msgid "The Xfce development team. All rights reserved."
+msgstr "The Xfce development team. All rights reserved."
+
+#: ../settings/main.c:124 ../xfce4-session/main.c:335
+#: ../xfce4-session-logout/main.c:149
+#, c-format
+msgid "Please report bugs to <%s>."
+msgstr "バグは <%s> まで報告してください。"
+
+#: ../settings/main.c:133 ../xfce4-session/main.c:343
+msgid "Unable to contact settings server"
+msgstr "設定サーバーに接続できませんでした"
+
+#: ../settings/main.c:153
+msgid "Unable to create user interface from embedded definition data"
+msgstr "埋め込み定義データからユーザーインターフェイスの生成ができませんでした"
+
+#: ../settings/main.c:167
+msgid "App_lication Autostart"
+msgstr "自動開始アプリケーション(_L)"
+
+#: ../settings/main.c:173
+msgid "Currently active session:"
+msgstr "現在のアクティブなセッション:"
+
+#: ../settings/session-editor.c:63
+msgid "If running"
+msgstr "実行中の場合"
+
+#: ../settings/session-editor.c:64
+msgid "Always"
+msgstr "常に"
+
+#: ../settings/session-editor.c:65
+msgid "Immediately"
+msgstr "すぐに"
+
+#: ../settings/session-editor.c:66
+msgid "Never"
+msgstr "しない"
+
+#: ../settings/session-editor.c:138
+msgid "Session Save Error"
+msgstr "セッション保存エラー"
+
+#: ../settings/session-editor.c:139
+msgid "Unable to save the session"
+msgstr "セッションの保存に失敗しました"
+
+#: ../settings/session-editor.c:141 ../settings/session-editor.c:314
+#: ../xfce4-session/xfsm-manager.c:1282
+#: ../settings/xfce4-session-settings.ui.h:6
+msgid "_Close"
+msgstr "閉じる(_C)"
+
+#: ../settings/session-editor.c:199
+msgid "Clear sessions"
+msgstr "セッションのクリア"
+
+#: ../settings/session-editor.c:200
+msgid "Are you sure you want to empty the session cache?"
+msgstr "セッションキャッシュを空にしてもよろしいですか?"
+
+#: ../settings/session-editor.c:201
+msgid ""
+"The saved states of your applications will not be restored during your next "
+"login."
+msgstr "保存されているアプリケーションの状態は次回ログイン時に復元されません。"
+
+#: ../settings/session-editor.c:202 ../settings/session-editor.c:289
+#: ../settings/xfae-dialog.c:77 ../xfce4-session/xfsm-manager.c:683
+#: ../xfce4-session/xfsm-logout-dialog.c:221
+msgid "_Cancel"
+msgstr "キャンセル(_C)"
+
+#: ../settings/session-editor.c:203
+msgid "_Proceed"
+msgstr "続行(_P)"
+
+#: ../settings/session-editor.c:241
+#, c-format
+msgid "You might need to delete some files manually in \"%s\"."
+msgstr "\"%s\" 内のファイルを手動で削除する必要があるかもしれません。"
+
+#: ../settings/session-editor.c:244
+msgid "All Xfce cache files could not be cleared"
+msgstr "すべての Xfce キャシュファイルをクリアすることができませんでした"
+
+#: ../settings/session-editor.c:283
+#, c-format
+msgid "Are you sure you want to terminate \"%s\"?"
+msgstr "\"%s\" を終了させてもよろしいですか?"
+
+#: ../settings/session-editor.c:286 ../settings/session-editor.c:311
+msgid "Terminate Program"
+msgstr "プログラムを終了する"
+
+#: ../settings/session-editor.c:288
+msgid ""
+"The application will lose any unsaved state and will not be restarted in "
+"your next session."
+msgstr "アプリケーションは、保存されていない状態をすべて失います。また、次回のセッションで再起動されません。"
+
+#: ../settings/session-editor.c:290 ../settings/xfce4-session-settings.ui.h:21
+msgid "_Quit Program"
+msgstr "プログラム終了(_Q)"
+
+#: ../settings/session-editor.c:312
+msgid "Unable to terminate program."
+msgstr "プログラムの終了に失敗しました"
+
+#: ../settings/session-editor.c:537
+msgid "(Unknown program)"
+msgstr "(不明なプログラム)"
+
+#: ../settings/session-editor.c:784
+msgid "Priority"
+msgstr "優先順位"
+
+#: ../settings/session-editor.c:794
+msgid "PID"
+msgstr "PID"
+
+#: ../settings/session-editor.c:801 ../settings/xfae-window.c:190
+msgid "Program"
+msgstr "プログラム"
+
+#: ../settings/session-editor.c:827
+msgid "Restart Style"
+msgstr "再起動スタイル"
+
+#: ../settings/xfae-dialog.c:78 ../xfce4-session/xfsm-manager.c:685
+msgid "_OK"
+msgstr "OK(_O)"
+
+#: ../settings/xfae-dialog.c:82 ../settings/xfae-window.c:244
+msgid "Add application"
+msgstr "アプリケーションの追加"
+
+#: ../settings/xfae-dialog.c:96
+msgid "Name:"
+msgstr "名前:"
+
+#: ../settings/xfae-dialog.c:111
+msgid "Description:"
+msgstr "説明:"
+
+#: ../settings/xfae-dialog.c:125 ../settings/xfae-model.c:687
+msgid "Command:"
+msgstr "コマンド:"
+
+#: ../settings/xfae-dialog.c:138
+msgid "Trigger:"
+msgstr "トリガー:"
+
+#: ../settings/xfae-dialog.c:209
+msgid "Select a command"
+msgstr "コマンドを選択してください"
+
+#: ../settings/xfae-dialog.c:212
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: ../settings/xfae-dialog.c:213
+msgid "OK"
+msgstr "OK"
+
+#: ../settings/xfae-dialog.c:260 ../settings/xfae-window.c:266
+msgid "Edit application"
+msgstr "アプリケーションの編集"
+
+#: ../settings/xfae-model.c:114
+msgid "on login"
+msgstr "ログイン時"
+
+#: ../settings/xfae-model.c:115
+msgid "on logout"
+msgstr "ログアウト時"
+
+#: ../settings/xfae-model.c:116
+msgid "on shutdown"
+msgstr "シャットダウン時"
+
+#: ../settings/xfae-model.c:117
+msgid "on restart"
+msgstr "再起動時"
+
+#: ../settings/xfae-model.c:118
+msgid "on suspend"
+msgstr "サスペンド時"
+
+#: ../settings/xfae-model.c:119
+msgid "on hibernate"
+msgstr "ハイバネート時"
+
+#: ../settings/xfae-model.c:120
+msgid "on hybrid sleep"
+msgstr "ハイブリットスリープ時"
+
+#: ../settings/xfae-model.c:121
+msgid "on switch user"
+msgstr "ユーザーの切り替え時"
+
+#: ../settings/xfae-model.c:463 ../settings/xfae-model.c:1182
+#: ../settings/xfae-model.c:1240
+#, c-format
+msgid "Failed to open %s for writing"
+msgstr "書き込むために %s を開くことに失敗しました"
+
+#: ../settings/xfae-model.c:820
+#, c-format
+msgid "Failed to unlink %s: %s"
+msgstr "%s のリンク解除に失敗しました: %s"
+
+#: ../settings/xfae-model.c:982
+#, c-format
+msgid "Failed to create file %s"
+msgstr "ファイル %s の作成に失敗しました"
+
+#: ../settings/xfae-model.c:1006
+#, c-format
+msgid "Failed to write file %s"
+msgstr "ファイル %s の書き込みに失敗しました"
+
+#: ../settings/xfae-model.c:1066
+#, c-format
+msgid "Failed to open %s for reading"
+msgstr "読み込むために %s を開くことに失敗しました"
+
+#: ../settings/xfae-window.c:100
+msgid "Failed to set run hook"
+msgstr "実行フックの設定に失敗しました"
+
+#: ../settings/xfae-window.c:215
+msgid "Trigger"
+msgstr "トリガー"
+
+#: ../settings/xfae-window.c:241 ../settings/xfae-window.c:330
+msgid "Add"
+msgstr "追加"
+
+#: ../settings/xfae-window.c:250 ../settings/xfae-window.c:336
+msgid "Remove"
+msgstr "削除"
+
+#: ../settings/xfae-window.c:253
+msgid "Remove application"
+msgstr "アプリケーションを削除する"
+
+#: ../settings/xfae-window.c:263
+msgid "Edit"
+msgstr "編集"
+
+#: ../settings/xfae-window.c:390
+#, c-format
+msgid "Failed adding \"%s\""
+msgstr "\"%s\" の追加に失敗しました"
+
+#: ../settings/xfae-window.c:421 ../settings/xfae-window.c:435
+msgid "Failed to remove item"
+msgstr "アイテムの削除に失敗しました。"
+
+#: ../settings/xfae-window.c:464
+msgid "Failed to edit item"
+msgstr "アイテムの編集に失敗しました。"
+
+#: ../settings/xfae-window.c:484
+#, c-format
+msgid "Failed to edit item \"%s\""
+msgstr "アイテム %s の編集に失敗しました"
+
+#: ../settings/xfae-window.c:512
+msgid "Failed to toggle item"
+msgstr "アイテムの切り替えに失敗しました。"
+
+#: ../xfce4-session/main.c:77
+msgid "Disable binding to TCP ports"
+msgstr "TCP ポートへのバインディングを無効にする"
+
+#: ../xfce4-session/main.c:78 ../xfce4-session-logout/main.c:102
+msgid "Print version information and exit"
+msgstr "バージョン情報を表示して終了する"
+
+#: ../xfce4-session/xfsm-chooser.c:147
+msgid "Session Manager"
+msgstr "セッションマネージャー"
+
+#: ../xfce4-session/xfsm-chooser.c:168
+msgid ""
+"Choose the session you want to restore. You can simply double-click the "
+"session name to restore it."
+msgstr "復元したいセッションを選択してください。セッション名を単にダブルクリックします。"
+
+#: ../xfce4-session/xfsm-chooser.c:184
+msgid "Create a new session."
+msgstr "新しいセッションを作成します。"
+
+#: ../xfce4-session/xfsm-chooser.c:191
+msgid "Delete a saved session."
+msgstr "保存したセッションを削除します。"
+
+#. "Logout" button
+#: ../xfce4-session/xfsm-chooser.c:202
+#: ../xfce4-session-logout/xfce4-session-logout.desktop.in.h:1
+msgid "Log Out"
+msgstr "ログアウト"
+
+#: ../xfce4-session/xfsm-chooser.c:204
+msgid "Cancel the login attempt and return to the login screen."
+msgstr "ログインを取消してログイン画面に戻ります。"
+
+#. "Start" button
+#: ../xfce4-session/xfsm-chooser.c:211
+msgid "Start"
+msgstr "起動"
+
+#: ../xfce4-session/xfsm-chooser.c:212
+msgid "Start an existing session."
+msgstr "既存のセッションを起動します。"
+
+#: ../xfce4-session/xfsm-dns.c:78
+msgid "(Unknown)"
+msgstr "(不明)"
+
+#: ../xfce4-session/xfsm-dns.c:152
+#, c-format
+msgid ""
+"Could not look up internet address for %s.\n"
+"This will prevent Xfce from operating correctly.\n"
+"It may be possible to correct the problem by adding\n"
+"%s to the file /etc/hosts on your system."
+msgstr "%s のインターネットアドレスを参照できませんでした。\nこれは Xfce をきちんと動作させる上での妨げになる\nでしょう。あなたのシステムのファイル /etc/hosts に\n%s を加えることで問題を解決できるかもしれません。"
+
+#: ../xfce4-session/xfsm-dns.c:159
+msgid "Continue anyway"
+msgstr "とにかく続行する"
+
+#: ../xfce4-session/xfsm-dns.c:160
+msgid "Try again"
+msgstr "再試行"
+
+#: ../xfce4-session/xfsm-manager.c:567
+#, c-format
+msgid ""
+"Unable to determine failsafe session name.  Possible causes: xfconfd isn't "
+"running (D-Bus setup problem); environment variable $XDG_CONFIG_DIRS is set "
+"incorrectly (must include \"%s\"), or xfce4-session is installed "
+"incorrectly."
+msgstr "ファイルセーフセッション名を決定できません。考えられる原因: xfconfd が起動していない (D-Bus 設定の問題)、環境変数 $XDG_CONFIG_DIRS が正しく設定されていない (\"%s\" を含まなければなりません)、あるいは xfce4-session が正しくインストールされていない。"
+
+#: ../xfce4-session/xfsm-manager.c:578
+#, c-format
+msgid ""
+"The specified failsafe session (\"%s\") is not marked as a failsafe session."
+msgstr "指定されたフェイルセーフセッション (\"%s\") はフェイルセーフセッションとして設定されていません。"
+
+#: ../xfce4-session/xfsm-manager.c:611
+msgid "The list of applications in the failsafe session is empty."
+msgstr "フェイルセーフセッション内のアプリケーションリストが空です。"
+
+#: ../xfce4-session/xfsm-manager.c:697
+msgid "Name for the new session"
+msgstr "新しいセッションの名前"
+
+#. FIXME: migrate this into the splash screen somehow so the
+#. * window doesn't look ugly (right now no WM is running, so it
+#. * won't have window decorations).
+#: ../xfce4-session/xfsm-manager.c:775
+msgid "Session Manager Error"
+msgstr "セッションマネージャーエラー"
+
+#: ../xfce4-session/xfsm-manager.c:777
+msgid "Unable to load a failsafe session"
+msgstr "フェイルセーフセッションを読み込めませんでした"
+
+#: ../xfce4-session/xfsm-manager.c:779
+msgid "_Quit"
+msgstr "終了(_Q)"
+
+#: ../xfce4-session/xfsm-manager.c:1272
+msgid "Shutdown Failed"
+msgstr "シャットダウン失敗"
+
+#: ../xfce4-session/xfsm-manager.c:1275
+msgid "Failed to suspend session"
+msgstr "セッションのサスペンドに失敗しました"
+
+#: ../xfce4-session/xfsm-manager.c:1277
+msgid "Failed to hibernate session"
+msgstr "セッションのハイバネートに失敗しました"
+
+#: ../xfce4-session/xfsm-manager.c:1279
+msgid "Failed to hybrid sleep session"
+msgstr "セッションのハイブリッドスリープに失敗しました"
+
+#: ../xfce4-session/xfsm-manager.c:1280
+msgid "Failed to switch user"
+msgstr "ユーザの切り替えに失敗しました"
+
+#: ../xfce4-session/xfsm-manager.c:1586
+#, c-format
+msgid "Can only terminate clients when in the idle state"
+msgstr "待機状態の時のみクライアントを終了できます"
+
+#: ../xfce4-session/xfsm-manager.c:2250
+msgid "Session manager must be in idle state when requesting a checkpoint"
+msgstr "チェックポイントを要求するとき、セッションマネージャーは待機状態でなければなりません"
+
+#: ../xfce4-session/xfsm-manager.c:2320 ../xfce4-session/xfsm-manager.c:2340
+msgid "Session manager must be in idle state when requesting a shutdown"
+msgstr "シャットダウンを要求するとき、セッションマネージャーは待機状態でなければなりません"
+
+#: ../xfce4-session/xfsm-manager.c:2385
+msgid "Session manager must be in idle state when requesting a restart"
+msgstr "再起動を要求するとき、セッションマネージャーは待機状態でなければなりません"
+
+#: ../xfce4-session/xfsm-logout-dialog.c:193
+#, c-format
+msgid "Log out %s"
+msgstr "%s のログアウト"
+
+#. *
+#. * Logout
+#. *
+#: ../xfce4-session/xfsm-logout-dialog.c:238
+msgid "_Log Out"
+msgstr "ログアウト(_L)"
+
+#: ../xfce4-session/xfsm-logout-dialog.c:258
+msgid "_Restart"
+msgstr "再起動(_R)"
+
+#: ../xfce4-session/xfsm-logout-dialog.c:278
+msgid "Shut _Down"
+msgstr "シャットダウン(_D)"
+
+#: ../xfce4-session/xfsm-logout-dialog.c:302
+msgid "Sus_pend"
+msgstr "サスペンド(_P)"
+
+#: ../xfce4-session/xfsm-logout-dialog.c:336
+msgid "_Hibernate"
+msgstr "ハイバネート(_H)"
+
+#: ../xfce4-session/xfsm-logout-dialog.c:367
+msgid "H_ybrid Sleep"
+msgstr "ハイブリッドスリープ(_Y)"
+
+#: ../xfce4-session/xfsm-logout-dialog.c:398
+msgid "Switch _User"
+msgstr "ユーザーの切り替え(_U)"
+
+#: ../xfce4-session/xfsm-logout-dialog.c:423
+msgid "_Save session for future logins"
+msgstr "次回ログインのためセッションを保存する(_S)"
+
+#: ../xfce4-session/xfsm-logout-dialog.c:451
+msgid "An error occurred"
+msgstr "エラーが発生しました"
+
+#: ../xfce4-session/xfsm-shutdown.c:159
+msgid "Shutdown is blocked by the kiosk settings"
+msgstr "キオスク設定によってシャットダウンはブロックされました"
+
+#: ../xfce4-session/xfsm-shutdown.c:216
+#, c-format
+msgid "Unknown shutdown method %d"
+msgstr "未知のシャットダウン方式 %d"
+
+#: ../xfce4-session-logout/main.c:70
+msgid "Log out without displaying the logout dialog"
+msgstr "ログアウトダイアログを表示せずにログアウトする"
+
+#: ../xfce4-session-logout/main.c:74
+msgid "Halt without displaying the logout dialog"
+msgstr "ログアウトダイアログを表示せずに停止する"
+
+#: ../xfce4-session-logout/main.c:78
+msgid "Reboot without displaying the logout dialog"
+msgstr "ログアウトダイアログを表示せずに再起動する"
+
+#: ../xfce4-session-logout/main.c:82
+msgid "Suspend without displaying the logout dialog"
+msgstr "ログアウトダイアログを表示せずにサスペンドする"
+
+#: ../xfce4-session-logout/main.c:86
+msgid "Hibernate without displaying the logout dialog"
+msgstr "ログアウトダイアログを表示せずにハイバネートする"
+
+#: ../xfce4-session-logout/main.c:90
+msgid "Hybrid Sleep without displaying the logout dialog"
+msgstr "ログアウトダイアログを表示せずにハイブリッドスリープする"
+
+#: ../xfce4-session-logout/main.c:94
+msgid "Switch user without displaying the logout dialog"
+msgstr "ログアウトダイアログを表示せずにユーザを切り替える"
+
+#: ../xfce4-session-logout/main.c:98
+msgid "Log out quickly; don't save the session"
+msgstr "セッションを保存せず、素早くログアウトする"
+
+#: ../xfce4-session-logout/main.c:121
+msgid "Unknown error"
+msgstr "不明なエラー"
+
+#: ../xfce4-session-logout/main.c:147
+msgid "Written by Benedikt Meurer <benny@xfce.org>"
+msgstr "Written by Benedikt Meurer <benny@xfce.org>"
+
+#: ../xfce4-session-logout/main.c:148
+msgid "and Brian Tarricone <kelnos@xfce.org>."
+msgstr "and Brian Tarricone <kelnos@xfce.org>."
+
+#: ../xfce4-session-logout/main.c:168 ../xfce4-session-logout/main.c:279
+msgid "Received error while trying to log out"
+msgstr "ログアウト中にエラーを受信しました"
+
+#: ../xfce4-session-logout/main.c:244
+#, c-format
+msgid "Received error while trying to log out, error was %s"
+msgstr "ログアウト中にエラーを受信し、エラー %s でした。"
+
+#: ../xfce4-session-logout/xfce4-session-logout.desktop.in.h:2
+msgid "Log out of the Xfce Desktop"
+msgstr "Xfce デスクトップからログアウトします"
+
+#: ../settings/xfce-session-settings.desktop.in.h:1
+#: ../settings/xfce4-session-settings.ui.h:4
+msgid "Session and Startup"
+msgstr "セッションと起動"
+
+#: ../settings/xfce-session-settings.desktop.in.h:2
+msgid "Customize desktop startup"
+msgstr "デスクトップの起動をカスタマイズします"
+
+#: ../settings/xfce-session-settings.desktop.in.h:3
+msgid ""
+"session;settings;preferences;manager;startup;login;logout;shutdown;lock "
+"screen;application;autostart;launch;services;daemon;agent;"
+msgstr "セッション;設定;環境設定;マネージャー;起動;ログイン;ログアウト;シャットダウン;ロック画面;アプリケーション;自動起動;起動;サービス;デーモン;エージェント;"
+
+#: ../settings/xfce4-session-settings.ui.h:1
+msgid ""
+"These applications are a part of the currently-running session,\n"
+"and can be saved now or when you log out.\n"
+"Changes below will only take effect when the session is saved."
+msgstr "これらのアプリケーションは現在実行中のセッションの一部であり、\n今かログアウト時に保存できます。\n以下の変更は、セッションが保存されたときのみ有効になります。"
+
+#: ../settings/xfce4-session-settings.ui.h:5
+msgid "_Help"
+msgstr "ヘルプ(_H)"
+
+#: ../settings/xfce4-session-settings.ui.h:7
+msgid "_Display chooser on login"
+msgstr "ログイン時にセッションを選択する(_D)"
+
+#: ../settings/xfce4-session-settings.ui.h:8
+msgid "Display the session chooser every time Xfce starts"
+msgstr "Xfce 開始時に毎回セッション選択を表示します"
+
+#: ../settings/xfce4-session-settings.ui.h:9
+msgid "<b>Session Chooser</b>"
+msgstr "<b>セッションの選択</b>"
+
+#: ../settings/xfce4-session-settings.ui.h:10
+msgid "Automatically save session on logo_ut"
+msgstr "ログアウト時に自動的にセッションを保存する(_U)"
+
+#: ../settings/xfce4-session-settings.ui.h:11
+msgid "Always save the session when logging out"
+msgstr "ログアウト時に常にセッションを保存します"
+
+#: ../settings/xfce4-session-settings.ui.h:12
+msgid "Pro_mpt on logout"
+msgstr "ログアウト時に確認する(_M)"
+
+#: ../settings/xfce4-session-settings.ui.h:13
+msgid "Prompt for confirmation when logging out"
+msgstr "ログアウトする時に確認を促します"
+
+#: ../settings/xfce4-session-settings.ui.h:14
+msgid "<b>Logout Settings</b>"
+msgstr "<b>ログアウトの設定</b>"
+
+#: ../settings/xfce4-session-settings.ui.h:15
+msgid "Lock screen be_fore sleep"
+msgstr "スリープするまで画面をロックする(_F)"
+
+#: ../settings/xfce4-session-settings.ui.h:16
+msgid "Run xflock4 before suspending or hibernating the system"
+msgstr "サスペンドまたはハイバネートへの遷移中 xflock4 を実行します"
+
+#: ../settings/xfce4-session-settings.ui.h:17
+msgid "<b>Shutdown</b>"
+msgstr "<b>シャットダウン</b>"
+
+#: ../settings/xfce4-session-settings.ui.h:18
+msgid "_General"
+msgstr "全般(_G)"
+
+#: ../settings/xfce4-session-settings.ui.h:19
+msgid "Save Sess_ion"
+msgstr "セッションを保存する(_I)"
+
+#: ../settings/xfce4-session-settings.ui.h:20
+msgid "Currently active session: <b>Default</b>"
+msgstr "現在のアクティブなセッション: <b>デフォルト</b>"
+
+#: ../settings/xfce4-session-settings.ui.h:22
+msgid "Current Sessio_n"
+msgstr "現在のセッション(_N)"
+
+#: ../settings/xfce4-session-settings.ui.h:23
+msgid "_Remove"
+msgstr "削除(_R)"
+
+#: ../settings/xfce4-session-settings.ui.h:24
+msgid "Delete the selected session"
+msgstr "選択したセッションを削除します"
+
+#: ../settings/xfce4-session-settings.ui.h:25
+msgid "Clear Save_d Sessions"
+msgstr "保存セッションのクリア(_D)"
+
+#: ../settings/xfce4-session-settings.ui.h:26
+msgid "Saved _Sessions"
+msgstr "セッションを保存する(_S)"
+
+#: ../settings/xfce4-session-settings.ui.h:27
+msgid "Launch GN_OME services on startup"
+msgstr "起動時に GNOME サービスを起動する(_O)"
+
+#: ../settings/xfce4-session-settings.ui.h:28
+msgid "Start GNOME services, such as gnome-keyring"
+msgstr "gnome-keyring などの GNOME サービスを起動します"
+
+#: ../settings/xfce4-session-settings.ui.h:29
+msgid "Launch _KDE services on startup"
+msgstr "起動時に KDE サービスを起動する(_K)"
+
+#: ../settings/xfce4-session-settings.ui.h:30
+msgid "Start KDE services, such as kdeinit"
+msgstr "kdeinit などの KDE サービスを起動します"
+
+#: ../settings/xfce4-session-settings.ui.h:31
+msgid "<b>Compatibility</b>"
+msgstr "<b>互換性</b>"
+
+#: ../settings/xfce4-session-settings.ui.h:32
+msgid "Manage _remote applications"
+msgstr "遠隔アプリケーションを管理する(_R)"
+
+#: ../settings/xfce4-session-settings.ui.h:33
+msgid ""
+"Manage remote applications over the network (this may be a security risk)"
+msgstr "ネットワークの上のリモートアプリケーションを管理します (セキュリティリスクの可能性があります)"
+
+#: ../settings/xfce4-session-settings.ui.h:34
+msgid "<b>Security</b>"
+msgstr "<b>セキュリティ</b>"
+
+#: ../settings/xfce4-session-settings.ui.h:35
+msgid "Ad_vanced"
+msgstr "詳細(_V)"
+
+#: ../settings/xfce4-session-settings.ui.h:36
+msgid "Saving Session"
+msgstr "セッションを保存しています"
+
+#: ../settings/xfce4-session-settings.ui.h:37
+msgid ""
+"Your session is being saved.  If you do not wish to wait, you may close this"
+" window."
+msgstr "セッションは保存されています。 待ちたくないなら、このウィンドウを閉じることができます。"
