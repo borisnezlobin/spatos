@@ -1,0 +1,2761 @@
+commit 68716b0878c1bc0aa5d13c177cfb55c38cc770f7
+Author: Gaël Bonithon <gael@xfce.org>
+Date:   Mon Dec 5 21:12:16 2022 +0100
+
+    build: Bump requirements for Xfce 4.18
+
+commit 0516736aefe694b0b478a256c321559a15450fbc
+Author: Alexander Schwinn <alexxcons@xfce.org>
+Date:   Thu Dec 1 09:09:59 2022 +0100
+
+    Back to development
+
+commit a8cd0b05e0604d62acf32db2a4c6e0c783d161f1
+Author: Alexander Schwinn <alexxcons@xfce.org>
+Date:   Thu Dec 1 09:04:46 2022 +0100
+
+    Updates for release
+
+commit 3e4bd95382648b7ab2ecb4e7a40210f76ff890d3
+Author: Andre Miranda <andreldm@xfce.org>
+Date:   Thu Nov 17 22:55:46 2022 +0100
+
+    So much for package name consistency...
+
+commit fb378ec505bee63c204283ccc2340bf9ac78536d
+Author: Andre Miranda <andreldm@xfce.org>
+Date:   Thu Nov 17 22:51:33 2022 +0100
+
+    Add new libsoup3 to the builder
+
+commit eac29eae51dac96e5c5674dc402240c6ed7e8c14
+Author: Alexander Schwinn <alexxcons@xfce.org>
+Date:   Sun Nov 13 22:23:31 2022 +0100
+
+    xfce-do-release: unification of update version 'sed' command
+
+commit 66993edccf3d6e2179a671298523d1817d076cfb
+Author: Alexander Schwinn <alexxcons@xfce.org>
+Date:   Sun Nov 6 00:12:20 2022 +0100
+
+    xfce-do-release: match multiple spaces for git version replace
+    
+    Makes 'xfce-do-release' as well usable for xfwm4, which has some more
+    spaces in the line: 'm4_define([xfwm4_version_tag],   [git])'
+    
+    MR !74
+
+commit 5a965bc83640df1087dd7e2f5e139d9094a87736
+Author: Alexander Schwinn <alexxcons@xfce.org>
+Date:   Sat Nov 12 21:30:01 2022 +0100
+
+    bump copyright year to 2022
+
+commit 2b332e9ab0fe2194eb3d7849ba6c815ff2b3f6ae
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Sat Oct 29 16:02:13 2022 +0200
+
+    Back to development
+
+commit c012bb4a385f6e2f7068510b9fb5665adb4a30bf
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Sat Oct 29 15:57:40 2022 +0200
+
+    Updates for release
+
+commit e17223e0a826ee301967282b391abdd42e457596
+Author: Jan Ziak <0xe2.0x9a.0x9b@gmail.com>
+Date:   Fri Dec 4 12:01:17 2020 +0100
+
+    Warn about GLib functions newer than the checked GLib version
+    
+    This patch enables GLib deprecation warnings in all XFCE apps and libraries
+    containing function calls such as XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.56.0])
+    in their configure.ac.in files in the following way:
+    
+    AC_DEFINE(GLIB_VERSION_MAX_ALLOWED, GLIB_VERSION_2_56, Prevent post 2_56 APIs)
+    AC_DEFINE(GLIB_VERSION_MIN_REQUIRED, GLIB_VERSION_2_56, Ignore post 2_56 APIs)
+    
+    The 3rd argument passed to XDT_CHECK_PACKAGE([GLIB], ...) selects the
+    GLib API version. So XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.44.0])
+    would add:
+    
+    AC_DEFINE(GLIB_VERSION_MAX_ALLOWED, GLIB_VERSION_2_44, Prevent post 2_44 APIs)
+    AC_DEFINE(GLIB_VERSION_MIN_REQUIRED, GLIB_VERSION_2_44, Ignore post 2_44 APIs)
+    
+    The enabled warnings can be overridden by the app or library by using
+    the two AC_DEFINEs after calling XDT_CHECK_PACKAGE([GLIB], ...).
+    
+    Something like XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.45.8]) will make
+    the XFCE app or library uncompilable because 2.45 isn't a stable GLib release.
+    
+    See also: https://gitlab.xfce.org/apps/xfce4-notifyd/-/issues/34
+    
+    Signed-off-by: Jan Ziak <0xe2.0x9a.0x9b@xfce.org>
+
+commit 01684335f58619ed3b0a4027d02de2764aba7c83
+Author: Akbarkhon Variskhanov <akbarkhon.variskhanov@gmail.com>
+Date:   Wed Sep 14 20:36:17 2022 +0000
+
+    Drop the test altogether
+    
+    This avoids situations like `export EGREP=egrep; ./autogen.sh`
+
+commit f97c4473ea1b63bbd7bca3bd29ec9ef7a053547a
+Author: Gaël Bonithon <gael@xfce.org>
+Date:   Sat Sep 10 12:36:07 2022 +0200
+
+    xdt-autogen: Fix deprecation warning from grep 3.8
+
+commit 5a058ea63a1544b4147f0a4534b70aaf037f8ad6
+Author: Gaël Bonithon <gael@xfce.org>
+Date:   Fri Apr 8 19:03:14 2022 +0200
+
+    Use GLib structured logging
+    
+    Suitable for viewing logs in tools such as `journalctl`, in particular
+    adding location information to the message.
+    
+    Requires `GLIB_VERSION_MAX_ALLOWED >= GLIB_VERSION_2_56` to work
+    properly in GLib logging macros (not documented, see
+    `glib/gmessages.h`).
+
+commit 1ab2053cf4ba13e41cebd8859687ea6f28c7576f
+Author: Akbarkhon Variskhanov <akbarkhon.variskhanov@gmail.com>
+Date:   Wed Sep 14 18:35:23 2022 +0000
+
+    xdt-autogen: simplify do_version_check()
+
+commit 7f253e5da0ae1cfbeabcf680126452b232bc2a7e
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Thu Aug 25 12:10:08 2022 +0200
+
+    Add new dependencies to the builder
+    
+    - libical-dev for orage
+    - libgtk-layer-shell-dev for wayland stuff
+
+commit 240ea1b13ff3294f5e3250eafde4bbd3d395c59d
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Fri Aug 19 16:44:15 2022 +0200
+
+    Do not run useless distcheck in CI
+    
+    - Since dbfc8c88b56962e85bfdc2b444dcd49d99ddd30c, distcheck is run even
+      when there is only a commit in po/
+    - This is because "extends" merges hashes, but not array, so the
+      ".make" rules are overriden by the "distcheck" rule
+    - Use !reference to force the usage of ".make" rules in distcheck (and
+      this avoid duplicating the "if" everywhere)
+
+commit 1007718676990c235d905c740b8668ac8c9fb6a0
+Author: Manuel Grießmayr <abspack@posteo.de>
+Date:   Fri Aug 19 19:36:09 2022 +0000
+
+    Add favicon to Xfce API docs
+
+commit 7530b65d7465eb48a76675e3893d3738f2c4eb50
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Mon Feb 7 22:45:42 2022 +0100
+
+    Bump our xfce builder to ubuntu 22.04
+    
+    - This is the new Ubuntu LTS version
+    - Reorder packages installations
+    - Install gtksourceview5/gtk4-dev libs
+    - Bump docker-dind to latest version
+
+commit 51ca08881ab59acf1f1cb30f22074e51be95bee9
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Thu Apr 7 23:14:30 2022 +0200
+
+    Add autopoint to xfce-build
+    
+    - This is needed by autotools when using gettext instead of intltool
+
+commit b68ae2f7fe9a16d730e38d4e61756ed41f56b00c
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Thu Apr 7 19:43:55 2022 +0200
+
+    Add a workaround for thunar documentation generation
+    
+    - Since https://gitlab.xfce.org/xfce/thunar/-/merge_requests/153,
+    we have thunar and thunarx documentations, which is not supported by the script
+    - This break the container build
+
+commit 1448199eb4649e7f2b315ef4560ab44312f1f7da
+Author: Kevin Bowen <kevin.bowen@gmail.com>
+Date:   Tue Mar 22 07:07:23 2022 -0700
+
+    Update COPYING
+
+commit de6137361ee3bb8a8b398a349a3cdab4f297c116
+Author: Simon Steinbeiß <ochosi@xfce.org>
+Date:   Fri Mar 4 02:53:38 2022 +0000
+
+    xfce-build: Fix build with SELinux (!58)
+    
+    If you're using SELinux locally you will have to pass the "z" parameter
+    to make the volume mounted in the container readable.
+
+commit 2ae47732a54ebfdbfa9c8e938e6e3be28c204e73
+Author: Gaël Bonithon <gael@xfce.org>
+Date:   Sat Nov 27 09:41:46 2021 +0100
+
+    xfce-update-news: Add release date and adjust separator
+
+commit 639984b37056c786da601d413949fa197d9b864b
+Author: Gaël Bonithon <gael@xfce.org>
+Date:   Fri Jan 14 12:59:22 2022 +0100
+
+    xfce-do-release: Make warnings more visible
+
+commit 2f493d79f2454dc2eb62dd955c0849e21587d6e1
+Author: Gaël Bonithon <gael@xfce.org>
+Date:   Fri Jan 7 13:31:45 2022 +0100
+
+    xfce-do-release: Check the copyright year in `configure.ac*`
+
+commit 7651c19ef009a99ac8367e88720231e58458d3af
+Author: Gaël Bonithon <gael@xfce.org>
+Date:   Fri Jan 7 13:06:39 2022 +0100
+
+    xfce-do-release: Extend `configure.ac.in` update to `configure.ac`
+    
+    The use of `m4_define` is also found in `configure.ac` files, with or
+    without a version tag, which is not a problem. The use of
+    `XDT_VERSION_INIT` is probably always exclusive of the use of
+    `m4_define`, but the filter by grep does not bother.
+
+commit 9a71068cf03f565d93812d1d79194129bf48cb99
+Author: Gaël Bonithon <gael@xfce.org>
+Date:   Sat Jan 29 09:18:20 2022 +0100
+
+    xdt-autogen: Fallback on `\n` as IFS if `\1` is not supported
+    
+    Fixes #54.
+
+commit bb06a93ddc609ffe587aaccc1e9929461c30ff51
+Author: Gaël Bonithon <gael@xfce.org>
+Date:   Wed Jan 26 23:16:44 2022 +0100
+
+    Fix exclusion of `xdt-autogen.in` in `.gitignore`
+
+commit 02e5bab0eabd0ef0d94a15ac1d600d4141b8376c
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Wed Oct 13 17:29:50 2021 +0200
+
+    Update developer.xfce.org home to add tumbler
+
+commit 89ec470fabb43cd31cdd155b1aee8f1d1eaad8a7
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Wed Oct 13 16:46:15 2021 +0200
+
+    Add tumbler to xfce-build container
+    
+    - Fix #53
+
+commit 724c75b1662265f27dd6c1bae7c8a078bd657237
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Wed Oct 13 16:45:02 2021 +0200
+
+    Fix "image:" name in .gitlab-ci.yml
+    
+    - Type from  64bc66536aaaeded488cf7a3a9d067cea9748545
+
+commit be59ed378f846ea545bf9f0c08c297415162e288
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Wed Oct 13 16:43:27 2021 +0200
+
+    Add libsensors4-dev to build-container
+
+commit 64bc66536aaaeded488cf7a3a9d067cea9748545
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Thu Aug 19 12:24:06 2021 +0200
+
+    Try to bump docker-dind image
+
+commit 5e6bdfba4427f2a70c13099726c9c4edd21a5c97
+Author: Gaël Bonithon <gael@xfce.org>
+Date:   Fri Sep 24 11:11:34 2021 +0200
+
+    xfce-do-release: Update Appdata file
+    
+    This adds the new release to the Appdata file if the `<releases>` tag
+    exists. This file is only searched in the root of the repository and in
+    the `data` directory, and must be unique.
+
+commit 7f231c22e1ade73d984ea51d48eee8662065ca8d
+Author: Simon Steinbeiss <simon.steinbeiss@elfenbeinturm.at>
+Date:   Thu Sep 16 23:56:08 2021 +0200
+
+    gitlabci: Ensure distcheck still runs
+
+commit dbfc8c88b56962e85bfdc2b444dcd49d99ddd30c
+Author: Simon Steinbeiss <simon.steinbeiss@elfenbeinturm.at>
+Date:   Tue Sep 7 00:45:14 2021 +0200
+
+    gitlabci: Add release stage that retains tarballs
+    
+    This stage is only run for tags and is essentially the same as the
+    distcheck stage.
+
+commit ef3ca47e7c8e489ef167abadafa03900c3ee362b
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Thu Aug 19 12:19:10 2021 +0200
+
+    Add lm-sensors to dependencies, for xfce4-sensors-plugins CI
+
+commit 2ef5b809e3d891dd576914ac4a9d1b25608e7f82
+Author: Jan Ziak <0xe2.0x9a.0x9b@xfce.org>
+Date:   Mon Jul 26 14:24:31 2021 +0200
+
+    Separate CFLAGS from CXXFLAGS
+    
+    Signed-off-by: Jan Ziak <0xe2.0x9a.0x9b@xfce.org>
+
+commit 411e7ab44751be71a6ca5b6f6e72ad7d5c410cd5
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Sun Jul 25 18:34:55 2021 +0200
+
+    Back to development
+
+commit 399646249d4c9158ba2d7b4aad7658704dfa9818
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Sun Jul 25 18:18:20 2021 +0200
+
+    Updates for release
+
+commit 47ac35062ff081d904aa140373fe42ddb8e54c9b
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Mon Jul 5 12:57:29 2021 +0200
+
+    Try to build higher version available tag
+    
+    - If 4.17.x is available, pick this one
+    - If 4.16.x is the higher (on component without 4.17 yet), pick it
+    - "grep" the component name to remove any "xfce-" release tags
+    - Enhance MR!49
+
+commit 2266437dc8afad8d2bb60516d92dc636402de6c7
+Author: Gaël Bonithon <gael@xfce.org>
+Date:   Wed May 12 13:39:40 2021 +0200
+
+    xfce-do-release: A review of confirmation prompts
+    
+    * Abort on failure in `sanity_checks()`
+    * Always test if the version specified exists as a git tag
+    * Always have a default choice, indicated by a capital letter
+    * Remove unused function `get_on_with_it()`
+
+commit 2c3d0deb8b512e1e4f8f5647a2ff893b4f365cc7
+Author: Landry Breuil <landry@xfce.org>
+Date:   Tue Jun 8 07:25:51 2021 +0000
+
+    helpers: Improve script portability
+    
+    Works better on OpenBSD now.
+
+commit 7c609066e9ec1dc2876818a84453c2988fa24cd1
+Author: Simon Steinbeiss <simon.steinbeiss@elfenbeinturm.at>
+Date:   Wed Apr 28 15:11:31 2021 +0200
+
+    Improve Xfce Developer Center (developer.xfce.org)
+
+commit 5f372ab304353bcbb44a5807248cb494cb3024c4
+Author: Gaël Bonithon <gael@xfce.org>
+Date:   Tue Jan 26 10:22:57 2021 +0100
+
+    xdt-features.m4: Always enable compilation warnings
+    
+    Fixes #44.
+
+commit dba4b975a67bd39835c49069b1ebb5dc151eb981
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Thu Apr 22 09:45:23 2021 +0200
+
+    g_locale_to_utf8 is misspelled as g_local_to_utf8
+    
+    - Fix issue #46
+    - This code path is almost never used (we don't really test
+      minGW/windows), but let's fix this anyway
+
+commit 54119a26c6faf54f1f1f6d6647a34b0b2239d470
+Author: Simon Steinbeiss <simon.steinbeiss@elfenbeinturm.at>
+Date:   Wed Mar 10 15:40:19 2021 +0100
+
+    xfce-build: Always pick the latest stable release
+    
+    Alternatively we could also pick the latest overall release, but the
+    downside would be that the container could jump back and forth between
+    4.17 dev and 4.16 maintenance releases.
+    git describe --tags `git rev-list --tags --max-count=1` --match "$NAME*"
+
+commit 328f47cd130b61e2a6f7198e2a17af236649d6a4
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Sat Jan 30 23:49:17 2021 +0100
+
+    Create the m4/ if it does not exists
+    
+    - So we are sure to not print any warning because of a missing m4/
+      folder on first aclocal run
+
+commit b569f211c16a49cba72f9a9d471c4ca02708f061
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Tue Jan 12 00:19:06 2021 +0100
+
+    Use autoreconf to bootstrap xfce4-dev-tools itself
+
+commit 2759f19c4c9215069ae5cae86d47909ea4d42ab3
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Mon Jan 11 01:19:52 2021 +0100
+
+    Use autoreconf to bootstrap autotools
+    
+    - autoreconf already do all the jobs and detections, we don't need to run manually
+      multiples binaries
+    - Remove obsolete checks/warnings we are doing for libtoolize, all our
+      components have been ported
+    - Simply run autoreconf with good options should be enough for
+      everything
+    - We still need to run intltoolize and gtkdocize manually to support
+      autotool 2.69
+    - This fix issue #42
+
+commit 6885d2a572e127083c2ae72832e373e752db2db5
+Author: Gaël Bonithon <gael@xfce.org>
+Date:   Sun Jan 31 20:47:00 2021 +0100
+
+    xfce-do-release: Check for `docker` installed
+
+commit 4ffc172cc6594ac6e88d49466f4572d729b5088f
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Sat Jan 30 13:17:57 2021 +0100
+
+    Add dependencies to build thunarx-python CI
+
+commit 248201216d9a59f81a7f72d47ceb19504463d157
+Author: Simon Steinbeiss <simon.steinbeiss@elfenbeinturm.at>
+Date:   Tue Jan 19 15:45:51 2021 +0100
+
+    Fix location of apidocs
+    
+    By copying the folder contents we don't end up with an additional docs/
+    folder inside the existing apidocs/ folder.
+
+commit f971760d832bd6f48f7adf313ef5a1e91eda4ae4
+Author: Simon Steinbeiss <simon.steinbeiss@elfenbeinturm.at>
+Date:   Tue Jan 19 10:56:47 2021 +0100
+
+    xfce-build: Fix conditional in gitlabci
+
+commit 6560a412d4eaafcfede6cbb50ab48c5dd32aecd8
+Author: Simon Steinbeiß <ochosi@xfce.org>
+Date:   Tue Jan 19 10:45:19 2021 +0100
+
+    Export apidocs as GitLab artifacts
+    
+    The static index.html page and artifacts get merged into the newly
+    added apidocs folder.
+
+commit 6f651e4a6b1e78d4745cba1b8bb193d73e38af2b
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Mon Jan 11 00:33:52 2021 +0100
+
+    Get rid of glib-gettextize usage and XGETTEXT_ARGS custom args
+    
+    - intltoolize already do all the job that glib-gettextize do (maybe
+      since 10 years)
+    - Remove the XGETTEXT_ARGS custom feature, I can't find any projec using
+      this in xfce
+
+commit 008475ee9a08aaa458df8ff650d739889fb377a0
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Mon Jan 11 00:06:16 2021 +0100
+
+    Remove obsolete AM_GLIB_GNU_GETTEXT
+    
+    - This should no be used anymore since last century
+
+commit e3d60b58f2377766d0265ac8f4d01fbee8d199dd
+Author: Jan Ziak <0xe2.0x9a.0x9b@gmail.com>
+Date:   Tue Jan 12 04:38:36 2021 +0100
+
+    helpers: Fix command-line if git-config core.editor is unset
+    
+    Closes: https://gitlab.xfce.org/xfce/xfce4-dev-tools/-/issues/43
+    Signed-off-by: Jan Ziak <0xe2.0x9a.0x9b@gmail.com>
+
+commit f4212358a35267c8b3fec7a4765b6b44788f212a
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Fri Jan 8 11:22:48 2021 +0100
+
+    Update obsolete m4 macros
+    
+    - They are obsolete since 2.69, and 2.70 now warn about it
+    - Bump minimal autoconf to 2.69 (available since 2012)
+    - AC_HEADER_STDC is not needed anymore: https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Particular-Headers.html
+
+commit 385f43220419a38c3641482ecefe35189c1db030
+Author: Simon Steinbeiß <ochosi@xfce.org>
+Date:   Sat Jan 2 22:50:18 2021 +0100
+
+    helpers: Add 'xfce-build describe' command
+    
+    This command prints the versions of the components built within this container, which are located in the /git folder.
+
+commit 418ba8d073010112f6f7741dc3e3045020f67d07
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Tue Dec 22 23:49:22 2020 +0100
+
+    Back to development
+
+commit 665dac6b7bccef20ba5911807dc53b60faa7935b
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Tue Dec 22 21:45:06 2020 +0100
+
+    Updates for release
+
+commit d16010634f98cba467cb61c8b9451e84ed323b7a
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Fri Dec 18 12:11:39 2020 +0100
+
+    Bump glib to 2.50 based on xfce4.16 roadmap
+    
+    - And update configure.ac syntax
+
+commit 80b6f7d528c7f15f81b73d4bed627b62c6072b7f
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Fri Dec 18 11:55:38 2020 +0100
+
+    Do not process @LINGUAS@ at xdt-autogen stage
+    
+    - We don't need to find all langugaes at this step, because it is done
+      in xdt-i18n.m4 macros since 4.15 when XDT_I18N is called.
+    - And the "-printf" argument is not supported on BSD find
+
+commit 076e43d1d4e170fdc32fa7ac96045d8cd0042f67
+Author: Simon Steinbeiss <simon.steinbeiss@elfenbeinturm.at>
+Date:   Tue Dec 15 18:40:27 2020 +0100
+
+    xfce-build: Add Thunar to container (Fixes #40)
+
+commit 3ba3f2e1c53638d322d83d332e93efda7c79f2e8
+Author: Simon Steinbeiss <simon.steinbeiss@elfenbeinturm.at>
+Date:   Mon Dec 14 11:31:57 2020 +0100
+
+    helpers: Add xfce-build 'pull' argument
+    
+    This command simply updates the container and then exits.
+
+commit 27fc51ab63e9e41b72ec1aaaa7546a19d23070e4
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Mon Dec 14 00:06:36 2020 +0100
+
+    Fail xfce-build container generation if there is any error
+    
+    - So now we won't generate a broken container anymore is we can't build
+      on component
+
+commit bdb5745f0493d45480cb780eea43acffc63d4afa
+Author: Simon Steinbeiss <simon.steinbeiss@elfenbeinturm.at>
+Date:   Wed Dec 9 16:57:08 2020 +0100
+
+    helpers: Prefer xfce-build over xfce-test (Fixes #38)
+    
+    The xfce-build container is smaller and also what we use in GitLab CI.
+
+commit 7f9fe83263c3ebe13861439e9a5949470004907d
+Author: Simon Steinbeiß <ochosi@xfce.org>
+Date:   Wed Dec 9 15:37:17 2020 +0100
+
+    helpers: Add new helper xfce-open-gitlab
+    
+    This helper enables you to quickly open the GitLab project of your Git
+    repository in your browser. You can navigate to a subpage by supplying
+    it as an argument (e.g. "issues").
+
+commit 6bd43f8ef09e60ca92ea8a2746469cf1a513e727
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Wed Dec 9 11:49:35 2020 +0100
+
+    Disable CFLAGS override when building CI container
+    
+    - We don't need to override CFLAGS when we build the CI container, only
+      project built WITH the container needs that
+    - Also, build is broken because of new line in CFLAGS variable
+
+commit b7e6c14a353bc03b0911dacc95f5e59f81e95f99
+Author: Olaf Hering <olaf@aepfle.de>
+Date:   Sun Nov 29 20:41:57 2020 +0100
+
+    use strict CFLAGS to catch common mistakes in ci pipeline
+    
+    A number of common coding errors are missed by the compiler.
+    They turn up only after release once packages are build with full CFLAGS.
+    
+    Adjust the gitlab CI to catch such errors:
+    
+    -Wall enables a number of diagnostics
+    
+    -Wno-deprecated-declarations will hide a bogus warning.
+    As long as an API exists it can be used. Noone beside a curious developer
+    will actually take the time to do research and look for the replacment.
+    In the wild this warning is just noise in the build log.
+    
+    -Werror=implicit-function-declaration will point out missing includes.
+    In case such errors are not fixed, the resulting code will assume int
+    for function arguments and function return values.
+    
+    -Werror=return-type will point out incorrect return values. The caller
+    will most likely receive just garbage.
+    
+    Signed-off-by: Olaf Hering <olaf@aepfle.de>
+
+commit 398c4321da79becdacf0aa052dfb79c3849edea0
+Author: Simon Steinbeiss <simon.steinbeiss@elfenbeinturm.at>
+Date:   Fri Dec 4 01:29:00 2020 +0100
+
+    helpers: Add helper to locally run xfce-build
+
+commit 1098ccaac8d960ae730422ce37bde293109973a0
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Mon Nov 9 21:49:06 2020 +0100
+
+    Add xvfb on xfce-build
+    
+    - Needed for xfconf distcheck, and might be used in other projects
+
+commit 83520dfebb6d8cef1d0f7fa706a94ab3b388c523
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Mon Nov 2 21:23:04 2020 +0100
+
+    Update for release
+
+commit 7416c0dd5bedc0372f18338cbd80db6bee5ed42f
+Author: Andre Miranda <andre42m@gmail.com>
+Date:   Thu Oct 15 01:19:31 2020 -0300
+
+    get-translations: Fix line wrapping
+
+commit ec0295a92ba60a9cf258eb90013e3d993d09b5c4
+Author: Gaël Bonithon <trash.paradise@protonmail.com>
+Date:   Fri Oct 2 13:01:59 2020 +0200
+
+    xdt-autogen: Various small improvements
+    
+    - quoting
+    - replace backticks with $()
+    - replace 'test "x$var"' with 'test "$var"'
+    - replace $(pwd) with $PWD
+    - simplify the command to search for languages
+    - do not use subshell when unneeded
+    - do not use redirection when unneeded
+    - directly test command exit codes instead of using $?
+    - readability (useless ";", indenting)
+
+commit 72483f0e80a4241893711f6431d53def515e5b6d
+Author: Gaël Bonithon <trash.paradise@protonmail.com>
+Date:   Fri Oct 2 12:25:44 2020 +0200
+
+    xdt-autogen: Properly handle whitespaces in filenames
+    
+    and more generally special characters different from '\1'.
+    
+    This is achieved by replacing the filename separator ' ' with '\1' in
+    lookup_configure_ac_*(), and the default IFS=' \t\n' with IFS='\1', but
+    only where necessary: the default IFS is usually required for things to
+    go as expected.
+    
+    So we have to do an IFS round-trip substitution around each "for" loop
+    on filenames, just before and just after pathname expansion by the
+    shell.
+    
+    Additionally, when running $XDT_PROG_ACLOCAL, one has to define some
+    new variables ACLOCAL_DIR and use conditional parameter expansion, to
+    properly set the program flags:
+    $XDT_PROG_ACLOCAL ${ACLOCAL_DIR:+-I "$ACLOCAL_DIR"}
+    
+    Finally, one has to take care of some non optional quoting
+    (strictly speaking, some are optional in this commit, but I preferred
+    not to cut as close as possible and to keep an overall coherence).
+
+commit 3e01e2136b0cb687987345cd19e0458e46e2d5b9
+Author: Gaël Bonithon <trash.paradise@protonmail.com>
+Date:   Fri Oct 2 10:49:06 2020 +0200
+
+    xdt-autogen: Use sed instead of tr to replace strings
+    
+    The purpose of the current code seems to be to replace the strings
+    '\t', '\n' and '\\' by a single space ' ', not the characters
+    "horizontal tab", "line feed" and "backslash" by a single space.
+    
+    So the right command to do this is sed, not tr, which doesn't do the
+    job expected here.
+
+commit bf575df6b316d860b922b952a2c0645257cb1993
+Author: Kevin Bowen <kevin.bowen@gmail.com>
+Date:   Fri Sep 18 09:49:40 2020 +0200
+
+    Updates README.md
+
+commit ed5e81009853fa1c1870ae53f39542e7dc9c56ad
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Sat Jul 18 13:04:25 2020 +0200
+
+    xfce-build: Add libclutter-1.0-dev for xfdashboard build
+
+commit 119263d75aec66e35015a89c0c7041b54ec54162
+Author: Andre Miranda <andreldm@xfce.org>
+Date:   Sun Jul 12 15:22:46 2020 -0300
+
+    Update .gitignore
+
+commit ed122f07cfeed391f2fe3b4c32b8aa027ba7080f
+Author: Andre Miranda <andreldm@xfce.org>
+Date:   Sun Jul 12 15:21:33 2020 -0300
+
+    helpers: Use blank line for tags message
+
+commit 4ada3e6733bf7e6383be78702c669beb3c4bcad5
+Author: Andre Miranda <andreldm@xfce.org>
+Date:   Thu Jul 9 20:38:37 2020 -0300
+
+    helpers: Reuse release notes from NEWS for tag message
+
+commit 3412f9b7d22490792707e7aecb1c06a4bf8f27e8
+Author: Andre Miranda <andreldm@xfce.org>
+Date:   Thu Jul 9 20:10:01 2020 -0300
+
+    helpers: Simplify xfce-update-news
+    
+    In my tests this works fine, unless I'm missing something
+    I don't see a reason for writing to files.
+
+commit 796174773bde6d16790e5b48e2403747345c1a0d
+Author: Andre Miranda <andreldm@xfce.org>
+Date:   Thu Jul 9 20:03:39 2020 -0300
+
+    helpers: Do not strip NEWS blank line at EOF
+
+commit 2b5b1052785cd31574d480d487921a13a63d03f4
+Author: Andre Miranda <andreldm@xfce.org>
+Date:   Thu Jul 9 20:03:17 2020 -0300
+
+    helpers: Install xfce-do-release
+
+commit c7d3216976ac0f7735c75c174583fa4c269bfd46
+Author: Simon Steinbeiss <simon.steinbeiss@elfenbeinturm.at>
+Date:   Wed Jul 8 10:39:32 2020 +0200
+
+    xfce-build: Add depend for mousepad (Fixes #37)
+    
+    Add libgtksourceview-4-dev to support mousepad's transition to it.
+    Also see apps/mousepad!10
+
+commit 4ec5547b07f497902faf264b738718cdd7f91694
+Author: Simon Steinbeiß <ochosi@xfce.org>
+Date:   Wed Jul 8 10:36:58 2020 +0200
+
+    helpers: Add do-release helper and Readme
+
+commit cae6670c3d3e0db1c31acc388c0e1249b94a1c0d
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Tue Jul 7 21:17:16 2020 +0200
+
+    xfce-build: Install python3 version of distutils-extra
+    
+    - Needed for catfish build
+
+commit 2067ef1b2fc4cdcac6cb5fb40be8f20159f02b7f
+Author: Simon Steinbeiss <simon.steinbeiss@elfenbeinturm.at>
+Date:   Tue Jul 7 10:18:22 2020 +0200
+
+    helpers: Make get-translations executable
+
+commit 2b9dbea980d4df3b44a4176cc5d3fb58beafca97
+Author: Andre Miranda <andreldm@xfce.org>
+Date:   Tue Jul 7 00:13:27 2020 -0300
+
+    get-translations: Remove last comma
+
+commit f57b4a8017874733589f4cb9607c249a03a1fb5b
+Author: Andre Miranda <andreldm@xfce.org>
+Date:   Mon Jul 6 23:34:09 2020 -0300
+
+    get-translations: Correctly get locale from commit messages
+    
+    The forth field of messages such as:
+    I18n: Add new translation sq (100%).
+    
+    Is "translation", that's why we should pick the second last field.
+
+commit 8fb443963bb6851a9e82b531dcd93b6c9a2fcd14
+Author: Simon Steinbeiß <ochosi@xfce.org>
+Date:   Thu Jun 25 00:51:49 2020 +0200
+
+    xfce-build: Replace build-dep with package names
+    
+    Also take further measures to make the container slimmer and more portable.
+    Thanks to Romain and Florian (schuellerf/xfce-test)!
+
+commit caa7aca47d8a9d217e78f4846122b63c3905938d
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Wed Jun 24 23:40:32 2020 +0200
+
+    Back to development
+
+commit c9edd8f4c03159df2c9da1a871355c64b3af4a65
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Wed Jun 24 23:21:12 2020 +0200
+
+    Update for release
+
+commit 6ee8255391933f0bb5f755a2183bac78ff21019d
+Author: Natanael Copa <ncopa@alpinelinux.org>
+Date:   Tue Jun 23 12:57:40 2020 +0200
+
+    Use datarootdir instead of datadir
+    
+    datarootdir should be used instead of datadir.
+    
+    https://www.gnu.org/software/autoconf/manual/autoconf-2.69/html_node/Changed-Directory-Variables.html
+
+commit 45bac52f22b1892adbe5fee471b84d423c10efd0
+Author: Natanael Copa <ncopa@alpinelinux.org>
+Date:   Tue Jun 23 12:48:05 2020 +0200
+
+    xdt-autogen: explicitly set search path for m4 macros
+    
+    There is no guarantee that the configured include dir is in aclocal
+    default search path. For example, system aclocal may not search for m4
+    macros under /usr/local.
+    
+    Fixes #36
+
+commit 5c426e931f1e5eb10f3a63f3b54c9ea6b293543c
+Author: Simon Steinbeiss <simon.steinbeiss@elfenbeinturm.at>
+Date:   Fri Jun 19 00:11:55 2020 +0200
+
+    xfce-build: Add depend for statusnotifier-plugin
+
+commit bff9a867d1b7d6d6d07be1ee18339a6633a68208
+Author: Simon Steinbeiss <simon.steinbeiss@elfenbeinturm.at>
+Date:   Thu Jun 18 23:15:28 2020 +0200
+
+    xfce-build: Add valac for xfmpc
+
+commit b9910c54b28afbf44fccb1e2e2c74dc6505a8ad1
+Author: Simon Steinbeiss <simon.steinbeiss@elfenbeinturm.at>
+Date:   Thu Jun 4 20:34:47 2020 +0200
+
+    Install the xfce-helpers
+
+commit d3dde202976b2aad41847aad8d3c4d0004dbc752
+Author: Simon Steinbeiss <simon.steinbeiss@elfenbeinturm.at>
+Date:   Thu Jun 4 20:19:15 2020 +0200
+
+    Add two new helpers
+
+commit c9c4e832e30049f51fe039cf8abd9ece002bd9fa
+Author: Simon Steinbeiss <simon.steinbeiss@elfenbeinturm.at>
+Date:   Tue Jun 16 23:38:38 2020 +0200
+
+    xfce-build: Enable building xfmpc
+
+commit 0e2a8cb7650c8cf37aff95a7b30bd859dee1922d
+Author: Natanael Copa <ncopa@alpinelinux.org>
+Date:   Thu Jun 11 12:40:57 2020 +0200
+
+    Install m4 macros into default $datadir/aclocal
+    
+    Install the m4 macros in location where autoconf will find them by
+    default.
+    
+    Adjust xdt-autogen to depend on the default location while still respect
+    any set ACLOCAL_FLAGS or XDT_ACLOCAL_FLAGS.
+
+commit fd8682a24c5c3fc86098814b95b56c736a0893a1
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Thu Jun 4 20:07:05 2020 +0200
+
+    Update README for new gitlab urls
+
+commit 29b0a936ce8724567979dd1edbebea9188debd3a
+Author: Natanael Copa <ncopa@alpinelinux.org>
+Date:   Wed Jun 3 11:57:11 2020 +0200
+
+    xdt-autogen: Improve and simplify linguas detection
+    
+    The `ls *.po | awk ..` pattern is generally not recommended[0]. Replace
+    it with a tiny for loop with basename. Use POSIX `tr`[1] to delete the
+    trailing end-of-line, since `echo -n` is not specified in POSIX[2]. This
+    also removes the need for awk check.
+    
+    [0]: https://github.com/koalaman/shellcheck/wiki/SC2012#rationale
+    [1]: https://pubs.opengroup.org/onlinepubs/9699919799/utilities/tr.html
+    [2]: https://pubs.opengroup.org/onlinepubs/9699919799/utilities/echo.html
+
+commit bc9a62e08bdbd1460917e2eb44577ad472026738
+Author: Natanael Copa <ncopa@alpinelinux.org>
+Date:   Tue Jun 2 13:58:07 2020 +0200
+
+    Let XDT_I18N automatically find the po/*.po as default
+    
+    Make the LINGUAS argument optional and let it be auto generated from
+    po/*.po if is not specified.
+
+commit 0628ba009c530cb0a0d1440ea4ebb551a6425103
+Author: Natanael Copa <ncopa@alpinelinux.org>
+Date:   Tue Jun 2 12:39:14 2020 +0200
+
+    Let configure generate the xdt-autogen script
+    
+    No need to add the rule to Makefile.am when configure itself can
+    generate the file.
+
+commit caed69490485466132348afe283a2e80ab371ed1
+Author: Natanael Copa <ncopa@alpinelinux.org>
+Date:   Mon Jun 1 17:29:37 2020 +0200
+
+    Implement XDT_VERSION_INIT
+    
+    Add an XDT_VERSION_INIT help macro that will define a set of version
+    macros using esyscmd so we no lnger need to use configure.ac.in to
+    perpare the version string for AC_INIT.
+    
+    XDT_VERSION_INIT(SEMVER, [TAG] will set the following macros:
+      - xdt_version
+      - xdt_version_major
+      - xdt_version_minor
+      - xdt_version_micro
+      - xdt_version_tag
+      - xdt_version_build
+      - xdt_debug_default
+    
+    Example usage:
+    
+    XDT_VERSION_INIT([4.15.3],[git])
+    AC_INIT([xfce4-someproject], [xdt_version()])
+    ...
+    XDT_FEATURE_DEBUG([xdt_debug_default])
+
+commit e19cc0f79b3a577ef1e3ab1220c47ed640362a6e
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Wed Jun 3 00:30:27 2020 +0200
+
+    Add manpage and tests to xdt-csource
+    
+    - Migrated from the old-csource
+    - Needed to completely remove exo-csource from exo
+
+commit 4531a96c9a77ab225aaeb472a7c7642e2e7dcb38
+Author: Natanael Copa <ncopa@alpinelinux.org>
+Date:   Tue May 26 12:22:03 2020 +0200
+
+    ci/build_libs.sh: update configure options
+    
+    Remove --build and --host since they are only needed for crosscompile.
+    Native builds don't need those and they will not work in case someone
+    tries build on 32bit.
+    
+    Also add envronment variables for libdir and libexecdir so the
+    debian/ubuntu specific lib(exec)dir can be overridden.
+
+commit 9747681dd97510d5a47f33edc323670a57bf1bfa
+Author: Natanael Copa <ncopa@alpinelinux.org>
+Date:   Tue May 26 12:12:26 2020 +0200
+
+    ci/build_libs.sh: use all cores for build
+    
+    Use all cores from `nproc` rather than hardcode parallel jobs to 8.
+    
+    Allow overide this via environment variable NPROC:
+      `docker build --build-arg NPROC=2 ...`
+
+commit 80bef8a08035f25d45cf5cb50fe92cfc3d2a45b0
+Author: Natanael Copa <ncopa@alpinelinux.org>
+Date:   Tue May 26 12:10:28 2020 +0200
+
+    ci/build_libs.sh: create branch to avoid warning
+    
+    avoid git warning about 'detached HEAD' state by creating a git branch
+    for the build.
+
+commit 9ea41ec6a3becee8605977ca95fce1a9bd3abc1f
+Author: Natanael Copa <ncopa@alpinelinux.org>
+Date:   Tue May 26 12:06:00 2020 +0200
+
+    ci/build_libs.sh: simplify and port to POSIX shell
+
+commit 5965e65fcf9f246177a9002cca0c1175a0b39597
+Author: Simon Steinbeiss <simon.steinbeiss@elfenbeinturm.at>
+Date:   Tue May 19 01:41:44 2020 +0200
+
+    xfce-build: Add depends for Catfish
+
+commit 38f0d114a72275b9be771cf01d69ac8651dd9fe0
+Author: Simon Steinbeiss <simon.steinbeiss@elfenbeinturm.at>
+Date:   Fri May 15 20:22:11 2020 +0200
+
+    xfce-build: Add build deps for apps (Fixes #33)
+
+commit baa6466a34e6060a486fd05ea38639158bd588b4
+Author: Jason Yavorska <jyavorska@protonmail.com>
+Date:   Fri May 15 20:13:34 2020 +0200
+
+    Add xfce4-dev-tools build in addition to container build
+
+commit 46f6042649d5b83da986f4680949bc5ada0b69e7
+Author: Jason Yavorska <jyavorska@protonmail.com>
+Date:   Thu May 14 10:24:53 2020 +0200
+
+    Check BEFORE_SHA along with changes to .po files
+
+commit f9318560bf6d89eeab71cb58a6a99c3a4a1c0741
+Author: Jason Yavorska <jyavorska@protonmail.com>
+Date:   Wed May 13 15:19:18 2020 +0200
+
+    Remove automake workaround
+
+commit aebc3366f56d4bad6e96b929021a4f79c986351a
+Author: Jason Yavorska <jyavorska@protonmail.com>
+Date:   Wed May 13 09:42:42 2020 +0200
+
+    Make it so containers are built on branches
+
+commit 969033f104d870502c99b9d32b995d122979a4dc
+Author: Simon Steinbeiss <simon.steinbeiss@elfenbeinturm.at>
+Date:   Wed May 13 00:01:01 2020 +0200
+
+    gitlabci: Ensure to run autogen in distcheck stage
+
+commit fa58240b6b0070a6a7e446fa7bd6034eac452542
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Tue May 12 23:15:41 2020 +0200
+
+    Switch to "foreign" mode for automake
+    
+    - This way, we don't need to provide a README file, now that we start to
+      switch to README.md for markdown readme on gitlab
+    - "[..] differences between the gnu and foreign flavours is
+      that the former requires the presence of a number of files in the
+    top-level of the projects": https://autotools.io/automake/options.html
+    - It also stop warning when using GNU make syntax, but we already
+      mandate gnu make, so it's not a problem
+
+commit e652e9366589bbd3e6c47daed5b9fddb168748b8
+Author: Jason Yavorska <jyavorska@protonmail.com>
+Date:   Tue May 12 17:46:54 2020 +0200
+
+    Fix issue with default cases in template
+
+commit 49a224dbf6ddb80ee887a92ce7bfaf235429a6c2
+Author: Jason Yavorska <jyavorska@protonmail.com>
+Date:   Tue May 12 13:06:59 2020 +0200
+
+    Separate build/distcheck and add translations
+
+commit 80646b6511e38441e39dc99d953d23c21f23bd4d
+Author: Jason Yavorska <jyavorska@protonmail.com>
+Date:   Tue May 12 09:49:36 2020 +0200
+
+    Add CI templates notes
+
+commit e1ef0fea807716a6954649a0ed693b0647283560
+Author: Jason Yavorska <jyavorska@protonmail.com>
+Date:   Tue May 12 09:29:01 2020 +0200
+
+    Update README with explanation of Dockerfile
+
+commit 87b91f66d087d6f393230af5bd9a4f0283e15368
+Author: Jason Yavorska <jyavorska@protonmail.com>
+Date:   Mon May 11 13:55:44 2020 +0200
+
+    Always run build on schedule
+
+commit 26942c2a44779e88e28f8835d98ff04d2e4e2058
+Author: Simon Steinbeiß <simon.steinbeiss@tttech.com>
+Date:   Mon May 11 13:00:24 2020 +0200
+
+    Fix whitespace error
+
+commit be9eaae5c3a551fd2387584386e965eb59496a50
+Author: Simon Steinbeiß <simon.steinbeiss@tttech.com>
+Date:   Mon May 11 11:56:40 2020 +0200
+
+    xfce-build: Order libs according to dependency chain
+    
+    See also: https://docs.xfce.org/xfce/building#xfce_dependencies_explained
+
+commit 01cab4d1e78435b19586844e93d99ea4d7c2a675
+Author: Jason Yavorska <jyavorska@protonmail.com>
+Date:   Mon May 11 11:04:01 2020 +0200
+
+    Add libgirepository1.0-dev as dependency
+
+commit 30143e90b84b98fa9d822fdd2aaf9bc73c829e68
+Author: Jason Yavorska <jyavorska@protonmail.com>
+Date:   Mon May 11 10:41:56 2020 +0200
+
+    Remove steps that were building local repo
+
+commit 2ca6ca136d1dc4c3a5ec2fd5e15396fc5e226994
+Author: Jason Yavorska <jyavorska@protonmail.com>
+Date:   Mon May 11 08:54:57 2020 +0200
+
+    Switch to rules syntax to enforce project
+
+commit 167d5e1a4c2b21873550d849f44cae705bb036c7
+Author: Simon Steinbeiss <simon.steinbeiss@elfenbeinturm.at>
+Date:   Mon May 11 00:15:26 2020 +0200
+
+    xfce-build: Only rebuild on docker-related changes
+
+commit 80b156a04f30be4b7447484e424772022d87ef3b
+Author: Simon Steinbeiss <simon.steinbeiss@elfenbeinturm.at>
+Date:   Sun May 10 23:56:07 2020 +0200
+
+    Add helper script to get all translation-updates
+
+commit 5333681a97d5d23b47a383f346019648337d7ba2
+Author: Simon Steinbeiss <simon.steinbeiss@elfenbeinturm.at>
+Date:   Sun May 10 23:32:16 2020 +0200
+
+    xfce-build: Build latest tags of all core libs
+
+commit 2bd8cac01f4579d43bb2b420cf7e2a862b5f2315
+Author: Simon Steinbeiss <simon.steinbeiss@elfenbeinturm.at>
+Date:   Sun May 10 22:36:21 2020 +0200
+
+    xfce-build: Add gobject-introspection package
+
+commit 15e41e0115a39eabd1c47d7a69278df1f8688d02
+Author: Jason Yavorska <jyavorska@protonmail.com>
+Date:   Sun May 10 22:30:00 2020 +0200
+
+    Integrate xfce-build container build/creation
+
+commit c62f6bec27b7870aa3ee5b366a0bf1e74b72ce44
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Sun Aug 11 17:54:32 2019 +0200
+
+    Back to development
+
+commit 3a7475960ac2d1eb990933ca5dfee6d4bf0069c9
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Sun Aug 11 17:43:26 2019 +0200
+
+    Bump to 4.14.0
+
+commit 2e9291813e5afbe80d4de566b61ab879e96e1283
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Thu Jun 27 14:56:38 2019 +0200
+
+    Back to development
+
+commit c5fd93be2c853f0a47ab69b313edb03e12077ef5
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Thu Jun 27 14:48:28 2019 +0200
+
+    Update for release
+
+commit 5e8bc24a466da1100bd8ffb4f334032e44869751
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Thu May 23 17:09:16 2019 +0200
+
+    Update xdt-csource with latest exo-csource modifications
+    
+    - xdt-csource will replace exo-csource (projects using exo-csource needs to be updated)
+    - The work started in issue #6449 but the full migration has never been done.
+    - This way, we do not need to check for exo even when exo is not
+    required.
+
+commit cea2eb7c81a8895cb1afb2f2e4b71e32dd0f531e
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Thu May 23 17:02:37 2019 +0200
+
+    Remove svn support in xdt-autogen
+    
+    - Also simplify a bit the XDT_AUTOGEN_REQUIRED_VERSION detection
+    - Remove the check of the unused doc submodule
+
+commit 7814d31d6c909e9fc65ba4340e7efe4c76cd7c73
+Author: Romain Bouvier <skunnyk@alteroot.org>
+Date:   Thu May 23 16:57:55 2019 +0200
+
+    Cleanup xfce4-dev-tools
+    
+    - Remove useless macros: m4macros/xdt-python.m4 and m4macros/xdt-xfce.m4
+    are not used
+    - Update URLs
+    - Remove xdt-commit, used to generate Changelog, now done via make
+    distcheck
+
+commit b627d837b5e1bf98f403ef1fb4cdab18eeb6bfe8
+Author: Matt Thirtytwo <matt.59491@gmail.com>
+Date:   Thu Mar 5 20:26:55 2015 +0100
+
+    No -Wshadow flag for enable_debug=full (bug #11637)
+    
+    Use it only for enable_debug=yes.
+
+commit 5eb3f0cd923711f1e005bb41dc324d6bbba31c91
+Author: Harald Judt <h.judt@gmx.at>
+Date:   Sat Feb 28 15:39:00 2015 +0100
+
+    Post release tag bump
+
+commit 18b2e20ea1f8be1005ed27443e667f660046ee04
+Author: Harald Judt <h.judt@gmx.at>
+Date:   Sat Feb 28 15:30:12 2015 +0100
+
+    Updates for release
+
+commit 86d8411271b38d6ecb1a6b77c17b6c9d6f59b3ba
+Author: Harald Judt <h.judt@gmx.at>
+Date:   Sat Feb 28 15:28:22 2015 +0100
+
+    Require xfce4-panel-4.11 for panel plugins
+    
+    GTK-3 API changes
+
+commit 8858dfc3aa8124143a04b30db0bfb66e700feb8d
+Author: Harald Judt <h.judt@gmx.at>
+Date:   Wed Feb 18 18:45:11 2015 +0100
+
+    Restore AC_REVISION
+    
+    Other projects define this too; in previous versions it was simply ignored
+    because $Id$ was only generated by SVN checkout.
+
+commit 856310420b814ca1508606cfbf72397ae7acf3bb
+Author: Harald Judt <h.judt@gmx.at>
+Date:   Wed Feb 18 18:41:49 2015 +0100
+
+    Post-release tag bump
+
+commit cbd2f20770b7e49a76c41f546e9cd731c86f99c9
+Author: Harald Judt <h.judt@gmx.at>
+Date:   Tue Feb 17 22:57:58 2015 +0100
+
+    Updates for release
+
+commit 6b088ab3d118f9cd4e9c98c6bd3883a05ef8a73e
+Author: Harald Judt <h.judt@gmx.at>
+Date:   Tue Feb 17 22:01:49 2015 +0100
+
+    Update list of files to clean with xdt-autogen
+
+commit 9c0e7524f0659a2c4867e8bb007bd5c0d0282512
+Author: Harald Judt <h.judt@gmx.at>
+Date:   Tue Feb 17 21:30:35 2015 +0100
+
+    Use the correct libtool version number in the xdt-autogen warning
+    
+    Commit de3d7f0 "Display warning if AC_PROG_INTLTOOL is used (bug #8930)"
+    prints a warning with a hardcoded libtool version. This patch replaces
+    the hardcoded value with the version number defined in configure.ac.in,
+    so developers will use the proper requirements.
+
+commit 1541dcd7f5c923b5268ca617f4a3ddafe6565c4b
+Author: Harald Judt <h.judt@gmx.at>
+Date:   Tue Feb 17 20:29:35 2015 +0100
+
+    Remove definitions related to the obsolete xfce-mcs-manager
+    
+    xfce-mcs-manager has long been archived and replaced by xfconf.
+
+commit f35b12d9a3d9d9b3ce3f937a6b3873d65e2aaf3c
+Author: Harald Judt <h.judt@gmx.at>
+Date:   Tue Feb 17 20:27:22 2015 +0100
+
+    Remove check for threaded panels
+    
+    This check is only for old panels (<=4.1.90) and useless today.
+
+commit 4beed310b41ef8b3d56ee7e84ac825b5099e458d
+Author: Harald Judt <h.judt@gmx.at>
+Date:   Mon Feb 16 21:20:11 2015 +0100
+
+    Bump dependencies for xfce4-dev-tools and m4macros
+    
+    * automake-1.11
+    * autoconf-2.60
+    * libtool-2.4
+    * glib-2.30
+    * xfce4-panel-4.9
+
+commit 55b8148aacb05346b8c85954d41d360ae8cbd38e
+Author: Harald Judt <h.judt@gmx.at>
+Date:   Mon Feb 16 21:34:08 2015 +0100
+
+    Fix autotools m4 warning
+
+commit 78e9cfafb1c8ed749c07a49e22440f5df7a96cd1
+Author: Harald Judt <h.judt@gmx.at>
+Date:   Mon Feb 16 21:18:23 2015 +0100
+
+    Cleanup files and update .gitignore
+    
+    Update copyright dates, remove subversion $id strings, update .gitignore.
+
+commit e01becaeafa9c2373fa08ef9bdbb181e5af05718
+Author: Jannis Pohlmann <jannis@xfce.org>
+Date:   Sun Jul 27 17:03:42 2014 +0200
+
+    Fix out of source building (bug #10899)
+    
+    Depending on files generated during build via $(srcdir) breaks builds
+    that take place outside the source directory. This commit fixes one such
+    mistake in scripts/Makefile.am that refers to $(srcdir)/xdt-autogen.in.
+
+commit de3d7f023da850ad8fa834c94b999fb80343c1ec
+Author: Jannis Pohlmann <jannis@xfce.org>
+Date:   Sun Jul 27 16:46:34 2014 +0200
+
+    Display warning if AC_PROG_INTLTOOL is used (bug #8930)
+    
+    Similar to AC_PROG_LIBTOOL, which has been replaced with LT_PREREQ
+    and LT_INIT, AC_PROG_INTLTOOL has been replaced with IT_PROG_INTLTOOL.
+    This commit makes xdt-autogen recommend intltool >= 0.35.0 and displays
+    a warning if AC_PROG_INTLTOOL is still being used in a configure script
+    template.
+    
+    Original patch by Samuli Suominen <ssuominen@gentoo.org>
+
+commit 6d6fadcba4619c556a4b2eb7abc3d7c5fb2c0279
+Author: Nick Schermer <nick@xfce.org>
+Date:   Sat Feb 22 23:52:14 2014 +0100
+
+    Post release tag bump.
+
+commit f574099ea0bb60bed7ee8f007edf66b1f86271f4
+Author: Nick Schermer <nick@xfce.org>
+Date:   Sat Feb 22 23:51:08 2014 +0100
+
+    Updates for release.
+
+commit b94af0c78a6509888368fbd4d280372eee1f7dab
+Author: Nick Schermer <nick@xfce.org>
+Date:   Mon Apr 29 19:04:49 2013 +0200
+
+    Avoid gnu_printf warnings in debugging in gcc 4.8.
+
+commit d13ceda50e099d1741f3fd1b67b76b4fca4aa5ae
+Author: Nick Schermer <nick@xfce.org>
+Date:   Sun Jan 6 12:09:49 2013 +0100
+
+    Correctly quote macro.
+
+commit a809811ec15a6c3c20f9b02464ea73d7b9c4c8a1
+Author: Nick Schermer <nick@xfce.org>
+Date:   Sun Jan 6 11:43:11 2013 +0100
+
+    Some build improvements.
+
+commit 236a0c578369bfc726f7d9a830975cbeaefbfee5
+Author: Nick Schermer <nick@xfce.org>
+Date:   Mon Jul 23 17:31:48 2012 +0200
+
+    Remove FORTIFY_SOURCE=2.
+    
+    This gives warnings with full debug builds on recent gcc versions.
+
+commit 9244250ac0c15ba160688758c5dccf97f3f160ef
+Author: Nick Schermer <nick@xfce.org>
+Date:   Sat Apr 28 21:17:59 2012 +0200
+
+    Post release tag bump.
+
+commit 8b8f574f1223115250b3907865827273f760f4de
+Author: Nick Schermer <nick@xfce.org>
+Date:   Sat Apr 28 21:12:26 2012 +0200
+
+    Updates for release.
+
+commit 9e9eb8c42afa82b78a8bfbe8aad70f2a6559239e
+Author: Nick Schermer <nick@xfce.org>
+Date:   Sat Apr 14 12:03:55 2012 +0200
+
+    Fix comment.
+
+commit ec2ed1edda481405a77da040ffa96af612ad14df
+Author: Nick Schermer <nick@xfce.org>
+Date:   Fri Apr 13 23:49:53 2012 +0200
+
+    Post release tag bump.
+
+commit e000b3ab065c7474f8275e158d34aa88ea6b4cc1
+Author: Nick Schermer <nick@xfce.org>
+Date:   Fri Apr 13 23:49:06 2012 +0200
+
+    Updates for release.
+
+commit e13cc0004949cfc25e15d53f759e390089440e94
+Author: Nick Schermer <nick@xfce.org>
+Date:   Fri Apr 13 23:46:50 2012 +0200
+
+    Never disable checks.
+    
+    This disables the g_return_ macros, and quite often
+    we rely on that. So for the sake of stability, disable
+    those.
+
+commit 286be3696483d5fcd5633371b23cbdca6a4e06fd
+Author: Nick Schermer <nick@xfce.org>
+Date:   Fri Apr 13 18:34:17 2012 +0200
+
+    Use ?_VERSION for special versioned binary detection (bug #8683).
+    
+    Use AUTOCONF_VERSION for automake-$ver, ACLOCAL_VERSION for
+    aclocal-$ver, AUTOMAKE_VERSION for automake-$ver and
+    AUTOHEADER_VERSION for autoheader-$ver.
+    
+    This removes the custom checks for the //newest// binary
+    version, which gets constantly outdated.
+
+commit 69de50c7cd911c8014f27db08bcde5e9f79afb0a
+Author: Nick Schermer <nick@xfce.org>
+Date:   Fri Apr 13 21:45:12 2012 +0200
+
+    Remove the old BM_ macros.
+
+commit f912e35def91422d37296dbd1bb692c663d862c7
+Author: Nick Schermer <nick@xfce.org>
+Date:   Mon Feb 20 22:41:59 2012 +0100
+
+    Fix license.
+
+commit 1edbcced363245e0e8336620a66308ec49d3b5b5
+Author: Jannis Pohlmann <jannis@xfce.org>
+Date:   Mon Jan 16 14:56:18 2012 +0000
+
+    Post-release version bump.
+
+commit a1a5604add74f97928f8684f3d27d67cb25f4677
+Author: Jannis Pohlmann <jannis@xfce.org>
+Date:   Mon Jan 16 14:51:26 2012 +0000
+
+    Release 4.9.1!
+
+commit 32eb2f4a298a77a1fcdaf3a3977c2abf1d63c26f
+Author: Nick Schermer <nick@xfce.org>
+Date:   Sat Dec 10 12:28:05 2011 +0100
+
+    Never use xdt-autogen in autogen.sh.
+
+commit dfd0dc48ef2d0dd8c3c771ccf69a4476534d6e34
+Author: Nick Schermer <nick@xfce.org>
+Date:   Sun Nov 13 18:47:53 2011 +0100
+
+    Update build.
+
+commit a2f88abdc5fa7a459558e6ef50d094571a943a0b
+Author: Nick Schermer <nick@xfce.org>
+Date:   Sun Nov 13 18:45:32 2011 +0100
+
+    Remove spec file and rpm build.
+
+commit 56cde58238898e5659c39f5e713ee0362ba772d9
+Author: Nick Schermer <nick@xfce.org>
+Date:   Thu Nov 3 19:27:32 2011 +0100
+
+    Add support for LT_PREREQ (bug #6920).
+    
+    Support LT_PREREQ as the new alternative of AC_PROG_LIBTOOL. If
+    the latter is used, show a message with information how to switch
+    to LT_PREREQ.
+
+commit de35c92f942ca617e53c79e7d519a67a40d9cac3
+Author: Nick Schermer <nick@xfce.org>
+Date:   Thu Oct 13 20:21:42 2011 +0200
+
+    Post release tag bump.
+
+commit 057bcf217964ec5ed8a1f02d812db2b9b8786493
+Author: Nick Schermer <nick@xfce.org>
+Date:   Thu Oct 13 20:20:18 2011 +0200
+
+    Updates for release.
+
+commit c41acb07563a00018aef24a5b38fada289efd373
+Author: Mike Massonnet <mmassonnet@xfce.org>
+Date:   Sat Aug 27 20:25:01 2011 +0200
+
+    Port exo-csource to xdt-csource (bug #6449)
+    
+    The translations have been removed from the code -- Nick.
+
+commit f2eb2c2e9ca7d042eb35fa56f392df4dbaf9924c
+Author: Nick Schermer <nick@xfce.org>
+Date:   Sun Jul 3 19:42:38 2011 +0200
+
+    Use pkg-config macro for detection (bug #7787).
+    
+    Use the macro shipped with pkg-config for detection of
+    $PKG_CONFIG. This to fix cross-build compatibility.
+
+commit 874bfb8234ab1d3af08dea0ce4aa037cbddf996f
+Author: Landry Breuil <landry@rhaalovely.net>
+Date:   Thu Apr 28 22:01:49 2011 +0200
+
+    Disable --as-needed on OpenBSD (bug #7546).
+
+commit 5927409dd1d42b39e25d4b813b8b2f00d26b001a
+Author: Nick Schermer <nick@xfce.org>
+Date:   Mon Apr 25 11:05:15 2011 +0200
+
+    Skip -Wredundant-decls on OpenBSD.
+    
+    signal.h has an inline that redeclares __errno.
+
+commit 8bfa89183b4e27db241b1402bd53a0d5f80f6af3
+Author: Nick Schermer <nick@xfce.org>
+Date:   Tue Mar 22 23:37:27 2011 +0100
+
+    Support xldscope for Sun Studio.
+
+commit ab2cf62f191b13884b4c7c7e71f10d0f21f3f9b5
+Author: Nick Schermer <nick@xfce.org>
+Date:   Tue Mar 22 20:46:16 2011 +0100
+
+    Don't use -g3 for full debuggin.
+    
+    This breaks the sun studio compiler and since -g defaults
+    to level 2, it provides enough backtrace information.
+
+commit 1d71f62e24c95963f84b4d243fa8c07accd87af5
+Author: Nick Schermer <nick@xfce.org>
+Date:   Mon Mar 7 20:58:15 2011 +0100
+
+    Only use -fstack-protector on Linux systems.
+    
+    The FreeBSD bot has some problems with this flag. Disable
+    it on non-linux systems, since it's not that important.
+
+commit 9516648eab1302bb7003c2298bb72c7b777b9013
+Author: Nick Schermer <nick@xfce.org>
+Date:   Sun Mar 6 19:23:15 2011 +0100
+
+    Fix FSF address and add missing licenses.
+
+commit f304f8bd2fe1c49b55c457f009bcd0434a6a4e7c
+Author: Jannis Pohlmann <jannis@xfce.org>
+Date:   Sun Jan 16 15:45:24 2011 +0100
+
+    Use 4.8.0git... for now.
+
+commit 9ebbf22a19a11c13d08be88714615eb81c2e2f95
+Author: Jannis Pohlmann <jannis@xfce.org>
+Date:   Sun Jan 16 15:27:44 2011 +0100
+
+    Post-release version bump.
+
+commit 2dc3f265c4ed5b45234aa6ff89ccefead9ca2ea5
+Author: Jannis Pohlmann <jannis@xfce.org>
+Date:   Sun Jan 16 15:13:37 2011 +0100
+
+    Release 4.8.0!
+
+commit 3a8c824760c8d63f1438e219799e40a5b191d699
+Author: Nick Schermer <nick@xfce.org>
+Date:   Sun Jan 2 13:58:09 2011 +0100
+
+    Post release tag bump.
+
+commit e41279eac84b92b1e26cdffb999544177090c0d3
+Author: Nick Schermer <nick@xfce.org>
+Date:   Sun Jan 2 13:57:23 2011 +0100
+
+    Updates for release.
+
+commit e9f246a0486cc03168f7a8b47fadb64a9843da30
+Author: Benedikt Meurer <benedikt.meurer@googlemail.com>
+Date:   Sun Dec 19 12:13:19 2010 +0100
+
+    Check for glibtoolize.
+
+commit d1702a893ff5f2c0fdf3cb0779360d155004efb1
+Merge: 4dc82ec 56cc7a6
+Author: Benedikt Meurer <benedikt.meurer@googlemail.com>
+Date:   Sun Dec 19 12:01:53 2010 +0100
+
+    Merge remote branch 'origin'
+
+commit 4dc82ec2af7cab940cd700be6cb041468dc86338
+Author: Benedikt Meurer <benedikt.meurer@googlemail.com>
+Date:   Sun Dec 19 11:49:21 2010 +0100
+
+    Use printf instead of echo -n.
+    
+    /bin/sh does not support the -n option for echo. Use printf instead,
+    which is independent of the shell.
+
+commit 56cc7a69d75dd7d59d0170af16b5030189ccb1a0
+Author: Enrico Tröger <enrico.troeger@uvena.de>
+Date:   Sun Nov 21 13:03:00 2010 +0100
+
+    Fix typo.
+
+commit e0952f10499edcf6822b54811cb515b560612969
+Author: Nick Schermer <nick@xfce.org>
+Date:   Sun Oct 31 15:08:40 2010 +0100
+
+    Updates for release.
+
+commit 6bdbfdf491d3aa61806edc24b6a4cf984083c7ec
+Author: Nick Schermer <nick@xfce.org>
+Date:   Sun Oct 31 12:45:04 2010 +0100
+
+    Check if $1 is a file before calling cat (bug #6101).
+
+commit 0a39faed46ec1a72540649c69efd198a118851e8
+Author: Yves-Alexis Perez <corsac@debian.org>
+Date:   Sun Oct 31 12:40:17 2010 +0100
+
+    Check for automake 1.11.
+
+commit 7d85dae9cbd88e40fe987dc97e9453932e09b2ca
+Author: Nick Schermer <nick@xfce.org>
+Date:   Sun Oct 31 12:09:20 2010 +0100
+
+    Add check stage for documentation submodules.
+    
+    This adds an extra check when XDT_AUTOGEN_CHECK_DOCS
+    is defined. This variable points to the directory that
+    should contain the xfce4-docs submodule.
+    
+    If no submodule clone if found and autogen.sh is running
+    from within a git clone, it will automatically initialize
+    the submodule for the user, if not it will show an error
+    and abort xdt-autogen, since configure will abort too if
+    we continue because of missing makefile.am files.
+
+commit ddc1f35ba246fea94eea293a8f530de95aa0253e
+Author: Nick Schermer <nick@xfce.org>
+Date:   Tue Jun 1 17:40:04 2010 +0200
+
+    Build ChangeLog from GIT.
+
+commit 20e7901a9fef7ea229fa3c55f8875509c795c391
+Author: Nick Schermer <nick@xfce.org>
+Date:   Fri Oct 23 11:42:39 2009 +0200
+
+    Revert "Don't set the default visibility in XDT_FEATURE_VISIBILITY."
+    
+    This reverts commit 77d9703dccee853d007c3b7133bc14accff66203.
+
+commit 77d9703dccee853d007c3b7133bc14accff66203
+Author: Nick Schermer <nick@xfce.org>
+Date:   Thu Oct 22 11:18:06 2009 +0200
+
+    Don't set the default visibility in XDT_FEATURE_VISIBILITY.
+    
+    Only use XDT_FEATURE_VISIBILITY to detect if visibility is
+    supported by the compiler. Setting the default visibility
+    to hidden will break libraries and modules that don't
+    set the visibility of their public function to "default".
+
+commit 399b5f31fba3b76767041bdd0d7ad57c53ee1866
+Author: Brian J. Tarricone <brian@tarricone.org>
+Date:   Sat Sep 19 17:38:13 2009 -0700
+
+    == 4.7.2 released! ==
+
+commit 3a8ce30b0a3d84613d27bc5fdd503ace832b6a9d
+Author: Brian J. Tarricone <brian@tarricone.org>
+Date:   Sat Sep 19 17:35:10 2009 -0700
+
+    fix typo that breaks XDT_FEATURE_LINKER_OPTS
+
+commit 45448c2c68c5a405bb83efb8a33e8c5dd48db90e
+Author: Brian J. Tarricone <brian@tarricone.org>
+Date:   Sat Sep 19 14:23:13 2009 -0700
+
+    == 4.7.1 released! ==
+
+commit e1e347ca0f4df390b56d3ace890743c39ec7cf69
+Author: Brian J. Tarricone <brian@tarricone.org>
+Date:   Sat Sep 19 14:04:39 2009 -0700
+
+    put --disable-debug back and fix defaults for visibility and linker opts
+    
+    also make the non-defaults explicit and therefore less confusing (it
+    worked before due to default autoconf shell-ification of the first arg,
+    but that's not immediately clear)
+
+commit 924e31f91d6f111b0c6ea65fa8b4cfbaf8043592
+Author: Brian J. Tarricone <brian@tarricone.org>
+Date:   Sat Sep 19 13:48:25 2009 -0700
+
+    Revert "Fix XDT_FEATURE_LINKER_OPTS and XDT_FEATURE_VISIBILITY."
+    
+    This reverts commit 90d686411e994a0adfe822e917b1954538d95b74.
+
+commit 90d686411e994a0adfe822e917b1954538d95b74
+Author: Jannis Pohlmann <jannis@xfce.org>
+Date:   Sat Sep 19 17:32:07 2009 +0200
+
+    Fix XDT_FEATURE_LINKER_OPTS and XDT_FEATURE_VISIBILITY.
+    
+    AC_ARG_ENABLE executes the code its last parameter if the --enable flag
+    is not provided, not if the --disable flag is not provided. That's why
+    we need to set the value to "no", not to "yes".
+    
+    Also don't show the --disable-debug option (with weird indentation)
+    because the help message already explains that there are --disable
+    variants for all --enable options.
+
+commit 678b9705cb2424d0d690aee12ac56ba24e8aaebd
+Author: Jannis Pohlmann <jannis@xfce.org>
+Date:   Sat Sep 19 16:04:57 2009 +0200
+
+    Fix default detection and $enable_debug value in XDT_FEATURE_DEBUG().
+    
+    This uses the m4_default() macro instead of the custom code to check
+    which debug level should be used as the default. $default_level was
+    not set when running configure with --help before.
+    
+    It seems we also need to use [enable_debug=$enableval] in
+    AC_ARG_ENABLE() for enable_debug to be set. Tested it and it works fine.
+
+commit 0b00f6c1ea8c7e7d1ca772bf46f4c0e770970925
+Author: Brian J. Tarricone <brian@tarricone.org>
+Date:   Fri Sep 18 17:41:43 2009 -0700
+
+    beef up the XDT_FEATURE_DEBUG macro a bit
+
+commit 881dcbabcc5cdc488b2b051f8a5ea7b1db0abba6
+Author: Brian J. Tarricone <brian@tarricone.org>
+Date:   Fri Sep 18 17:20:29 2009 -0700
+
+    s/SVN/Git/
+
+commit 1e8476b13f74bc2792a4b8af09d523cb726dffa0
+Author: Brian J. Tarricone <brian@tarricone.org>
+Date:   Fri Sep 18 17:20:18 2009 -0700
+
+    add XDT_FEATURE_LINKER_OPTS
+
+commit 104a024b94ae87ee87aedefd21b140505220a2c4
+Author: Brian J. Tarricone <brian@tarricone.org>
+Date:   Fri Sep 18 16:16:13 2009 -0700
+
+    add XDT_FEATURE_VISIBILITY
+
+commit 806ee07598a912c3e92498e98c29b35d29ea65ac
+Author: Brian J. Tarricone <brian@tarricone.org>
+Date:   Wed Aug 26 14:56:49 2009 -0700
+
+    add do-not-edit warning to top of autogenerated configure.{ac,in}
+
+commit 3e611faa1d00f18639c3dc1ffe1ea9afce3ecdb5
+Author: Brian J. Tarricone <brian@tarricone.org>
+Date:   Wed Aug 26 14:51:43 2009 -0700
+
+    remove configure.{ac,in} on 'clean' if configure.{ac,in}.in exists
+
+commit 65753f2d0307d51b2d15e66e76ef6599fac17264
+Author: Brian J. Tarricone <brian@tarricone.org>
+Date:   Wed Aug 26 14:46:13 2009 -0700
+
+    print warning if attempting to compare git revision versions
+    
+    we can't tell version ordering, but it's possible it's fine, so just
+    print a warning and proceed.  autogen.sh writers shouldn't depend on
+    particular git revisions, only on release versions, but let's soft-allow
+    it.
+
+commit 2aea2c13e03ac17169bbfd5cb279cca513c2ffd8
+Author: Brian J. Tarricone <brian@tarricone.org>
+Date:   Wed Aug 26 14:45:37 2009 -0700
+
+    make lookup_configure_ac_files act like lookup_configure_ac_in_files
+
+commit 1281d9011e8f3ac952e07c3190208c5388366b16
+Author: Brian J. Tarricone <brian@tarricone.org>
+Date:   Wed Aug 26 14:35:32 2009 -0700
+
+    add gitignore
+
+commit 2398b2ab6f2a55b927444853cebec6bb347b9354
+Author: Brian J. Tarricone <brian@tarricone.org>
+Date:   Wed Aug 26 14:23:18 2009 -0700
+
+    rename CONFIGURE_FILES to CONFIGURE_AC_FILES for clarity
+    
+    also rename some similar vars/functions for the same reason
+
+commit c184070cd5923b155ade59127f7d992ed9f0ef34
+Author: Brian J. Tarricone <brian@tarricone.org>
+Date:   Wed Aug 26 14:19:12 2009 -0700
+
+    be a little more portable, and select the best awk implementation
+
+commit c9fb4e83e98d829efa46a8f8123a4b2ae175bb17
+Author: Brian J. Tarricone <brian@tarricone.org>
+Date:   Wed Aug 26 13:19:13 2009 -0700
+
+    also recognize new-school AC_CONFIG_HEADERS() as requiring autoheader
+
+commit 0fcf0dd8a995ef116cbfcf12591ce52a42a36dcc
+Author: Brian J. Tarricone <brian@tarricone.org>
+Date:   Wed Aug 26 13:18:50 2009 -0700
+
+    the -q option to grep is specified by POSIX, so no reason not to use it
+
+commit 53c37889d8802da17cadbb2b97645f5d7acc9b39
+Author: Brian J. Tarricone <brian@tarricone.org>
+Date:   Tue Aug 18 20:34:29 2009 -0700
+
+    re-add git revision tag
+
+commit b6eae91c36340fa6c5b36da40b97e4ae9b00418b
+Author: Brian J. Tarricone <brian@tarricone.org>
+Date:   Tue Aug 18 19:13:15 2009 -0700
+
+    == 4.7.0 released! ==
+
+commit c7d5acfcaaea8ce1c54c7b7caf46ae3ef27c3fa5
+Author: Brian J. Tarricone <brian@tarricone.org>
+Date:   Tue Aug 18 19:12:02 2009 -0700
+
+    rename ChangeLog and autogenerate new one
+
+commit 1c896e5c93ff8a720a2b1775a266373de41982a6
+Author: Brian J. Tarricone <brian@tarricone.org>
+Date:   Tue Aug 18 19:10:33 2009 -0700
+
+    fix distcheck (output is in builddir, not srcdir)
+
+commit f88cea5e782a0496186d42f469782882cac34a7c
+Author: Brian J. Tarricone <brian@tarricone.org>
+Date:   Tue Aug 18 18:56:54 2009 -0700
+
+    use git for revision substitution
+
+commit 37d405679d49f9bff0fdc1d70cff9ea560c08222
+Author: Brian J. Tarricone <brian@tarricone.org>
+Date:   Tue Aug 18 18:47:24 2009 -0700
+
+    do @REVISION@ and @LINGUAS@ substitution in xdt-autogen
+
+commit 0b27b7072a807c3aff15c85aee9bf5fe4317b958
+Author: Brian J. Tarricone <brian@tarricone.org>
+Date:   Wed Aug 12 18:27:24 2009 -0700
+
+    add module description file
+
+commit f03b6d77c4a2bcf7bdf4855a61ff6501e83021b6
+Author: Brian Tarricone <brian@tarricone.org>
+Date:   Tue Jul 28 22:10:06 2009 +0000
+
+    add --version and -V options, add required minimum version check.
+    
+    users who wish to require a minimum version of xdt-autogen should
+    export XDT_AUTOGEN_REQUIRED_VERSION, set to the minimum required version
+    that is supported.
+    
+    (Old svn revision: 30414)
+
+commit 83019e7af8e87b2010b4f1fcb27135814722bdb6
+Author: Brian Tarricone <brian@tarricone.org>
+Date:   Tue Jul 28 02:14:55 2009 +0000
+
+    also support the newer IT_PROG_INTLTOOL macro
+    
+    (Old svn revision: 30408)
+
+commit 1bc99454e7874a1f8dde35ab3e899e4b537f9ac1
+Author: Brian Tarricone <brian@tarricone.org>
+Date:   Mon May 4 07:50:17 2009 +0000
+
+            * m4macros/xdt-features.m4: Add a bunch more compiler warning
+              options when --enable-debug={yes,full} is specified.
+    
+    (Old svn revision: 29924)
+
+commit d7c0e055d3ef27c645207c78d862dd43409c93b0
+Author: Stephan Arts <stephan@xfce.org>
+Date:   Wed Feb 25 07:06:58 2009 +0000
+
+    Update Changelog, NEWS and version-info
+    
+    
+    
+    (Old svn revision: 29589)
+
+commit 236e831d71d1105ecce9836921555cbd0c94fc81
+Author: Jannis Pohlmann <jannis@xfce.org>
+Date:   Tue Feb 17 15:55:43 2009 +0000
+
+            * scripts/xdt-commit: Replace grep -P with awk and thus make the
+              script more portable. Properly detect changed ChangeLogs in SVN.
+              This should get rid the empty lines when committing several
+              changed ChangeLogs (bug #4716). Patch provided by Alexander
+              Toresson.
+    
+    (Old svn revision: 29499)
+
+commit b846bf67c1b64816908feb7cfde09f2568dda1b6
+Author: Jannis Pohlmann <jannis@xfce.org>
+Date:   Sun Jan 25 00:28:44 2009 +0000
+
+            * == 4.5.99.1 released! ==
+            * configure.in.in: Bump version.
+    
+    (Old svn revision: 29313)
+
+commit 43faa68123dc682a229cebb210128a84a8dfefa7
+Author: Jannis Pohlmann <jannis@xfce.org>
+Date:   Wed Jan 14 21:14:06 2009 +0000
+
+            * configure.in.in: Post-release version bump.
+    
+    (Old svn revision: 29243)
+
+commit fe5bff2b4efeeaa0560c5472432d9b5d5cd35a78
+Author: Jannis Pohlmann <jannis@xfce.org>
+Date:   Mon Jan 12 20:51:22 2009 +0000
+
+            * == 4.5.93 released! ==
+            * configure.in.in: Bump version.
+    
+    (Old svn revision: 29189)
+
+commit 4d675b38e484ea3321a62d60adb951d426a9a521
+Author: Jannis Pohlmann <jannis@xfce.org>
+Date:   Sat Jan 10 23:49:46 2009 +0000
+
+            * NEWS: Update NEWS for the upcoming 4.5.93 release.
+    
+    (Old svn revision: 29128)
+
+commit 96d7b7ff667555a798f469d54f62119cab316efd
+Author: Brian Tarricone <brian@tarricone.org>
+Date:   Mon Nov 17 02:16:02 2008 +0000
+
+            * scripts/xdt-autogen.in: Remove intltool auto-patch: it wasn't
+              terribly reliable, and Xfce doesn't need it anymore anyway.
+    
+    (Old svn revision: 28835)
+
+commit 9b53b38659aaf16c94bdb20c2942ab9259ba5a27
+Author: Stephan Arts <stephan@xfce.org>
+Date:   Fri Nov 14 11:04:05 2008 +0000
+
+    Bump version number
+    
+    
+    
+    (Old svn revision: 28799)
+
+commit 992f334faf49883293848a300e017d0c3bea6f13
+Author: Jannis Pohlmann <jannis@xfce.org>
+Date:   Tue Nov 11 00:19:39 2008 +0000
+
+            * scripts/xdt-commit: Use !/bin/bash instead of !/bin/sh in the
+              script header just to make sure everything works as it should.
+    
+    (Old svn revision: 28718)
+
+commit 23dee160db2f98548acc4ffdef07e179a011cfa7
+Author: Jannis Pohlmann <jannis@xfce.org>
+Date:   Sat Nov 1 11:44:28 2008 +0000
+
+            * scripts/xdt-commit: Automatically add ChangeLog files of git
+              repositories to the commit with "git add ${CHANGELOG}". Use "git
+              diff --cached" instead of "git diff HEAD" for the commit messages.
+    
+    (Old svn revision: 28557)
+
+commit b1be936216c8eab9cd2a6fdf133a3eb7264a9f9a
+Author: Brian Tarricone <brian@tarricone.org>
+Date:   Sat Oct 18 18:54:51 2008 +0000
+
+            * scripts/xdt-commit: Support git/git-svn as well as svn (bug 4491).
+            * configure.in.in: Re-add 'svn' version tag.
+    
+    (Old svn revision: 28295)
+
+commit 821708eba982723857d753c55c81447a82c8ab2f
+Author: Stephan Arts <stephan@xfce.org>
+Date:   Mon Oct 13 11:56:38 2008 +0000
+
+    Bump version number
+    
+    
+    
+    (Old svn revision: 28218)
+
+commit c54398798510d8c9c71748f0d781ff617e3bdb88
+Author: Brian Tarricone <brian@tarricone.org>
+Date:   Sun Oct 12 08:40:41 2008 +0000
+
+        * scripts/xdt-autogen.in: Only attempt to patch intltool merge for
+          versions of intltool < 0.40.0.  Versions starting from 0.40.4 are
+          fixed, and earlier 0.40.x versions aren't patchable because they
+          use a systemwide copy of intltool-merge.
+    
+    (Old svn revision: 28165)
+
+commit e716ab83cf0bc4c6065c0fe17c7ca2589617bb9e
+Author: Jannis Pohlmann <jannis@xfce.org>
+Date:   Fri Sep 12 20:32:24 2008 +0000
+
+            * NEWS: Updated for the alpha release.
+            * configure.in.in: Bump version number.
+            * INSTALL: Remove INSTALL, this is auto-generated by autotools
+              these days anyways.
+            * Remove xfce 4.6 alpha tag.
+    
+    (Old svn revision: 27848)
+
+commit 626e1309fb326cd3303ad62584df2bf55dc04622
+Author: Stephan Arts <stephan@xfce.org>
+Date:   Sat Sep 6 09:46:08 2008 +0000
+
+    Bump version number
+    remove INSTALL, this is auto-generated by autotools these days anyways.
+    Remove xfce 4.6 alpha tag
+    
+    
+    
+    (Old svn revision: 27681)
+
+commit cc62a7a36cc509ee451ba21eabf06e8e211541c1
+Author: Jannis Pohlmann <jannis@xfce.org>
+Date:   Thu Sep 4 15:58:36 2008 +0000
+
+            * autogen.sh: Fix typo.
+    
+    (Old svn revision: 27650)
+
+commit f2b0f1e0f6453c62cb57094aa571ef1462cc9de6
+Author: Jannis Pohlmann <jannis@xfce.org>
+Date:   Thu Sep 4 15:57:01 2008 +0000
+
+            * autogen.sh: Add support for git svn revision versioning.
+    
+    (Old svn revision: 27649)
+
+commit ee452790e0121af7c1045e7e15d2df0c232ea6c8
+Author: Brian Tarricone <brian@tarricone.org>
+Date:   Mon Aug 25 02:28:45 2008 +0000
+
+    2008-08-24  Brian Tarricone <kelnos@xfce.org>
+    
+        * scripts/xdt-autogen.in: add intltool-merge.in patch to fix
+          merging translations to .desktop keys that have dashes in them
+    
+    (Old svn revision: 27551)
+
+commit 14ab0f174b591df67f7c8d11f122551416124378
+Author: Stephan Arts <stephan@xfce.org>
+Date:   Sun Aug 17 22:03:51 2008 +0000
+
+    Bump version number
+    
+    
+    
+    (Old svn revision: 27496)
+
+commit 96793d21b6b9d1ce96b4597e7cd41e13357a2060
+Author: Brian Tarricone <brian@tarricone.org>
+Date:   Sat Nov 17 18:54:43 2007 +0000
+
+    post-release version bump, add back svn release tag
+    
+    
+    (Old svn revision: 26361)
+
+commit c374f478682326f8a2d55f074b67ca47b708b7c6
+Author: Brian Tarricone <brian@tarricone.org>
+Date:   Sat Nov 17 18:42:54 2007 +0000
+
+    update changelogs; ready to tag 4.4.2
+    
+    
+    (Old svn revision: 26341)
+
+commit 84c6de93778a8aaea6d8711a8e03aca8a75f6827
+Author: Brian Tarricone <brian@tarricone.org>
+Date:   Sat Nov 17 18:24:17 2007 +0000
+
+    remove svn version tag for release
+    
+    
+    (Old svn revision: 26339)
+
+commit 1633c4ac6670565c991f70fc9e3ea4c3a773a865
+Author: Brian Tarricone <brian@tarricone.org>
+Date:   Sat Nov 17 17:47:38 2007 +0000
+
+    various pre-release updates - po files, docs, etc.  mainly autogenerated stuff
+    
+    
+    (Old svn revision: 26337)
+
+commit 2207f4511bac88fd65eedbef46dddc3b3c213853
+Author: Nick Schermer <nick@xfce.org>
+Date:   Fri Nov 16 10:33:58 2007 +0000
+
+    Update NEWS, not really sure if trunk will be released as 4.4.1 tho...
+    
+    (Old svn revision: 26312)
+
+commit 0c4915fd91a27a2e703be78ffd0a2f60d6d5e94b
+Author: Brian Tarricone <brian@tarricone.org>
+Date:   Wed Oct 24 22:26:53 2007 +0000
+
+    remove trailing parens on AC_INIT version info to work around bug
+    in intltool 0.35.x and 0.36.x
+    
+    
+    (Old svn revision: 26180)
+
+commit 80a3cf0b608461cb6cd473359ef8e6d5c55a5c7b
+Author: Brian Tarricone <brian@tarricone.org>
+Date:   Mon Oct 22 18:22:46 2007 +0000
+
+    2007-10-22      Brian Tarricone <kelnos@xfce.org>
+    
+            * scripts/Makefile.am: fix 'make distcheck'; include
+              xdt-commit in EXTRA_DIST
+    
+    
+    (Old svn revision: 26176)
+
+commit 1959ca88272931d1ab79dabaed7997c63ca866ab
+Author: Jannis Pohlmann <jannis@xfce.org>
+Date:   Wed Feb 14 12:18:04 2007 +0000
+
+            * scripts/xdt-commit: Too much quoting - all input files were
+              treated as one string.
+    
+    (Old svn revision: 24978)
+
+commit 351c61ec2856a44456eba553c73e2c5f45ef2a49
+Author: Jannis Pohlmann <jannis@xfce.org>
+Date:   Tue Feb 13 12:02:06 2007 +0000
+
+            * scripts/xdt-commit: Add more quotes around variables. Use
+              "type svn" to check whether Subversion is installed.
+    
+    (Old svn revision: 24967)
+
+commit 388a7f477399513d10577022c9067835f95571cc
+Author: Jannis Pohlmann <jannis@xfce.org>
+Date:   Mon Feb 12 22:18:26 2007 +0000
+
+            * scripts/Makefile.am, scripts/xdt-commit: Add script for
+              generating commit messages from ChangeLogs on the fly.
+    
+    (Old svn revision: 24965)
+
+commit 0524f9cad910bb67d76832043c0aa34eaa8ef161
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Sat Jan 20 09:28:35 2007 +0000
+
+    2007-01-20      Benedikt Meurer <benny@xfce.org>
+    
+            * configure.in.in: Post-release version bump.
+    
+    
+    
+    
+    (Old svn revision: 24610)
+
+commit d36d6840b8cf79bacb08e20f9c5379268919e645
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Sat Jan 20 09:26:41 2007 +0000
+
+    2007-01-20      Benedikt Meurer <benny@xfce.org>
+    
+            * === Released 4.4.0 ===
+            * NEWS, configure.in.in: Bump version.
+    
+    
+    
+    
+    (Old svn revision: 24608)
+
+commit 65fa5840a9987a654dfbe0ede3433025fe36eae2
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Mon Jan 15 17:47:49 2007 +0000
+
+    2007-01-15      Benedikt Meurer <benny@xfce.org>
+    
+            * scripts/xdt-autogen.in: Apply patch from Olivier Fourdan
+              <fourdan@xfce.org> to update xdt-autogen to use the latest
+              GNU autotools if available. Bug #2755.
+            * m4macros/xdt-i18n.m4(XDT_I18N): Make sure xgettext treats
+              source code as UTF-8.
+    
+    
+    
+    
+    (Old svn revision: 24486)
+
+commit 169553b0ef74ca49546d1bcd6d01fd0ad4a4728b
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Sat Nov 4 12:00:58 2006 +0000
+
+    2006-11-04      Benedikt Meurer <benny@xfce.org>
+    
+            * configure.in.in: Post-release version bump.
+    
+    
+    
+    
+    (Old svn revision: 23638)
+
+commit 848d7fa7e5764a29c7a26a8d3f88fec6a7c9ccdc
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Sat Nov 4 11:59:08 2006 +0000
+
+    2006-11-04      Benedikt Meurer <benny@xfce.org>
+    
+            * === Released 4.3.99.2 ===
+            * NEWS, configure.in.in: Bump version.
+    
+    
+    
+    
+    (Old svn revision: 23636)
+
+commit 0e9fa531896f13bbea6917990a780d0215ed0010
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Sat Sep 2 12:36:00 2006 +0000
+
+    2006-09-02      Benedikt Meurer <benny@xfce.org>
+    
+            * configure.in.in: Post-release version bump.
+    
+    
+    
+    
+    (Old svn revision: 23007)
+
+commit 868c3a460469f645bf09e55874731dacfa18d370
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Sat Sep 2 12:34:04 2006 +0000
+
+    2006-09-02      Benedikt Meurer <benny@xfce.org>
+    
+            * === Released 4.3.99.1 ===
+            * NEWS, configure.in.in: Bump version.
+    
+    
+    
+    
+    (Old svn revision: 23005)
+
+commit d2cb4cd5563fd69b23dbc462ff9f4f0ccd83ab55
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Sat Sep 2 11:33:28 2006 +0000
+
+    2006-09-02      Benedikt Meurer <benny@xfce.org>
+    
+            * m4macros/xdt-features.m4: Set gcc specific compiler flags only if
+              gcc is being used. Bug #2251.
+    
+    
+    
+    
+    (Old svn revision: 22990)
+
+commit b4cf8b9f32d275b9256c6d349f39995de72341e5
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Sun Jul 9 18:48:42 2006 +0000
+
+    2006-07-09      Benedikt Meurer <benny@xfce.org>
+    
+            * === Released 4.3.90.2 ===
+            * NEWS, configure.in.in: Bump version.
+    
+    
+    
+    
+    (Old svn revision: 22332)
+
+commit 45d4f2c185ffd3ecb31e567e80714ee854905113
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Mon May 8 09:10:26 2006 +0000
+
+    2006-05-08      Benedikt Meurer <benny@xfce.org>
+    
+            * m4macros/, scripts/: Add GPL boilerplate. Bug #1786.
+    
+    
+    
+    
+    (Old svn revision: 21591)
+
+commit 349fda17c32a71243831228f1a689f8faa1e563b
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Sun Apr 16 08:45:48 2006 +0000
+
+    2006-04-16      Benedikt Meurer <benny@xfce.org>
+    
+            * configure.in.in: Post-release version bump.
+    
+    
+    
+    
+    (Old svn revision: 20980)
+
+commit 0048f06ec06748efa4cff41699a5434749c642fa
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Sun Apr 16 08:43:52 2006 +0000
+
+    2006-04-16      Benedikt Meurer <benny@xfce.org>
+    
+            * === Released 4.3.90.1 ===
+            * NEWS, configure.in.in: Bump version.
+            * xfce4-dev-tools.spec.in: Update RPM spec file.
+    
+    
+    
+    
+    (Old svn revision: 20978)
+
+commit 7712b9187aa7ca0d48f51e992041156989c6aee1
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Sat Apr 15 22:59:23 2006 +0000
+
+    2006-04-16      Benedikt Meurer <benny@xfce.org>
+    
+            * NEWS: Update NEWS.
+            * xfce4-dev-tools.spec.in: CVS -> SVN. Fix URL.
+    
+    
+    
+    
+    (Old svn revision: 20957)
+
+commit 2c4a8c918e785e7de319275f6d3d97843ea82cb0
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Thu Mar 9 18:39:28 2006 +0000
+
+    2006-03-09      Benedikt Meurer <benny@xfce.org>
+    
+            * m4macros/xdt-depends.m4: Apply Brian's patch to fix stupid typo in a
+              variable name. Bug #1558.
+    
+    
+    
+    
+    (Old svn revision: 20306)
+
+commit daa829f94497ce5c3f5f4ccd54f864c6e20218bc
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Sun Mar 5 15:35:16 2006 +0000
+
+    2006-03-05      Benedikt Meurer <benny@xfce.org>
+    
+            * m4macros/xdt-features.m4(XDT_FEATURE_DEBUG): Do not add
+              G_DISABLE_DEPRECATED to CFLAGS.
+    
+    
+    
+    
+    (Old svn revision: 20238)
+
+commit 0329b83b9001f1047a925b4a4cbf8dd32f8457e0
+Author: Daichi Kawahata <daichi.k@aioros.ocn.ne.jp>
+Date:   Sat Feb 25 06:00:16 2006 +0000
+
+    Fixed NULL revision string for certain locales.
+    
+    
+    (Old svn revision: 20044)
+
+commit b21d516509b2f1d4cb296ba07065f6a5b94a25e0
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Thu Sep 1 15:07:16 2005 +0000
+
+    2005-09-01      Benedikt Meurer <benny@xfce.org>
+    
+            * autogen.sh: Don't depend on xfce4-dev-tools in autogen.sh.
+    
+    
+    
+    
+    (Old svn revision: 17247)
+
+commit 20e5b81417b4fcb3a4384bbc83c48b907392230c
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Wed Aug 31 09:18:20 2005 +0000
+
+    2005-08-31      Benedikt Meurer <benny@xfce.org>
+    
+            * configure.in.in, autogen.sh: Merge build framework changes from
+              libexo.
+    
+    
+    
+    
+    (Old svn revision: 17214)
+
+commit ef655012b2a02240f3a30bc9af7c6a6629b792fd
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Sat Jul 9 19:17:01 2005 +0000
+
+    2005-07-09      Benedikt Meurer <benny@xfce.org>
+    
+            * configure.ac, NEWS: Bump version after release (4.3.1svn).
+    
+    
+    
+    
+    (Old svn revision: 16202)
+
+commit dd51d79ba01e9c86fa8a82d7d5db929b049ec81c
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Sat Jul 9 19:14:53 2005 +0000
+
+    2005-07-09      Benedikt Meurer <benny@xfce.org>
+    
+            * Makefile.am: Set proper automake options.
+            * HACKING, README: CVS -> SVN.
+            * NEWS, configure.ac: Version 4.3.0.
+    
+    
+    
+    
+    (Old svn revision: 16200)
+
+commit 3802debdb3d4c83a706d7693783abc548229d824
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Sat Jul 9 19:10:39 2005 +0000
+
+    Revert the b0rkage to ChangeLog!
+    
+    
+    
+    (Old svn revision: 16199)
+
+commit 939ad333c2296e9d2496a4430409b8cf98b3c045
+Author: Olivier Fourdan <fourdan.olivier@wanadoo.fr>
+Date:   Sat May 14 19:54:31 2005 +0000
+
+    Update ChangeLog
+    
+    (Old svn revision: 14410)
+
+commit 4aafdb5d2ef7199f6c0b3c7e55efbf2f09e71426
+Author: Olivier Fourdan <fourdan.olivier@wanadoo.fr>
+Date:   Wed May 4 21:00:59 2005 +0000
+
+    Update ChangeLog
+    
+    (Old svn revision: 14001)
+
+commit 04fb57da1e42265c94e51e73adcc88989d7bf318
+Author: Brian Tarricone <brian@tarricone.org>
+Date:   Thu Apr 21 00:18:30 2005 +0000
+
+    * Modify checks for autoheader and autoconf so they first check for
+      versioned binaries (-2.59, -2.58, -2.57, -2.53) before falling back to a
+      non-versioned binary.
+    * Modify checks for automake and aclocal so they first check for
+      versioned binaries (-1.9, -1.8) before falling back to a non-
+      versioned binary.
+    * Fix two typos; 2>&0 -> 2>&1, autoconf -> automake.
+    
+    
+    (Old svn revision: 13702)
+
+commit e8f30a2b515f19ddb70ec6eef40bc2daac41a9b7
+Author: Olivier Fourdan <fourdan.olivier@wanadoo.fr>
+Date:   Sun Apr 17 11:48:10 2005 +0000
+
+    REverting my last change, it's my Ubuntu install that is broken, not that script.
+    
+    
+    (Old svn revision: 13650)
+
+commit 8c744f24b1aaf1df7c143cc66274d294c3a9b635
+Author: Olivier Fourdan <fourdan.olivier@wanadoo.fr>
+Date:   Sat Apr 16 20:55:16 2005 +0000
+
+    The package did not build for me
+    
+    
+    (Old svn revision: 13633)
+
+commit 22aa409e2526783e27802280d933564f435585af
+Author: Jasper Huijsmans <jbhuijsmans@home.nl>
+Date:   Tue Apr 12 12:55:36 2005 +0000
+
+    Not all gmo files were removed; this at least works.
+    
+    (Old svn revision: 13539)
+
+commit e262092971abe533072a18f9852624537c247d42
+Author: Jens Luedicke <jens.luedicke@gmail.com>
+Date:   Wed Apr 6 07:33:10 2005 +0000
+
+    remove .cvsignore cruft
+    
+    (Old svn revision: 13312)
+
+commit 97d74debfef7b61c6435aad5ca1d3d686ef6ee1f
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Sat Mar 19 16:00:31 2005 +0000
+
+    2005-03-19      Benedikt Meurer <benny@xfce.org>
+    
+            * m4macros/xdt-features.m4: Fix typo.
+    
+    
+    (Old svn revision: 2282)
+
+commit c531a54746526b721b42bc9a040f5039aeb8a570
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Sat Mar 19 15:56:38 2005 +0000
+
+    2005-03-19      Benedikt Meurer <benny@xfce.org>
+    
+            * m4macros/xdt-features.m4: --enable-final is now on by default again.
+              The glib assertions are now toggled by --disable-asserts, as suggested
+              by Olivier.
+    
+    
+    (Old svn revision: 2281)
+
+commit 5abc1c7221898ee53f5c4204cf77e352e69c9749
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Thu Mar 17 22:37:05 2005 +0000
+
+    2005-03-17      Benedikt Meurer <benny@xfce.org>
+    
+            * m4macros/xdt-features.m4: --enable-final is now disabled by default
+              and glib assertions will only be disabled if --enable-final is
+              specified and debugging is disabled.
+    
+    
+    (Old svn revision: 2280)
+
+commit 853fb25053ae67f37d9cca18d8427057f2381f9b
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Thu Mar 17 10:14:14 2005 +0000
+
+    2005-03-17      Benedikt Meurer <benny@xfce.org>
+    
+            * scripts/xdt-autogen.in: Escape the special characters in the tr sets
+              twice as they are also expanded by the shell.
+    
+    
+    (Old svn revision: 2279)
+
+commit cf207e1be0fa106e21bf68061a972b588cde8b66
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Tue Mar 8 15:23:49 2005 +0000
+
+    2005-03-08      Benedikt Meurer <benny@xfce.org>
+    
+            * m4macros/xdt-i18n.m4: Fix typo, its Q_() not O_().
+    
+    
+    (Old svn revision: 2278)
+
+commit 1300236b4b51e5d20c291911c2282ed785d67553
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Tue Mar 8 15:16:23 2005 +0000
+
+    2005-03-08      Benedikt Meurer <benny@xfce.org>
+    
+            * scripts/xdt-autogen.in, m4macros/xdt-i18n.m4: Add better handling
+              of XGETTEXT_ARGS to automatically support the O_() translation
+              keyword.
+    
+    
+    (Old svn revision: 2277)
+
+commit 1a12985f60404e9eb08ce8ecbaa07a130dcfe4e8
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Sat Mar 5 19:05:28 2005 +0000
+
+    2005-03-05      Benedikt Meurer <benny@xfce.org>
+    
+            * scripts/xdt-autogen.in: Fix a type where configure.ac was still
+              hardcoded into the script.
+    
+    
+    (Old svn revision: 2276)
+
+commit 5c6624951b89e06a8344edd9b7cf84ca46888163
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Fri Mar 4 13:58:13 2005 +0000
+
+    2005-03-04      Benedikt Meurer <benny@xfce.org>
+    
+            * scripts/.cvsignore: Add vim swap files.
+            * scripts/xdt-autogen.in: Add support for AC_CONFIG_SUBDIRS(), currently
+              required by xfcalendar. Improve the clean logic.
+    
+    
+    (Old svn revision: 2275)
+
+commit 0d500ce8e5cb4c7af1df444be503613ee2b34046
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Sat Feb 19 10:42:02 2005 +0000
+
+    2005-02-19      Benedikt Meurer <benny@xfce.org>
+    
+            * m4macros/xdt-python.m4, m4macros/Makefile.am: Add M4 file for Python
+              related checks, currently contains an autoconf check to find header
+              files required to build Python extensions on the target system.
+    
+    
+    (Old svn revision: 2274)
+
+commit 4ee186e4371c83070c244b0c9f490c7035023d3b
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Mon Jan 31 19:38:09 2005 +0000
+
+    2005-01-31      Benedikt Meurer <benny@xfce.org>
+    
+            * m4macros/xdt-depends.m4: XDT_CHECK_OPTIONAL_PACKAGE() also
+              sets an automake conditional for HAVE_VARNAME now.
+    
+    
+    (Old svn revision: 2273)
+
+commit 14343173eef997a04b619ac2c6324bd20a38de98
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Thu Jan 27 20:11:53 2005 +0000
+
+    2005-01-27      Benedikt Meurer <benny@xfce.org>
+    
+            * m4macros/xdt-depends.m4: AC_REQUIRE() doesn't work properly with
+              conditional shell code.
+    
+    
+    (Old svn revision: 2272)
+
+commit 3c5dde935311db566283e41955c23d033f625477
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Thu Jan 27 18:26:59 2005 +0000
+
+    2005-01-27      Benedikt Meurer <benny@xfce.org>
+    
+            * scripts/xdt-autogen.in: Fix typo in the error message of the
+              gtk-doc check.
+    
+    
+    (Old svn revision: 2271)
+
+commit 4b49550d329b79b2dadd82fab6a4d598082c54ce
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Thu Jan 27 16:31:46 2005 +0000
+
+    2005-01-27      Benedikt Meurer <benny@xfce.org>
+    
+            * scripts/xdt-autogen.in: Remove gtk-doc.make as well when cleaning
+              autogenerated files.
+    
+    
+    (Old svn revision: 2270)
+
+commit 6b0350781714073b9e1a4471cabba8269e5b06a2
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Thu Jan 27 15:49:47 2005 +0000
+
+    2005-01-27      Benedikt Meurer <benny@xfce.org>
+    
+            * configure.ac: Fix tag name. Fix order of autoconf macros. Use
+              autoconf values to initialize automake.
+            * Makefile.am: Fix distclean-local target. Strip down EXTRA_DIST
+              list.
+    
+    
+    (Old svn revision: 2269)
+
+commit 69f4f8cf9270f17989f9220bb8051c663ac86493
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Thu Jan 27 13:04:42 2005 +0000
+
+    2005-01-27      Benedikt Meurer <benny@xfce.org>
+    
+            * scripts/xdt-autogen.in: Added commands to clean all autogenerated
+              files from the current source directory. Just run "xdt-autogen clean".
+            * m4macros/xdt-i18n.m4: Use the macros provided by glib-gettext.m4
+              instead of our own replacements, in order to make sure that they
+              play well with the Makefile.in.in generated by glib-gettextize.
+            * m4macros/xdt-i18n.m4: Fix typos in localedir substitution.
+            * scripts/xdt-autogen.in: Added support for intltool.
+    
+    
+    (Old svn revision: 2268)
+
+commit 34ece938b7a833ff88eb096eb3e0aedc00e30575
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Thu Jan 27 09:20:47 2005 +0000
+
+    2005-01-27      Benedikt Meurer <benny@xfce.org>
+    
+            * autogen.sh, scripts/xdt-autogen.in: Don't run the configure script
+              if the environment variable NOCONFIGURE is set.
+    
+    
+    (Old svn revision: 2267)
+
+commit b263d92a20e0bb711a72c99588a13facaec01235
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Wed Jan 26 22:47:16 2005 +0000
+
+    2005-01-26      Benedikt Meurer <benny@xfce.org>
+    
+            * m4macros/xdt-i18n.m4: Need to use AC_DEFINE_UNQUOTED() when
+              using shell variables.
+    
+    
+    (Old svn revision: 2266)
+
+commit a1fc976e14bd61e69670686183dfcbc3586b94a7
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Wed Jan 26 22:14:01 2005 +0000
+
+    2005-01-26      Benedikt Meurer <benny@xfce.org>
+    
+            * autogen.sh: Be sure to pass command line parameters to xdt-autogen
+              and configure.
+            * m4macros/xdt-i18n.m4: Add missing fi, so now XDT_I18N() works
+              properly.
+            * .cvsignore, m4macros/.cvsignore, scripts/.cvsignore: Shut up CVS.
+    
+    
+    (Old svn revision: 2265)
+
+commit 3bd7708effc4d6765b42c21ab4d366c02db61fa9
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Wed Jan 26 21:42:45 2005 +0000
+
+    2005-01-26      Benedikt Meurer <benny@xfce.org>
+    
+            * HACKING: Added notes for developers with write access to the
+              Xfce CVS repository.
+    
+    
+    (Old svn revision: 2264)
+
+commit 9ed3a6cabc28be37c3d08bb263b363593129e5cb
+Author: Benedikt Meurer <benny@xfce.org>
+Date:   Wed Jan 26 21:34:18 2005 +0000
+
+    Initial revision
+    
+    
+    (Old svn revision: 2260)
+
+commit 9cc8112bc0b41e8dad311a2c3345b187cec8c0ba
+Author: Unknown Author <xfce4-dev@xfce.org>
+Date:   Wed Jan 26 21:34:18 2005 +0000
+
+    New repository initialized by cvs2svn.
+    
+    (Old svn revision: 2259)

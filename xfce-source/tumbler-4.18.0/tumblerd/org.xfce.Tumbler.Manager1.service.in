@@ -1,0 +1,4 @@
+[D-BUS Service]
+Name=@TUMBLER_SERVICE_NAME_PREFIX@.Manager1
+Exec=@libdir@/tumbler-@TUMBLER_VERSION_API@/tumblerd
+SystemdService=tumblerd.service
