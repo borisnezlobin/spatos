@@ -41,7 +41,46 @@ install_pack libxfce4util-4.18.0
 sudo apt install dbus-user-session dbus-x11
 install_pack xfconf-4.18.0
 
-sudo apt install libgtk-3-0 libatk1.0-0 libgdk-pixbuf-2.0-0 libice6 libsm6 libstartup-notification0 libx11-6
+sudo apt install libgtk-3-0 libatk1.0-0 libgdk-pixbuf-2.0-0 \
+    libice6 libsm6 libstartup-notification0 libx11-6
 install_pack libxfce4ui-4.18.0
 
-sudo apt install # todo...
+install_pack garcon-4.18.0
+
+sudo apt install libcairo2 liburi-perl sensible-utils
+install_pack exo-4.18.0
+
+sudo apt install libdbusmenu-gtk3-4 libpangocairo-1.0-0 \
+    libpango-1.0-0 libwnck-3-0 libxext6
+install_pack xfce4-panel-4.18.0
+
+sudo apt install exo-utils desktop-file-utils libgudev-1.0-0 \
+    libthunarx-3-0 shared-mime-info
+install_pack thunar-4.18.0
+
+sudo apt install libcairo-gobject2 libcolord2 libfontconfig1 \
+    libnotify4 libupower-glib3 \
+    libxcursor1 libxi6 libxklavier16 libxranr2 xfce4-helpers colord
+install_pack xfce4-settings-4.18.0
+
+sudo apt install libpolkit-gobject-1-0 x11-server-utils light-locker upower
+install_pack xfce4-session-4.18.0
+
+sudo apt install libepoxy0 libgtk-3-0 libxcomposite1 libxdamage1 \
+    libxfixes3 libxinerama1 libxpresent1 libxrender1 libxres1 \
+    librsvg2-common
+install_pack xfwm4-4.18.0
+
+sudo apt install xfdesktop4-data xdg-user-dirs
+install_pack xfdesktop-4.18.0
+
+
+install_pack xfce4-appfinder-4.18.0
+
+sudo apt install libfreetype6 libgstreamer-plugins-base1.0-0 \
+    libgstreamer1.0-0 libjpeg62-turbo libpng16-16 libpoppler-glib8 \
+    tumbler-plugins-extra
+install_pack tumbler-4.18.0
+
+
+echo "...well, anything could've happened."
