@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # install some packages (might have dupes) that are important
 sudo apt install build-essential psmisc \
       xdg-utils \
@@ -13,7 +15,6 @@ sudo apt install build-essential psmisc \
       libwnck-3-0 \
       libwnck-common \
       libwnck-3-common \
-#      wmctrl \
       intltool dbus dbus-system-bus-common \
       libglib2.0-dev libgtk2.0-dev  \
       at-spi2-core libxi-dev  \
@@ -32,35 +33,48 @@ install_pack() {
     PACK=$1
     shift
     OPTS="$@"
+
     sudo cp "/home/ubuntu/Documents/myxfce/xfce-source/$PACK" "/usr/xfce-source/$PACK" -r
-    cd "/usr/xfce-source/$PACK" && sudo ./configure --prefix=/usr/local $OPTS && sudo make && sudo make install
+
+    cd "/usr/xfce-source/$PACK"
+
+    sudo make clean
+    sudo ./configure --prefix=/usr/local $OPTS
+    sudo make
+    sudo make install
 }
 
-sudo apt install libc6 libglib2.0-0 autoconf automake
+sudo apt install libc6 libglib2.0-0 autoconf automake -y
 install_pack xfce4-dev-tools-4.18.0
 
-install_pack libxfce4util-4.18.0
+install_pack libxfce4util-4.18.0 --enable-instrospection=yes --enable-vala=yes
 
 sudo apt install dbus-user-session dbus-x11 libvala-0.56-dev \
-    libvala-0.56-0 valac
+    libvala-0.56-0 valac -y
 install_pack xfconf-4.18.0 --enable-vala=yes
 
 sudo apt install libgtk-3-0 libatk1.0-0 libgdk-pixbuf-2.0-0 \
-    libice6 libsm6 libstartup-notification0 libx11-6
-install_pack libxfce4ui-4.18.0
+    libice6 libsm6 libstartup-notification0 libx11-6 libgladeui-dev \
+    gir1.2-gladeui-2.0 -y
+install_pack libxfce4ui-4.18.0 --enable-glibtop --enable-epoxy \
+    --enable-gudev --enable-introspection=yes --enable-vala=yes \
+    --enable-gladeui2
+
 
 install_pack garcon-4.18.0 --enable-introspection
 
-sudo apt install libcairo2 liburi-perl
-install_pack exo-4.18.0
+sudo apt install libcairo2 liburi-perl -y
+install_pack exo-4.18.0 --enable-dependecy-tracking --enable-gio-unix
 
 sudo apt install libdbusmenu-gtk3-4 libpangocairo-1.0-0 \
-    libpango-1.0-0 libwnck-3-0 libxext6
-install_pack xfce4-panel-4.18.0
+    libpango-1.0-0 libwnck-3-0 libxext6 -y
+install_pack xfce4-panel-4.18.0 --enable-dbusmenu-gtk3 \
+    --enable-gio-unix --enable-introspection --enable-vala=yes
 
 sudo apt install exo-utils desktop-file-utils libgudev-1.0-0 \
-    shared-mime-info
-install_pack thunar-4.18.0
+    shared-mime-info -y
+install_pack thunar-4.18.0 --enable-introspection --enable-gio-unix \
+    --enable-gudev --enable-notifications --enable-exif --enable-pcre2
 
 sudo apt install libcairo-gobject2 libcolord2 libfontconfig1 \
     libnotify4 libupower-glib3 \
@@ -68,36 +82,37 @@ sudo apt install libcairo-gobject2 libcolord2 libfontconfig1 \
     libxrandr2 xfce4-helpers colord libupower-glib-dev \
     libupower-glib3 xserver-xorg-input-libinput libinput10 \
     xserver-xorg-input-libinput-dev libnotify-bin libnotify-dev \
-    colord-gtk-utils gir1.2-colord-1.0 gir1.2-colordgtk-1.0 libcolord-dev
+    colord-gtk-utils gir1.2-colord-1.0 gir1.2-colordgtk-1.0 libcolord-dev -y
 install_pack xfce4-settings-4.18.0 --enable-xrandr --enable-upower-glib \
     --enable-libnotify --enable-colord --enable-gio-unix \
     --enable-xcursor --enable-xorg-libinput --enable-libxklavier \
     --enable-pluggable-dialogs --enable-sound-settings
 
-sudo apt install libpolkit-gobject-1-0 x11-server-utils \
+sudo apt install libpolkit-gobject-1-0 x11-utils x11-xserver-utils \
     light-locker upower libpolkit-agent-1-0 gir1.2-polkit-1.0 \
-    libpolkit-agent-1-dev libpolkit-gobject-1-dev
-install_pack xfce4-session-4.18.0
+    libpolkit-agent-1-dev libpolkit-gobject-1-dev -y
+install_pack xfce4-session-4.18.0 --enable-polkit
 
 sudo apt install libepoxy0 libgtk-3-0 libxcomposite1 libxdamage1 \
     libxfixes3 libxinerama1 libxpresent1 libxrender1 libxres1 \
-    librsvg2-common libxpresent-dev
+    librsvg2-common libxpresent-dev -y
 install_pack xfwm4-4.18.0 --enable-xi2 --enable-epoxy \
     --enable-startup-notification --enable-xsync --enable-render \
     --enable-randr --enable-xpresent --enable-compositor --enable-poswin
 
-sudo apt install xfdesktop4-data xdg-user-dirs
+sudo apt install xfdesktop4-data xdg-user-dirs -y
 install_pack xfdesktop-4.18.0 --enable-thunarx --enable-notifications
 
 
 install_pack xfce4-appfinder-4.18.0
 
 sudo apt install libfreetype6 libgstreamer-plugins-base1.0-0 \
-    libgstreamer1.0-0 libjpeg62-turbo libpng16-16 libpoppler-glib8 \
+    libgstreamer1.0-0 libjpeg-turbo8-dev \
+    libpng16-16 libpoppler-glib8 libjpeg-dev \
     tumbler-plugins-extra libcairo2-dev sensible-utils \
     ffmpegthumbnailer libgstreamer1.0-dev \
     gstreamer1.0-plugins-base gstreamer1.0-plugins-good libgsf-1-dev \
-    libpoppler-glib-dev libopenraw-dev
+    libpoppler-glib-dev libopenraw-dev -y
 install_pack tumbler-4.18.0
 
 
