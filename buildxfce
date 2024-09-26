@@ -2,6 +2,20 @@
 
 set -e
 
+disable_clean=false
+
+for arg in "$@"; do
+    case $arg in
+        --disable-clean)
+            disable_clean=true
+            shift
+            ;;
+        *)
+            echo "Unknown option: $arg"
+            ;;
+    esac
+done
+
 # install some packages (might have dupes) that are important
 sudo apt install build-essential psmisc \
       xdg-utils \
@@ -34,11 +48,15 @@ install_pack() {
     shift
     OPTS="$@"
 
+    sudo rm -rf "/usr/xfce-source/$PACK"
     sudo cp "/home/ubuntu/Documents/myxfce/xfce-source/$PACK" "/usr/xfce-source/$PACK" -r
 
     cd "/usr/xfce-source/$PACK"
 
-    sudo make clean
+    if ! $disable_clean; then
+        sudo make clean
+    fi
+
     sudo ./configure --prefix=/usr/local $OPTS
     sudo make
     sudo make install
@@ -115,5 +133,34 @@ sudo apt install libfreetype6 libgstreamer-plugins-base1.0-0 \
     libpoppler-glib-dev libopenraw-dev -y
 install_pack tumbler-4.18.0
 
+echo "+++ installing picom"
+# lol formatting
+sudo apt install cmake libconfig-dev libegl-dev libgl-dev libev-dev libpcre2-dev libpixman-1-dev libx11-xcb-dev libxcb1-dev libxcb-composite0-dev libxcb-damage0-dev libxcb-glx0-dev libxcb-image0-dev libxcb-present-dev libxcb-randr0-dev libxcb-render0-dev libxcb-render-util0-dev libxcb-shape0-dev libxcb-util-dev libxcb-xfixes0-dev meson ninja-build uthash-dev -y
+cd /home/ubuntu/Documents/myxfce/xfce-source/picom-next
+meson setup --buildtype=release build
+ninja -C build
+sudo ninja -C build install
 
-echo "...well, anything could've happened."
+
+echo "+++ editing compositor, switching to picom"
+
+# from https://www.reddit.com/r/archlinux/comments/etpc7z/comment/j78ohz4
+xfconf-query -c xfwm4 -p /general/use_compositing -s false
+mkdir /home/ubuntu/.config/autostart/ -p
+touch /home/ubuntu/.config/autostart/picomp.sh
+echo "picom -b --experimental-backends --config ~/.config/picom/picom.conf" > ~/.config/autostart/picomp.sh
+chmod +x ~/.config/autostart/picomp.sh
+
+
+# ignore errors, we're gonna uninstall some things that might conflict
+# (and for some reason always get installed?? they shouldn't...)
+set +e
+
+echo "+++ WARNING: DO NOT answer \"y\" if you use any of these libraries (i.e., you use XFCE as your main desktop environment"
+
+if ! sudo apt remove libxfce4util7 libxfce4util-common libxfce4util-dev \
+    libxfce4ui-common libxfce4ui-2-0; then
+    echo "+++ failed to remove installed ui and util packages"
+fi
+
+echo "+++ ...well, anything could've happened."

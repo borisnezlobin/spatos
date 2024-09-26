@@ -1,0 +1,30 @@
+# rebuilds packages (assumes they are already built)
+
+set -e
+
+PACKS="$@"
+
+install_pack() {
+    PACK=$1
+    shift
+    OPTS="$@"
+
+    sudo rm -rf "/usr/xfce-source/$PACK"
+    sudo cp "/home/ubuntu/Documents/myxfce/xfce-source/$PACK" "/usr/xfce-source/$PACK" -r
+
+    cd "/usr/xfce-source/$PACK"
+
+    sudo ./configure --prefix=/usr/local $OPTS
+    sudo make
+    sudo make install
+}
+
+
+for PACK in $PACKS; do
+    install_pack "$PACK-4.18.0"
+done
+
+if ! sudo apt remove libxfce4util7 libxfce4util-common libxfce4util-dev \
+    libxfce4ui-common libxfce4ui-2-0; then
+    echo "failed to remove installed ui and util packages"
+fi
