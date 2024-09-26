@@ -262,7 +262,7 @@ xfce_appfinder_window_init (XfceAppfinderWindow *window)
   gtk_widget_set_halign(image, GTK_ALIGN_CENTER);
   gtk_container_add (GTK_CONTAINER (hbox), image);
   gtk_widget_show (image);
-  
+
   window->entry = entry = gtk_entry_new ();
   gtk_widget_set_halign(entry, GTK_ALIGN_FILL);
   gtk_widget_set_valign (entry, GTK_ALIGN_CENTER);
@@ -597,18 +597,18 @@ xfce_appfinder_window_set_item_width (XfceAppfinderWindow *window)
       break;
 
     case XFCE_APPFINDER_ICON_SIZE_NORMAL:
-      padding = 4;
-      width = 48 * 2;
+      padding = 24;
+      width = 64 * 2;
       break;
 
     case XFCE_APPFINDER_ICON_SIZE_LARGE:
-      padding = 6;
-      width = 64 * 1.5;
+      padding = 36;
+      width = 64 * 2;
       break;
 
     case XFCE_APPFINDER_ICON_SIZE_LARGER:
-      padding = 6;
-      width = 96 * 1.75;
+      padding = 36;
+      width = 96 * 2;
       break;
 
     case XFCE_APPFINDER_ICON_SIZE_LARGEST:

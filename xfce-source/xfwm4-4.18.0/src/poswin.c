@@ -92,7 +92,7 @@ poswinCreate (GdkScreen *gscr)
     gtk_label_set_yalign (GTK_LABEL (poswin->label), 0.5);
 
     provider = gtk_css_provider_new ();
-    gtk_css_provider_load_from_data (provider, "label { padding: 3px; }", -1, NULL);
+    gtk_css_provider_load_from_data (provider, "label { padding: 9px; border-radius: 46px; }", -1, NULL);
     gtk_style_context_add_provider (gtk_widget_get_style_context (poswin->label),
                                     GTK_STYLE_PROVIDER (provider),
                                     GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
@@ -135,9 +135,9 @@ poswinSetPosition (Poswin * poswin, Client *c)
     }
 
 #ifdef SHOW_POSITION
-    g_snprintf (label, 32, "(%dx%d) @ (%i,%i)", wsize, hsize, x, y);
+    g_snprintf (label, 32, "(%dx%d) @ (%i,%i) wooooga", wsize, hsize, x, y);
 #else
-    g_snprintf (label, 32, "(%dx%d)", wsize, hsize);
+    g_snprintf (label, 32, "(%dx%d) UR MOM ehahehahe", wsize, hsize);
 #endif
     gtk_label_set_text (GTK_LABEL (poswin->label), label);
     gtk_widget_queue_draw (GTK_WIDGET(poswin));
