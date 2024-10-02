@@ -66,23 +66,23 @@
 #include <X11/extensions/Xrender.h>
 
 #ifndef SHADOW_RADIUS
-#define SHADOW_RADIUS   12
+#define SHADOW_RADIUS   0
 #endif /* SHADOW_RADIUS */
 
 #ifndef SHADOW_OFFSET_X
-#define SHADOW_OFFSET_X (-3 * SHADOW_RADIUS / 2)
+#define SHADOW_OFFSET_X 0
 #endif /* SHADOW_OFFSET_X */
 
 #ifndef SHADOW_OFFSET_Y
-#define SHADOW_OFFSET_Y (-3 * SHADOW_RADIUS / 2)
+#define SHADOW_OFFSET_Y 0
 #endif /* SHADOW_OFFSET_Y */
 
 /* Some convenient macros */
 #define WIN_HAS_CLIENT(cw)              (cw->c)
 #define WIN_HAS_FRAME(cw)               (WIN_HAS_CLIENT(cw) && CLIENT_HAS_FRAME(cw->c))
-#define WIN_NO_SHADOW(cw)               ((cw->c) && \
+#define WIN_NO_SHADOW(cw)               (true || ((cw->c) && \
                                            (FLAG_TEST (cw->c->flags, CLIENT_FLAG_FULLSCREEN | CLIENT_FLAG_BELOW) || \
-                                            (cw->c->type & WINDOW_DESKTOP)))
+                                            (cw->c->type & WINDOW_DESKTOP))))
 #define WIN_IS_DOCK(cw)                 (WIN_HAS_CLIENT(cw) && (cw->c->type & WINDOW_DOCK))
 #define WIN_IS_OVERRIDE(cw)             (cw->attr.override_redirect)
 #define WIN_IS_ARGB(cw)                 (cw->argb)
@@ -496,7 +496,11 @@ make_shadow (ScreenInfo *screen_info, gdouble opacity, gint width, gint height)
     TRACE ("entering");
 
     display_info = screen_info->display_info;
-    gaussianSize = screen_info->gaussianMap->size;
+    // gaussianSize = screen_info->gaussianMap->size;
+    gaussianSize = 0;
+    // EDITED
+    swidth = width;
+    sheight = height;
     swidth = width + gaussianSize - screen_info->params->shadow_delta_width - screen_info->params->shadow_delta_x;
     sheight = height + gaussianSize - screen_info->params->shadow_delta_height - screen_info->params->shadow_delta_y;
     center = gaussianSize / 2;
@@ -638,7 +642,8 @@ shadow_picture (ScreenInfo *screen_info, gdouble opacity,
     g_return_val_if_fail (render_format != NULL, None);
 
     shadowImage = make_shadow (screen_info, opacity, width, height);
-    if (shadowImage == NULL)
+    // EDITED
+    if (true || shadowImage == NULL)
     {
         *wp = *hp = 0;
         g_warning ("(shadowImage != NULL) failed");
@@ -654,8 +659,10 @@ shadow_picture (ScreenInfo *screen_info, gdouble opacity,
         return None;
     }
 
-    shadowPicture = XRenderCreatePicture (display_info->dpy,
-                                        shadowPixmap, render_format, 0, NULL);
+    // EDITED
+    shadowPicture = None;
+    // shadowPicture = XRenderCreatePicture (display_info->dpy,
+    //                                     shadowPixmap, render_format, 0, NULL);
     if (shadowPicture == None)
     {
         XDestroyImage (shadowImage);
@@ -828,7 +835,8 @@ free_win_data (CWindow *cw, gboolean delete)
 
     if (cw->shadow)
     {
-        XRenderFreePicture (display_info->dpy, cw->shadow);
+        // EDITED
+        // XRenderFreePicture (display_info->dpy, cw->shadow);
         cw->shadow = None;
     }
 
@@ -838,9 +846,10 @@ free_win_data (CWindow *cw, gboolean delete)
         cw->alphaPict = None;
     }
 
+    // EDITED
     if (cw->shadowPict)
     {
-        XRenderFreePicture (display_info->dpy, cw->shadowPict);
+        // XRenderFreePicture (display_info->dpy, cw->shadowPict);
         cw->shadowPict = None;
     }
 
@@ -1986,7 +1995,10 @@ win_extents (CWindow *cw)
          the user asked for shadows on so called "popup" windows.
      */
 
-    if ((screen_info->params->show_popup_shadow &&
+    // EDITED
+    cw->shadow_dx = 0;
+    cw->shadow_dy = 0;
+    if (false && ((screen_info->params->show_popup_shadow &&
               WIN_IS_OVERRIDE(cw) &&
               !(WIN_IS_ARGB(cw) || WIN_IS_SHAPED(cw)) &&
               !WIN_IS_FULLSCREEN(cw)) ||
@@ -2000,13 +2012,15 @@ win_extents (CWindow *cw)
               WIN_IS_DOCK(cw) &&
               !WIN_NO_SHADOW(cw) &&
               !WIN_IS_OVERRIDE(cw) &&
-              (!WIN_IS_SHAPED(cw))))
+              (!WIN_IS_SHAPED(cw)))
+            ))
     {
         XRectangle sr;
 
         TRACE ("window 0x%lx has extents", cw->id);
-        cw->shadow_dx = SHADOW_OFFSET_X + screen_info->params->shadow_delta_x;
-        cw->shadow_dy = SHADOW_OFFSET_Y + screen_info->params->shadow_delta_y;
+        // EDITED
+        // cw->shadow_dx = SHADOW_OFFSET_X + screen_info->params->shadow_delta_x;
+        // cw->shadow_dy = SHADOW_OFFSET_Y + screen_info->params->shadow_delta_y;
 
         if (!(cw->shadow))
         {
@@ -2048,8 +2062,9 @@ win_extents (CWindow *cw)
     }
     else if (cw->shadow)
     {
-        XRenderFreePicture (display_info->dpy, cw->shadow);
         cw->shadow = None;
+        // EDITED
+        // XRenderFreePicture (display_info->dpy, cw->shadow);
     }
     return XFixesCreateRegion (display_info->dpy, &r, 1);
 }
@@ -2240,6 +2255,7 @@ paint_win (CWindow *cw, XserverRegion region, Picture paint_buffer, gboolean sol
     display_info = screen_info->display_info;
     paint_solid = (solid_part && WIN_IS_OPAQUE(cw));
 
+    // EDITED
     if (WIN_HAS_FRAME(cw) && (screen_info->params->frame_opacity < 100))
     {
         int frame_x, frame_y, frame_width, frame_height;
@@ -2558,18 +2574,19 @@ paint_all (ScreenInfo *screen_info, XserverRegion region, gushort buffer)
             continue;
         }
 
-        if (cw->shadow)
-        {
-            shadowClip = XFixesCreateRegion (dpy, NULL, 0);
-            XFixesSubtractRegion (dpy, shadowClip, cw->borderClip, cw->borderSize);
+        // EDITED
+        // if (cw->shadow)
+        // {
+        //     shadowClip = XFixesCreateRegion (dpy, NULL, 0);
+        //     XFixesSubtractRegion (dpy, shadowClip, cw->borderClip, cw->borderSize);
 
-            XFixesSetPictureClipRegion (dpy, paint_buffer, 0, 0, shadowClip);
-            XRenderComposite (dpy, PictOpOver, screen_info->blackPicture, cw->shadow,
-                              paint_buffer, 0, 0, 0, 0,
-                              cw->attr.x + cw->shadow_dx,
-                              cw->attr.y + cw->shadow_dy,
-                              cw->shadow_width, cw->shadow_height);
-        }
+        //     XFixesSetPictureClipRegion (dpy, paint_buffer, 0, 0, shadowClip);
+        //     XRenderComposite (dpy, PictOpOver, screen_info->blackPicture, cw->shadow,
+        //                       paint_buffer, 0, 0, 0, 0,
+        //                       cw->attr.x + cw->shadow_dx,
+        //                       cw->attr.y + cw->shadow_dy,
+        //                       cw->shadow_width, cw->shadow_height);
+        // }
 
         if (cw->picture)
         {
@@ -2588,7 +2605,8 @@ paint_all (ScreenInfo *screen_info, XserverRegion region, gushort buffer)
 
         if (shadowClip)
         {
-            XFixesDestroyRegion (dpy, shadowClip);
+            // EDITED
+            // XFixesDestroyRegion (dpy, shadowClip);
         }
 
         if (cw->borderClip)
@@ -3034,9 +3052,11 @@ determine_mode (CWindow *cw)
         XRenderFreePicture (display_info->dpy, cw->alphaPict);
         cw->alphaPict = None;
     }
+
+    // EDITED
     if (cw->shadowPict)
     {
-        XRenderFreePicture (display_info->dpy, cw->shadowPict);
+    //     XRenderFreePicture (display_info->dpy, cw->shadowPict);
         cw->shadowPict = None;
     }
 
@@ -3091,16 +3111,17 @@ set_win_opacity (CWindow *cw, guint32 opacity)
 
     cw->opacity = opacity;
     determine_mode(cw);
+    // EDITED
     if (cw->shadow)
     {
-        XRenderFreePicture (display_info->dpy, cw->shadow);
+        // XRenderFreePicture (display_info->dpy, cw->shadow);
         cw->shadow = None;
-        if (cw->extents)
-        {
-            XFixesDestroyRegion (display_info->dpy, cw->extents);
-        }
-        cw->extents = win_extents (cw);
-        add_repair (screen_info);
+        // if (cw->extents)
+        // {
+        //     XFixesDestroyRegion (display_info->dpy, cw->extents);
+        // }
+        // cw->extents = win_extents (cw);
+        // add_repair (screen_info);
     }
 }
 
@@ -3543,9 +3564,10 @@ resize_win (CWindow *cw, gint x, gint y, gint width, gint height, gint bw)
             cw->saved_picture = None;
         }
 
+        // EDITED
         if (cw->shadow)
         {
-            XRenderFreePicture (display_info->dpy, cw->shadow);
+            // XRenderFreePicture (display_info->dpy, cw->shadow);
             cw->shadow = None;
         }
     }
@@ -3617,9 +3639,10 @@ reshape_win (CWindow *cw)
         cw->extents = None;
     }
 
+    // EDITED
     if (cw->shadow)
     {
-        XRenderFreePicture (display_info->dpy, cw->shadow);
+        // XRenderFreePicture (display_info->dpy, cw->shadow);
         cw->shadow = None;
     }
 
@@ -4913,7 +4936,8 @@ compositorManageScreen (ScreenInfo *screen_info)
     }
 
     screen_info->gaussianSize = -1;
-    screen_info->gaussianMap = make_gaussian_map(SHADOW_RADIUS);
+    // EDITED
+    // screen_info->gaussianMap = make_gaussian_map(SHADOW_RADIUS);
     presum_gaussian (screen_info);
     screen_info->cursorPicture = None;
     /* Change following argb values to play with shadow colors */
@@ -4921,7 +4945,7 @@ compositorManageScreen (ScreenInfo *screen_info)
                                                TRUE,
                                                1.0, /* alpha */
                                                0.0, /* red   */
-                                               0.0, /* green */
+                                               1.0, /* green */
                                                0.0  /* blue  */);
     screen_info->rootTile = None;
     screen_info->allDamage = None;
