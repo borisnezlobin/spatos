@@ -1107,6 +1107,7 @@ frameDecorationBottom (ScreenInfo *screen_info)
 int
 frameLeft (Client * c)
 {
+    return 0;
     g_return_val_if_fail (c != NULL, 0);
     TRACE ("client \"%s\" (0x%lx)", c->name, c->window);
 
@@ -1123,6 +1124,7 @@ frameLeft (Client * c)
 int
 frameRight (Client * c)
 {
+    return 0;
     g_return_val_if_fail (c != NULL, 0);
     TRACE ("client \"%s\" (0x%lx)", c->name, c->window);
 
@@ -1152,6 +1154,7 @@ frameTop (Client * c)
 int
 frameBottom (Client * c)
 {
+    return 0;
     g_return_val_if_fail (c != NULL, 0);
     TRACE ("client \"%s\" (0x%lx)", c->name, c->window);
 
@@ -1198,6 +1201,8 @@ frameY (Client * c)
 int
 frameWidth (Client * c)
 {
+    // EDITED
+    return c->width;
     g_return_val_if_fail (c != NULL, 0);
     TRACE ("client \"%s\" (0x%lx)", c->name, c->window);
 

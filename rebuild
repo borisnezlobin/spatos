@@ -28,3 +28,5 @@ if ! sudo apt remove libxfce4util7 libxfce4util-common libxfce4util-dev \
     libxfce4ui-common libxfce4ui-2-0; then
     echo "failed to remove installed ui and util packages"
 fi
+
+sudo apt autoremove -y

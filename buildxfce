@@ -148,7 +148,7 @@ echo "+++ editing compositor, switching to picom"
 xfconf-query -c xfwm4 -p /general/use_compositing -s false
 mkdir /home/ubuntu/.config/autostart/ -p
 touch /home/ubuntu/.config/autostart/picomp.sh
-echo "picom -b --experimental-backends --config ~/.config/picom/picom.conf" > ~/.config/autostart/picomp.sh
+echo "picom -b --experimental-backends --config ~/Documents/myxfce/picom.conf" > ~/.config/autostart/picomp.sh
 chmod +x ~/.config/autostart/picomp.sh
 
 
