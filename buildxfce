@@ -1,6 +1,8 @@
 #!/bin/bash
 
 set -e
+script_dir=$(dirname "$(realpath "$0")")
+echo "running in $script_dir"
 
 disable_clean=false
 
@@ -25,10 +27,20 @@ sudo apt install build-essential psmisc \
       x11-utils \
       libgtk-3-0 \
       libgtk-3-dev \
+
+set +e
+sudo apt install \
       libwnck-dev \
       libwnck-3-0 \
       libwnck-common \
-      libwnck-3-common \
+      libwnck-3-common -y
+
+sudo apt install \
+      libwnck-3-0 libwnck-3-dev libwnck-3-common -y
+
+set -e
+
+sudo apt install \
       intltool dbus dbus-system-bus-common \
       libglib2.0-dev libgtk2.0-dev  \
       at-spi2-core libxi-dev  \
@@ -44,31 +56,30 @@ BUILD_ORDER=("xfce4-dev-tools-4.18.0" "libxfce4util-4.18.0" "xfconf-4.18.0" "lib
 sudo mkdir -p /usr/xfce-source
 
 install_pack() {
+    echo "\n\n+++ NOW BUILDING $PACK +++\n\n"
     PACK=$1
     shift
     OPTS="$@"
 
     sudo rm -rf "/usr/xfce-source/$PACK"
-    sudo cp "/home/ubuntu/Documents/myxfce/xfce-source/$PACK" "/usr/xfce-source/$PACK" -r
+    sudo cp "$script_dir/xfce-source/$PACK" "/usr/xfce-source/$PACK" -r
 
     cd "/usr/xfce-source/$PACK"
-
-    if ! $disable_clean; then
-        sudo make clean
-    fi
 
     sudo ./configure --prefix=/usr/local $OPTS
     sudo make
     sudo make install
+
+    echo "\n\n+++ DONE BUILDING $PACK\n\n"
 }
 
-sudo apt install libc6 libglib2.0-0 autoconf automake -y
+sudo apt install libc6 libglib2.0-0 autoconf automake valac libvala-0.56-dev \
+    libvala-0.56-0 -y
 install_pack xfce4-dev-tools-4.18.0
 
 install_pack libxfce4util-4.18.0 --enable-instrospection=yes --enable-vala=yes
 
-sudo apt install dbus-user-session dbus-x11 libvala-0.56-dev \
-    libvala-0.56-0 valac -y
+sudo apt install dbus-user-session dbus-x11 -y
 install_pack xfconf-4.18.0 --enable-vala=yes
 
 sudo apt install libgtk-3-0 libatk1.0-0 libgdk-pixbuf-2.0-0 \
@@ -136,7 +147,7 @@ install_pack tumbler-4.18.0
 echo "+++ installing picom"
 # lol formatting
 sudo apt install cmake libconfig-dev libegl-dev libgl-dev libev-dev libpcre2-dev libpixman-1-dev libx11-xcb-dev libxcb1-dev libxcb-composite0-dev libxcb-damage0-dev libxcb-glx0-dev libxcb-image0-dev libxcb-present-dev libxcb-randr0-dev libxcb-render0-dev libxcb-render-util0-dev libxcb-shape0-dev libxcb-util-dev libxcb-xfixes0-dev meson ninja-build uthash-dev -y
-cd /home/ubuntu/Documents/myxfce/xfce-source/picom-next
+cd $script_dir/xfce-source/picom-next
 meson setup --buildtype=release build
 ninja -C build
 sudo ninja -C build install
@@ -146,9 +157,9 @@ echo "+++ editing compositor, switching to picom"
 
 # from https://www.reddit.com/r/archlinux/comments/etpc7z/comment/j78ohz4
 xfconf-query -c xfwm4 -p /general/use_compositing -s false
-mkdir /home/ubuntu/.config/autostart/ -p
-touch /home/ubuntu/.config/autostart/picomp.sh
-echo "picom -b --experimental-backends --config ~/Documents/myxfce/picom.conf" > ~/.config/autostart/picomp.sh
+mkdir ~/.config/autostart/ -p
+touch ~/.config/autostart/picomp.sh
+echo "picom -b --experimental-backends --config $script_dir/picom.conf" > ~/.config/autostart/picomp.sh
 chmod +x ~/.config/autostart/picomp.sh
 
 
