@@ -50,4 +50,4 @@ PASS: lib/libXxf86vm
 PASS: lib/libpciaccess
 PASS: pixman/pixman
 PASS: mesa/drm
-FAIL: setup/mesa
+FAIL: mesa/mesa

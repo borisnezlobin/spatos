@@ -21,7 +21,8 @@ done
 # hope you have cargo installed...
 
 # install X11 dependencies
-sudo apt-get install asciidoc autoconf libclc-18-dev llvm-dev libllvmspirvlib-19-dev clang automake autopoint autotools-dev bison docbook-utils doxygen flex fop git-core  gperf intltool jadetex libdrm-dev libfontconfig1-dev libfreetype6-dev libgbm-dev libglib2.0-dev libmtdev-dev libncurses5-dev libpng12-dev libssl-dev libtool libudev-dev llvm m4  netpbm psutils python-mako systemtap-sdt-dev w3m xmlto zlib1g-dev flex glslang-tools
+# many of these are for mesa
+sudo apt-get install asciidoc cbindgen autoconf libclc-18-dev llvm-dev libllvmspirvlib-19-dev clang libclang-cpp-dev python3-ply automake autopoint autotools-dev bison docbook-utils doxygen flex fop git-core  gperf intltool jadetex libdrm-dev libfontconfig1-dev libfreetype6-dev libgbm-dev libglib2.0-dev libmtdev-dev libncurses5-dev libpng12-dev libssl-dev libtool libudev-dev llvm m4  netpbm psutils python-mako systemtap-sdt-dev w3m xmlto zlib1g-dev flex glslang-tools -y
 cargo install bindgen-cli
 
 # install X11 from source
