@@ -70,6 +70,8 @@ xfwmWindowInit (xfwmWindow * win)
     win->depth = 0;
     win->x = 0;
     win->y = 0;
+    win->z = 1;
+    win->rot = 0;
     win->width = 1;
     win->height = 1;
 #ifdef HAVE_RENDER

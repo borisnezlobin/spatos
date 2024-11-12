@@ -676,12 +676,62 @@ PRESENT_EXTENSION_CFLAGS
 RANDR_LIBS
 RENDER_LIBS
 RENDER_CFLAGS
+XSYNC_LIBS
+HAVE_LIBSTARTUP_NOTIFICATION_FALSE
+HAVE_LIBSTARTUP_NOTIFICATION_TRUE
+LIBSTARTUP_NOTIFICATION_REQUIRED_VERSION
+LIBSTARTUP_NOTIFICATION_LIBS
+LIBSTARTUP_NOTIFICATION_CFLAGS
+LIBSTARTUP_NOTIFICATION_VERSION
+HAVE_EPOXY_FALSE
+HAVE_EPOXY_TRUE
+EPOXY_REQUIRED_VERSION
+EPOXY_LIBS
+EPOXY_CFLAGS
+EPOXY_VERSION
+GLIB_COMPILE_RESOURCES
+XDT_CSOURCE
+XINERAMA_REQUIRED_VERSION
+XINERAMA_LIBS
+XINERAMA_CFLAGS
+XINERAMA_VERSION
+LIBWNCK_REQUIRED_VERSION
+LIBWNCK_LIBS
+LIBWNCK_CFLAGS
+LIBWNCK_VERSION
+LIBXFCONF_REQUIRED_VERSION
+LIBXFCONF_LIBS
+LIBXFCONF_CFLAGS
+LIBXFCONF_VERSION
+LIBXFCE4KBD_PRIVATE_REQUIRED_VERSION
+LIBXFCE4KBD_PRIVATE_LIBS
+LIBXFCE4KBD_PRIVATE_CFLAGS
+LIBXFCE4KBD_PRIVATE_VERSION
+LIBXFCE4UI_REQUIRED_VERSION
+LIBXFCE4UI_LIBS
+LIBXFCE4UI_CFLAGS
+LIBXFCE4UI_VERSION
+LIBXFCE4UTIL_REQUIRED_VERSION
+LIBXFCE4UTIL_LIBS
+LIBXFCE4UTIL_CFLAGS
+LIBXFCE4UTIL_VERSION
+GTK_REQUIRED_VERSION
+GTK_LIBS
+GTK_CFLAGS
+GTK_VERSION
 PKG_CONFIG_LIBDIR
 PKG_CONFIG_PATH
 PKG_CONFIG
-XSYNC_LIBS
-GLIB_COMPILE_RESOURCES
-XDT_CSOURCE
+LIBX11_LIBS
+LIBX11_LDFLAGS
+LIBX11_CFLAGS
+X_EXTRA_LIBS
+X_LIBS
+X_PRE_LIBS
+X_CFLAGS
+CPP
+XMKMF
+GETTEXT_PACKAGE
 MATH_LIBS
 LT_SYS_LIBRARY_PATH
 OTOOL64
@@ -695,7 +745,6 @@ ac_ct_AR
 AR
 DLLTOOL
 OBJDUMP
-FILECMD
 LN_S
 NM
 ac_ct_DUMPBIN
@@ -855,13 +904,18 @@ with_aix_soname
 with_gnu_ld
 with_sysroot
 enable_libtool_lock
+with_locales_dir
+with_x
 enable_xi2
+enable_epoxy
+enable_startup_notification
 enable_xsync
 enable_render
 enable_randr
 enable_xpresent
 enable_compositor
 enable_poswin
+enable_debug
 '
       ac_precious_vars='build_alias
 host_alias
@@ -872,6 +926,8 @@ LDFLAGS
 LIBS
 CPPFLAGS
 LT_SYS_LIBRARY_PATH
+XMKMF
+CPP
 PKG_CONFIG
 PKG_CONFIG_PATH
 PKG_CONFIG_LIBDIR
@@ -1492,6 +1548,10 @@ Program names:
   --program-suffix=SUFFIX            append SUFFIX to installed program names
   --program-transform-name=PROGRAM   run sed PROGRAM on installed program names
 
+X features:
+  --x-includes=DIR    X include files are in DIR
+  --x-libraries=DIR   X library files are in DIR
+
 System types:
   --build=BUILD     configure for building on BUILD [guessed]
   --host=HOST       cross-compile to build programs to run on HOST [BUILD]
@@ -1525,6 +1585,16 @@ Optional Features:
   --disable-libtool-lock  avoid locking (might break parallel builds)
   --enable-xi2            enable support for the X Input 2 extension
     --disable-xi2           don't enable the X Input 2 extension (default)
+  --enable-epoxy          Enable checking for library for handling OpenGL
+                          function pointer management
+                          (default=[yes])
+  --disable-epoxy         Disable checking for library for handling OpenGL
+                          function pointer management
+  --enable-startup-notification
+                          Enable checking for startup notification library
+                          (default=[yes])
+  --disable-startup-notification
+                          Disable checking for startup notification library
   --enable-xsync          try to use the xsync extension
   --disable-xsync         don't try to use the xsync extension
   --enable-render         try to use the render extension
@@ -1536,6 +1606,10 @@ Optional Features:
   --enable-compositor     enable compositor in xfwm4 (default)
   --disable-compositor    disable compositor in xfwm4
   --enable-poswin         enable position window on move/resize
+  --enable-debug[=no|minimum|yes|full]
+                          Build with debugging support
+                          [default=[minimum]]
+  --disable-debug         Include no debugging support
 
 Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
@@ -1552,6 +1626,10 @@ Optional Packages:
   --with-sysroot[=DIR]    Search for dependent libraries within DIR (or the
                           compiler's sysroot if not specified).
 
+      --with-locales-dir=DIR  Install locales into DIR
+
+  --with-x                use the X Window System
+
 Some influential environment variables:
   CC          C compiler command
   CFLAGS      C compiler flags
@@ -1562,6 +1640,8 @@ Some influential environment variables:
               you have headers in a nonstandard directory <include dir>
   LT_SYS_LIBRARY_PATH
               User-defined run-time library search path.
+  XMKMF       Path to xmkmf, Makefile generator for X Window System
+  CPP         C preprocessor
   PKG_CONFIG  path to pkg-config utility
   PKG_CONFIG_PATH
               directories to add to pkg-config's search path
@@ -1845,6 +1925,44 @@ printf "%s\n" "$ac_res" >&6; }
   eval $as_lineno_stack; ${as_lineno_stack:+:} unset as_lineno
 
 } # ac_fn_c_check_func
+
+# ac_fn_c_try_cpp LINENO
+# ----------------------
+# Try to preprocess conftest.$ac_ext, and return whether this succeeded.
+ac_fn_c_try_cpp ()
+{
+  as_lineno=${as_lineno-"$1"} as_lineno_stack=as_lineno_stack=$as_lineno_stack
+  if { { ac_try="$ac_cpp conftest.$ac_ext"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval ac_try_echo="\"\$as_me:${as_lineno-$LINENO}: $ac_try_echo\""
+printf "%s\n" "$ac_try_echo"; } >&5
+  (eval "$ac_cpp conftest.$ac_ext") 2>conftest.err
+  ac_status=$?
+  if test -s conftest.err; then
+    grep -v '^ *+' conftest.err >conftest.er1
+    cat conftest.er1 >&5
+    mv -f conftest.er1 conftest.err
+  fi
+  printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; } > conftest.i && {
+	 test -z "$ac_c_preproc_warn_flag$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       }
+then :
+  ac_retval=0
+else $as_nop
+  printf "%s\n" "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+    ac_retval=1
+fi
+  eval $as_lineno_stack; ${as_lineno_stack:+:} unset as_lineno
+  as_fn_set_status $ac_retval
+
+} # ac_fn_c_try_cpp
 ac_configure_args_raw=
 for ac_arg
 do
@@ -6378,8 +6496,8 @@ esac
 
 
 
-macro_version='2.4.7'
-macro_revision='2.4.7'
+macro_version='2.4.6'
+macro_revision='2.4.6'
 
 
 
@@ -7007,13 +7125,13 @@ else
 	mingw*) lt_bad_file=conftest.nm/nofile ;;
 	*) lt_bad_file=/dev/null ;;
 	esac
-	case `"$tmp_nm" -B $lt_bad_file 2>&1 | $SED '1q'` in
+	case `"$tmp_nm" -B $lt_bad_file 2>&1 | sed '1q'` in
 	*$lt_bad_file* | *'Invalid file or object type'*)
 	  lt_cv_path_NM="$tmp_nm -B"
 	  break 2
 	  ;;
 	*)
-	  case `"$tmp_nm" -p /dev/null 2>&1 | $SED '1q'` in
+	  case `"$tmp_nm" -p /dev/null 2>&1 | sed '1q'` in
 	  */dev/null*)
 	    lt_cv_path_NM="$tmp_nm -p"
 	    break 2
@@ -7151,7 +7269,7 @@ esac
   fi
 fi
 
-    case `$DUMPBIN -symbols -headers /dev/null 2>&1 | $SED '1q'` in
+    case `$DUMPBIN -symbols -headers /dev/null 2>&1 | sed '1q'` in
     *COFF*)
       DUMPBIN="$DUMPBIN -symbols -headers"
       ;;
@@ -7255,7 +7373,7 @@ else $as_nop
     lt_cv_sys_max_cmd_len=8192;
     ;;
 
-  bitrig* | darwin* | dragonfly* | freebsd* | midnightbsd* | netbsd* | openbsd*)
+  bitrig* | darwin* | dragonfly* | freebsd* | netbsd* | openbsd*)
     # This has been around since 386BSD, at least.  Likely further.
     if test -x /sbin/sysctl; then
       lt_cv_sys_max_cmd_len=`/sbin/sysctl -n kern.argmax`
@@ -7298,7 +7416,7 @@ else $as_nop
   sysv5* | sco5v6* | sysv4.2uw2*)
     kargmax=`grep ARG_MAX /etc/conf/cf.d/stune 2>/dev/null`
     if test -n "$kargmax"; then
-      lt_cv_sys_max_cmd_len=`echo $kargmax | $SED 's/.*[	 ]//'`
+      lt_cv_sys_max_cmd_len=`echo $kargmax | sed 's/.*[	 ]//'`
     else
       lt_cv_sys_max_cmd_len=32768
     fi
@@ -7504,114 +7622,6 @@ esac
 
 
 if test -n "$ac_tool_prefix"; then
-  # Extract the first word of "${ac_tool_prefix}file", so it can be a program name with args.
-set dummy ${ac_tool_prefix}file; ac_word=$2
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
-printf %s "checking for $ac_word... " >&6; }
-if test ${ac_cv_prog_FILECMD+y}
-then :
-  printf %s "(cached) " >&6
-else $as_nop
-  if test -n "$FILECMD"; then
-  ac_cv_prog_FILECMD="$FILECMD" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  case $as_dir in #(((
-    '') as_dir=./ ;;
-    */) ;;
-    *) as_dir=$as_dir/ ;;
-  esac
-    for ac_exec_ext in '' $ac_executable_extensions; do
-  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
-    ac_cv_prog_FILECMD="${ac_tool_prefix}file"
-    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-  done
-IFS=$as_save_IFS
-
-fi
-fi
-FILECMD=$ac_cv_prog_FILECMD
-if test -n "$FILECMD"; then
-  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $FILECMD" >&5
-printf "%s\n" "$FILECMD" >&6; }
-else
-  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
-printf "%s\n" "no" >&6; }
-fi
-
-
-fi
-if test -z "$ac_cv_prog_FILECMD"; then
-  ac_ct_FILECMD=$FILECMD
-  # Extract the first word of "file", so it can be a program name with args.
-set dummy file; ac_word=$2
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
-printf %s "checking for $ac_word... " >&6; }
-if test ${ac_cv_prog_ac_ct_FILECMD+y}
-then :
-  printf %s "(cached) " >&6
-else $as_nop
-  if test -n "$ac_ct_FILECMD"; then
-  ac_cv_prog_ac_ct_FILECMD="$ac_ct_FILECMD" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  case $as_dir in #(((
-    '') as_dir=./ ;;
-    */) ;;
-    *) as_dir=$as_dir/ ;;
-  esac
-    for ac_exec_ext in '' $ac_executable_extensions; do
-  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
-    ac_cv_prog_ac_ct_FILECMD="file"
-    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-  done
-IFS=$as_save_IFS
-
-fi
-fi
-ac_ct_FILECMD=$ac_cv_prog_ac_ct_FILECMD
-if test -n "$ac_ct_FILECMD"; then
-  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_ct_FILECMD" >&5
-printf "%s\n" "$ac_ct_FILECMD" >&6; }
-else
-  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
-printf "%s\n" "no" >&6; }
-fi
-
-  if test "x$ac_ct_FILECMD" = x; then
-    FILECMD=":"
-  else
-    case $cross_compiling:$ac_tool_warned in
-yes:)
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
-printf "%s\n" "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
-ac_tool_warned=yes ;;
-esac
-    FILECMD=$ac_ct_FILECMD
-  fi
-else
-  FILECMD="$ac_cv_prog_FILECMD"
-fi
-
-
-
-
-
-
-
-if test -n "$ac_tool_prefix"; then
   # Extract the first word of "${ac_tool_prefix}objdump", so it can be a program name with args.
 set dummy ${ac_tool_prefix}objdump; ac_word=$2
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
@@ -7754,7 +7764,7 @@ beos*)
 
 bsdi[45]*)
   lt_cv_deplibs_check_method='file_magic ELF [0-9][0-9]*-bit [ML]SB (shared object|dynamic lib)'
-  lt_cv_file_magic_cmd='$FILECMD -L'
+  lt_cv_file_magic_cmd='/usr/bin/file -L'
   lt_cv_file_magic_test_file=/shlib/libc.so
   ;;
 
@@ -7788,14 +7798,14 @@ darwin* | rhapsody*)
   lt_cv_deplibs_check_method=pass_all
   ;;
 
-freebsd* | dragonfly* | midnightbsd*)
+freebsd* | dragonfly*)
   if echo __ELF__ | $CC -E - | $GREP __ELF__ > /dev/null; then
     case $host_cpu in
     i*86 )
       # Not sure whether the presence of OpenBSD here was a mistake.
       # Let's accept both of them until this is cleared up.
       lt_cv_deplibs_check_method='file_magic (FreeBSD|OpenBSD|DragonFly)/i[3-9]86 (compact )?demand paged shared library'
-      lt_cv_file_magic_cmd=$FILECMD
+      lt_cv_file_magic_cmd=/usr/bin/file
       lt_cv_file_magic_test_file=`echo /usr/lib/libc.so.*`
       ;;
     esac
@@ -7809,7 +7819,7 @@ haiku*)
   ;;
 
 hpux10.20* | hpux11*)
-  lt_cv_file_magic_cmd=$FILECMD
+  lt_cv_file_magic_cmd=/usr/bin/file
   case $host_cpu in
   ia64*)
     lt_cv_deplibs_check_method='file_magic (s[0-9][0-9][0-9]|ELF-[0-9][0-9]) shared object file - IA64'
@@ -7856,7 +7866,7 @@ netbsd* | netbsdelf*-gnu)
 
 newos6*)
   lt_cv_deplibs_check_method='file_magic ELF [0-9][0-9]*-bit [ML]SB (executable|dynamic lib)'
-  lt_cv_file_magic_cmd=$FILECMD
+  lt_cv_file_magic_cmd=/usr/bin/file
   lt_cv_file_magic_test_file=/usr/lib/libnls.so
   ;;
 
@@ -8229,28 +8239,12 @@ esac
 fi
 
 : ${AR=ar}
+: ${AR_FLAGS=cr}
 
 
 
 
 
-
-# Use ARFLAGS variable as AR's operation code to sync the variable naming with
-# Automake.  If both AR_FLAGS and ARFLAGS are specified, AR_FLAGS should have
-# higher priority because thats what people were doing historically (setting
-# ARFLAGS for automake and AR_FLAGS for libtool).  FIXME: Make the AR_FLAGS
-# variable obsoleted/removed.
-
-test ${AR_FLAGS+y} || AR_FLAGS=${ARFLAGS-cr}
-lt_ar_flags=$AR_FLAGS
-
-
-
-
-
-
-# Make AR_FLAGS overridable by 'make ARFLAGS='.  Don't try to run-time override
-# by AR_FLAGS because that was never working and AR_FLAGS is about to die.
 
 
 
@@ -8668,7 +8662,7 @@ esac
 
 if test "$lt_cv_nm_interface" = "MS dumpbin"; then
   # Gets list of data symbols to import.
-  lt_cv_sys_global_symbol_to_import="$SED -n -e 's/^I .* \(.*\)$/\1/p'"
+  lt_cv_sys_global_symbol_to_import="sed -n -e 's/^I .* \(.*\)$/\1/p'"
   # Adjust the below global symbol transforms to fixup imported variables.
   lt_cdecl_hook=" -e 's/^I .* \(.*\)$/extern __declspec(dllimport) char \1;/p'"
   lt_c_name_hook=" -e 's/^I .* \(.*\)$/  {\"\1\", (void *) 0},/p'"
@@ -8686,20 +8680,20 @@ fi
 # Transform an extracted symbol line into a proper C declaration.
 # Some systems (esp. on ia64) link data and code symbols differently,
 # so use this general approach.
-lt_cv_sys_global_symbol_to_cdecl="$SED -n"\
+lt_cv_sys_global_symbol_to_cdecl="sed -n"\
 $lt_cdecl_hook\
 " -e 's/^T .* \(.*\)$/extern int \1();/p'"\
 " -e 's/^$symcode$symcode* .* \(.*\)$/extern char \1;/p'"
 
 # Transform an extracted symbol line into symbol name and symbol address
-lt_cv_sys_global_symbol_to_c_name_address="$SED -n"\
+lt_cv_sys_global_symbol_to_c_name_address="sed -n"\
 $lt_c_name_hook\
 " -e 's/^: \(.*\) .*$/  {\"\1\", (void *) 0},/p'"\
 " -e 's/^$symcode$symcode* .* \(.*\)$/  {\"\1\", (void *) \&\1},/p'"
 
 # Transform an extracted symbol line into symbol name with lib prefix and
 # symbol address.
-lt_cv_sys_global_symbol_to_c_name_address_lib_prefix="$SED -n"\
+lt_cv_sys_global_symbol_to_c_name_address_lib_prefix="sed -n"\
 $lt_c_name_lib_hook\
 " -e 's/^: \(.*\) .*$/  {\"\1\", (void *) 0},/p'"\
 " -e 's/^$symcode$symcode* .* \(lib.*\)$/  {\"\1\", (void *) \&\1},/p'"\
@@ -8723,7 +8717,7 @@ for ac_symprfx in "" "_"; do
   if test "$lt_cv_nm_interface" = "MS dumpbin"; then
     # Fake it for dumpbin and say T for any non-static function,
     # D for any global variable and I for any imported variable.
-    # Also find C++ and __fastcall symbols from MSVC++ or ICC,
+    # Also find C++ and __fastcall symbols from MSVC++,
     # which start with @ or ?.
     lt_cv_sys_global_symbol_pipe="$AWK '"\
 "     {last_section=section; section=\$ 3};"\
@@ -8741,9 +8735,9 @@ for ac_symprfx in "" "_"; do
 "     s[1]~prfx {split(s[1],t,\"@\"); print f,t[1],substr(t[1],length(prfx))}"\
 "     ' prfx=^$ac_symprfx"
   else
-    lt_cv_sys_global_symbol_pipe="$SED -n -e 's/^.*[	 ]\($symcode$symcode*\)[	 ][	 ]*$ac_symprfx$sympat$opt_cr$/$symxfrm/p'"
+    lt_cv_sys_global_symbol_pipe="sed -n -e 's/^.*[	 ]\($symcode$symcode*\)[	 ][	 ]*$ac_symprfx$sympat$opt_cr$/$symxfrm/p'"
   fi
-  lt_cv_sys_global_symbol_pipe="$lt_cv_sys_global_symbol_pipe | $SED '/ __gnu_lto/d'"
+  lt_cv_sys_global_symbol_pipe="$lt_cv_sys_global_symbol_pipe | sed '/ __gnu_lto/d'"
 
   # Check to see that the pipe works correctly.
   pipe_works=no
@@ -8943,7 +8937,7 @@ case $with_sysroot in #(
    fi
    ;; #(
  /*)
-   lt_sysroot=`echo "$with_sysroot" | $SED -e "$sed_quote_subst"`
+   lt_sysroot=`echo "$with_sysroot" | sed -e "$sed_quote_subst"`
    ;; #(
  no|'')
    ;; #(
@@ -9068,7 +9062,7 @@ ia64-*-hpux*)
   ac_status=$?
   printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-    case `$FILECMD conftest.$ac_objext` in
+    case `/usr/bin/file conftest.$ac_objext` in
       *ELF-32*)
 	HPUX_IA64_MODE=32
 	;;
@@ -9089,7 +9083,7 @@ ia64-*-hpux*)
   printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
     if test yes = "$lt_cv_prog_gnu_ld"; then
-      case `$FILECMD conftest.$ac_objext` in
+      case `/usr/bin/file conftest.$ac_objext` in
 	*32-bit*)
 	  LD="${LD-ld} -melf32bsmip"
 	  ;;
@@ -9101,7 +9095,7 @@ ia64-*-hpux*)
 	;;
       esac
     else
-      case `$FILECMD conftest.$ac_objext` in
+      case `/usr/bin/file conftest.$ac_objext` in
 	*32-bit*)
 	  LD="${LD-ld} -32"
 	  ;;
@@ -9127,7 +9121,7 @@ mips64*-*linux*)
   printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
     emul=elf
-    case `$FILECMD conftest.$ac_objext` in
+    case `/usr/bin/file conftest.$ac_objext` in
       *32-bit*)
 	emul="${emul}32"
 	;;
@@ -9135,7 +9129,7 @@ mips64*-*linux*)
 	emul="${emul}64"
 	;;
     esac
-    case `$FILECMD conftest.$ac_objext` in
+    case `/usr/bin/file conftest.$ac_objext` in
       *MSB*)
 	emul="${emul}btsmip"
 	;;
@@ -9143,7 +9137,7 @@ mips64*-*linux*)
 	emul="${emul}ltsmip"
 	;;
     esac
-    case `$FILECMD conftest.$ac_objext` in
+    case `/usr/bin/file conftest.$ac_objext` in
       *N32*)
 	emul="${emul}n32"
 	;;
@@ -9167,14 +9161,14 @@ s390*-*linux*|s390*-*tpf*|sparc*-*linux*)
   ac_status=$?
   printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-    case `$FILECMD conftest.o` in
+    case `/usr/bin/file conftest.o` in
       *32-bit*)
 	case $host in
 	  x86_64-*kfreebsd*-gnu)
 	    LD="${LD-ld} -m elf_i386_fbsd"
 	    ;;
 	  x86_64-*linux*)
-	    case `$FILECMD conftest.o` in
+	    case `/usr/bin/file conftest.o` in
 	      *x86-64*)
 		LD="${LD-ld} -m elf32_x86_64"
 		;;
@@ -9282,7 +9276,7 @@ printf "%s\n" "$lt_cv_cc_needs_belf" >&6; }
   ac_status=$?
   printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-    case `$FILECMD conftest.o` in
+    case `/usr/bin/file conftest.o` in
     *64-bit*)
       case $lt_cv_prog_gnu_ld in
       yes*)
@@ -10065,8 +10059,8 @@ int forced_loaded() { return 2;}
 _LT_EOF
       echo "$LTCC $LTCFLAGS -c -o conftest.o conftest.c" >&5
       $LTCC $LTCFLAGS -c -o conftest.o conftest.c 2>&5
-      echo "$AR $AR_FLAGS libconftest.a conftest.o" >&5
-      $AR $AR_FLAGS libconftest.a conftest.o 2>&5
+      echo "$AR cr libconftest.a conftest.o" >&5
+      $AR cr libconftest.a conftest.o 2>&5
       echo "$RANLIB libconftest.a" >&5
       $RANLIB libconftest.a 2>&5
       cat > conftest.c << _LT_EOF
@@ -10093,12 +10087,17 @@ printf "%s\n" "$lt_cv_ld_force_load" >&6; }
       _lt_dar_allow_undefined='$wl-undefined ${wl}suppress' ;;
     darwin1.*)
       _lt_dar_allow_undefined='$wl-flat_namespace $wl-undefined ${wl}suppress' ;;
-    darwin*)
-      case $MACOSX_DEPLOYMENT_TARGET,$host in
-        10.[012],*|,*powerpc*-darwin[5-8]*)
-          _lt_dar_allow_undefined='$wl-flat_namespace $wl-undefined ${wl}suppress' ;;
-        *)
-          _lt_dar_allow_undefined='$wl-undefined ${wl}dynamic_lookup' ;;
+    darwin*) # darwin 5.x on
+      # if running on 10.5 or later, the deployment target defaults
+      # to the OS version, if on x86, and 10.4, the deployment
+      # target defaults to 10.4. Don't you love it?
+      case ${MACOSX_DEPLOYMENT_TARGET-10.0},$host in
+	10.0,*86*-darwin8*|10.0,*-darwin[912]*)
+	  _lt_dar_allow_undefined='$wl-undefined ${wl}dynamic_lookup' ;;
+	10.[012][,.]*)
+	  _lt_dar_allow_undefined='$wl-flat_namespace $wl-undefined ${wl}suppress' ;;
+	10.*|11.*)
+	  _lt_dar_allow_undefined='$wl-undefined ${wl}dynamic_lookup' ;;
       esac
     ;;
   esac
@@ -10456,8 +10455,8 @@ esac
 ofile=libtool
 can_build_shared=yes
 
-# All known linkers require a '.a' archive for static linking (except MSVC and
-# ICC, which need '.lib').
+# All known linkers require a '.a' archive for static linking (except MSVC,
+# which needs '.lib').
 libext=a
 
 with_gnu_ld=$lt_cv_prog_gnu_ld
@@ -10975,7 +10974,7 @@ lt_prog_compiler_static=
 	lt_prog_compiler_static='-qstaticlink'
 	;;
       *)
-	case `$CC -V 2>&1 | $SED 5q` in
+	case `$CC -V 2>&1 | sed 5q` in
 	*Sun\ Ceres\ Fortran* | *Sun*Fortran*\ [1-7].* | *Sun*Fortran*\ 8.[0-3]*)
 	  # Sun Fortran 8.3 passes all unrecognized flags to the linker
 	  lt_prog_compiler_pic='-KPIC'
@@ -11398,15 +11397,15 @@ printf %s "checking whether the $compiler linker ($LD) supports shared libraries
 
   case $host_os in
   cygwin* | mingw* | pw32* | cegcc*)
-    # FIXME: the MSVC++ and ICC port hasn't been tested in a loooong time
+    # FIXME: the MSVC++ port hasn't been tested in a loooong time
     # When not using gcc, we currently assume that we are using
-    # Microsoft Visual C++ or Intel C++ Compiler.
+    # Microsoft Visual C++.
     if test yes != "$GCC"; then
       with_gnu_ld=no
     fi
     ;;
   interix*)
-    # we just hope/assume this is gcc and not c89 (= MSVC++ or ICC)
+    # we just hope/assume this is gcc and not c89 (= MSVC++)
     with_gnu_ld=yes
     ;;
   openbsd* | bitrig*)
@@ -11461,7 +11460,7 @@ printf %s "checking whether the $compiler linker ($LD) supports shared libraries
       whole_archive_flag_spec=
     fi
     supports_anon_versioning=no
-    case `$LD -v | $SED -e 's/([^)]\+)\s\+//' 2>&1` in
+    case `$LD -v | $SED -e 's/(^)\+)\s\+//' 2>&1` in
       *GNU\ gold*) supports_anon_versioning=yes ;;
       *\ [01].* | *\ 2.[0-9].* | *\ 2.10.*) ;; # catch versions < 2.11
       *\ 2.11.93.0.2\ *) supports_anon_versioning=yes ;; # RH7.3 ...
@@ -11573,7 +11572,6 @@ _LT_EOF
 	emximp -o $lib $output_objdir/$libname.def'
       old_archive_From_new_cmds='emximp -o $output_objdir/${libname}_dll.a $output_objdir/$libname.def'
       enable_shared_with_static_runtimes=yes
-      file_list_spec='@'
       ;;
 
     interix[3-9]*)
@@ -11588,7 +11586,7 @@ _LT_EOF
       # 256 KiB-aligned image base between 0x50000000 and 0x6FFC0000 at link
       # time.  Moving up from 0x10000000 also allows more sbrk(2) space.
       archive_cmds='$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-h,$soname $wl--image-base,`expr ${RANDOM-$$} % 4096 / 2 \* 262144 + 1342177280` -o $lib'
-      archive_expsym_cmds='$SED "s|^|_|" $export_symbols >$output_objdir/$soname.expsym~$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-h,$soname $wl--retain-symbols-file,$output_objdir/$soname.expsym $wl--image-base,`expr ${RANDOM-$$} % 4096 / 2 \* 262144 + 1342177280` -o $lib'
+      archive_expsym_cmds='sed "s|^|_|" $export_symbols >$output_objdir/$soname.expsym~$CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-h,$soname $wl--retain-symbols-file,$output_objdir/$soname.expsym $wl--image-base,`expr ${RANDOM-$$} % 4096 / 2 \* 262144 + 1342177280` -o $lib'
       ;;
 
     gnu* | linux* | tpf* | k*bsd*-gnu | kopensolaris*-gnu)
@@ -11631,7 +11629,7 @@ _LT_EOF
 	  compiler_needs_object=yes
 	  ;;
 	esac
-	case `$CC -V 2>&1 | $SED 5q` in
+	case `$CC -V 2>&1 | sed 5q` in
 	*Sun\ C*)			# Sun C 5.9
 	  whole_archive_flag_spec='$wl--whole-archive`new_convenience=; for conv in $convenience\"\"; do test -z \"$conv\" || new_convenience=\"$new_convenience,$conv\"; done; func_echo_all \"$new_convenience\"` $wl--no-whole-archive'
 	  compiler_needs_object=yes
@@ -11643,14 +11641,13 @@ _LT_EOF
 
         if test yes = "$supports_anon_versioning"; then
           archive_expsym_cmds='echo "{ global:" > $output_objdir/$libname.ver~
-            cat $export_symbols | $SED -e "s/\(.*\)/\1;/" >> $output_objdir/$libname.ver~
+            cat $export_symbols | sed -e "s/\(.*\)/\1;/" >> $output_objdir/$libname.ver~
             echo "local: *; };" >> $output_objdir/$libname.ver~
             $CC '"$tmp_sharedflag""$tmp_addflag"' $libobjs $deplibs $compiler_flags $wl-soname $wl$soname $wl-version-script $wl$output_objdir/$libname.ver -o $lib'
         fi
 
 	case $cc_basename in
 	tcc*)
-	  hardcode_libdir_flag_spec='$wl-rpath $wl$libdir'
 	  export_dynamic_flag_spec='-rdynamic'
 	  ;;
 	xlf* | bgf* | bgxlf* | mpixlf*)
@@ -11660,7 +11657,7 @@ _LT_EOF
 	  archive_cmds='$LD -shared $libobjs $deplibs $linker_flags -soname $soname -o $lib'
 	  if test yes = "$supports_anon_versioning"; then
 	    archive_expsym_cmds='echo "{ global:" > $output_objdir/$libname.ver~
-              cat $export_symbols | $SED -e "s/\(.*\)/\1;/" >> $output_objdir/$libname.ver~
+              cat $export_symbols | sed -e "s/\(.*\)/\1;/" >> $output_objdir/$libname.ver~
               echo "local: *; };" >> $output_objdir/$libname.ver~
               $LD -shared $libobjs $deplibs $linker_flags -soname $soname -version-script $output_objdir/$libname.ver -o $lib'
 	  fi
@@ -11792,7 +11789,7 @@ _LT_EOF
 	if $NM -V 2>&1 | $GREP 'GNU' > /dev/null; then
 	  export_symbols_cmds='$NM -Bpg $libobjs $convenience | awk '\''{ if (((\$ 2 == "T") || (\$ 2 == "D") || (\$ 2 == "B") || (\$ 2 == "W")) && (substr(\$ 3,1,1) != ".")) { if (\$ 2 == "W") { print \$ 3 " weak" } else { print \$ 3 } } }'\'' | sort -u > $export_symbols'
 	else
-	  export_symbols_cmds='`func_echo_all $NM | $SED -e '\''s/B\([^B]*\)$/P\1/'\''` -PCpgl $libobjs $convenience | awk '\''{ if (((\$ 2 == "T") || (\$ 2 == "D") || (\$ 2 == "B") || (\$ 2 == "L") || (\$ 2 == "W") || (\$ 2 == "V") || (\$ 2 == "Z")) && (substr(\$ 1,1,1) != ".")) { if ((\$ 2 == "W") || (\$ 2 == "V") || (\$ 2 == "Z")) { print \$ 1 " weak" } else { print \$ 1 } } }'\'' | sort -u > $export_symbols'
+	  export_symbols_cmds='`func_echo_all $NM | $SED -e '\''s/B\([^B]*\)$/P\1/'\''` -PCpgl $libobjs $convenience | awk '\''{ if (((\$ 2 == "T") || (\$ 2 == "D") || (\$ 2 == "B") || (\$ 2 == "W") || (\$ 2 == "V") || (\$ 2 == "Z")) && (substr(\$ 1,1,1) != ".")) { if ((\$ 2 == "W") || (\$ 2 == "V") || (\$ 2 == "Z")) { print \$ 1 " weak" } else { print \$ 1 } } }'\'' | sort -u > $export_symbols'
 	fi
 	aix_use_runtimelinking=no
 
@@ -12063,12 +12060,12 @@ fi
 
     cygwin* | mingw* | pw32* | cegcc*)
       # When not using gcc, we currently assume that we are using
-      # Microsoft Visual C++ or Intel C++ Compiler.
+      # Microsoft Visual C++.
       # hardcode_libdir_flag_spec is actually meaningless, as there is
       # no search path for DLLs.
       case $cc_basename in
-      cl* | icl*)
-	# Native MSVC or ICC
+      cl*)
+	# Native MSVC
 	hardcode_libdir_flag_spec=' '
 	allow_undefined_flag=unsupported
 	always_export_symbols=yes
@@ -12109,7 +12106,7 @@ fi
           fi'
 	;;
       *)
-	# Assume MSVC and ICC wrapper
+	# Assume MSVC wrapper
 	hardcode_libdir_flag_spec=' '
 	allow_undefined_flag=unsupported
 	# Tell ltmain to make .lib files, not .a files.
@@ -12150,8 +12147,8 @@ fi
     output_verbose_link_cmd=func_echo_all
     archive_cmds="\$CC -dynamiclib \$allow_undefined_flag -o \$lib \$libobjs \$deplibs \$compiler_flags -install_name \$rpath/\$soname \$verstring $_lt_dar_single_mod$_lt_dsymutil"
     module_cmds="\$CC \$allow_undefined_flag -o \$lib -bundle \$libobjs \$deplibs \$compiler_flags$_lt_dsymutil"
-    archive_expsym_cmds="$SED 's|^|_|' < \$export_symbols > \$output_objdir/\$libname-symbols.expsym~\$CC -dynamiclib \$allow_undefined_flag -o \$lib \$libobjs \$deplibs \$compiler_flags -install_name \$rpath/\$soname \$verstring $_lt_dar_single_mod$_lt_dar_export_syms$_lt_dsymutil"
-    module_expsym_cmds="$SED -e 's|^|_|' < \$export_symbols > \$output_objdir/\$libname-symbols.expsym~\$CC \$allow_undefined_flag -o \$lib -bundle \$libobjs \$deplibs \$compiler_flags$_lt_dar_export_syms$_lt_dsymutil"
+    archive_expsym_cmds="sed 's|^|_|' < \$export_symbols > \$output_objdir/\$libname-symbols.expsym~\$CC -dynamiclib \$allow_undefined_flag -o \$lib \$libobjs \$deplibs \$compiler_flags -install_name \$rpath/\$soname \$verstring $_lt_dar_single_mod$_lt_dar_export_syms$_lt_dsymutil"
+    module_expsym_cmds="sed -e 's|^|_|' < \$export_symbols > \$output_objdir/\$libname-symbols.expsym~\$CC \$allow_undefined_flag -o \$lib -bundle \$libobjs \$deplibs \$compiler_flags$_lt_dar_export_syms$_lt_dsymutil"
 
   else
   ld_shlibs=no
@@ -12185,7 +12182,7 @@ fi
       ;;
 
     # FreeBSD 3 and greater uses gcc -shared to do shared libraries.
-    freebsd* | dragonfly* | midnightbsd*)
+    freebsd* | dragonfly*)
       archive_cmds='$CC -shared $pic_flag -o $lib $libobjs $deplibs $compiler_flags'
       hardcode_libdir_flag_spec='-R$libdir'
       hardcode_direct=yes
@@ -12366,7 +12363,6 @@ printf "%s\n" "$lt_cv_irix_exported_symbol" >&6; }
 	# Fabrice Bellard et al's Tiny C Compiler
 	ld_shlibs=yes
 	archive_cmds='$CC -shared $pic_flag -o $lib $libobjs $deplibs $compiler_flags'
-	hardcode_libdir_flag_spec='$wl-rpath $wl$libdir'
 	;;
       esac
       ;;
@@ -12438,7 +12434,6 @@ printf "%s\n" "$lt_cv_irix_exported_symbol" >&6; }
 	emximp -o $lib $output_objdir/$libname.def'
       old_archive_From_new_cmds='emximp -o $output_objdir/${libname}_dll.a $output_objdir/$libname.def'
       enable_shared_with_static_runtimes=yes
-      file_list_spec='@'
       ;;
 
     osf3*)
@@ -13131,7 +13126,7 @@ cygwin* | mingw* | pw32* | cegcc*)
     case $host_os in
     cygwin*)
       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
-      soname_spec='`echo $libname | $SED -e 's/^lib/cyg/'``echo $release | $SED -e 's/[.]/-/g'`$versuffix$shared_ext'
+      soname_spec='`echo $libname | sed -e 's/^lib/cyg/'``echo $release | $SED -e 's/[.]/-/g'`$versuffix$shared_ext'
 
       sys_lib_search_path_spec="$sys_lib_search_path_spec /usr/lib/w32api"
       ;;
@@ -13141,14 +13136,14 @@ cygwin* | mingw* | pw32* | cegcc*)
       ;;
     pw32*)
       # pw32 DLLs use 'pw' prefix rather than 'lib'
-      library_names_spec='`echo $libname | $SED -e 's/^lib/pw/'``echo $release | $SED -e 's/[.]/-/g'`$versuffix$shared_ext'
+      library_names_spec='`echo $libname | sed -e 's/^lib/pw/'``echo $release | $SED -e 's/[.]/-/g'`$versuffix$shared_ext'
       ;;
     esac
     dynamic_linker='Win32 ld.exe'
     ;;
 
-  *,cl* | *,icl*)
-    # Native MSVC or ICC
+  *,cl*)
+    # Native MSVC
     libname_spec='$name'
     soname_spec='$libname`echo $release | $SED -e 's/[.]/-/g'`$versuffix$shared_ext'
     library_names_spec='$libname.dll.lib'
@@ -13167,7 +13162,7 @@ cygwin* | mingw* | pw32* | cegcc*)
       done
       IFS=$lt_save_ifs
       # Convert to MSYS style.
-      sys_lib_search_path_spec=`$ECHO "$sys_lib_search_path_spec" | $SED -e 's|\\\\|/|g' -e 's| \\([a-zA-Z]\\):| /\\1|g' -e 's|^ ||'`
+      sys_lib_search_path_spec=`$ECHO "$sys_lib_search_path_spec" | sed -e 's|\\\\|/|g' -e 's| \\([a-zA-Z]\\):| /\\1|g' -e 's|^ ||'`
       ;;
     cygwin*)
       # Convert to unix form, then to dos form, then back to unix form
@@ -13204,7 +13199,7 @@ cygwin* | mingw* | pw32* | cegcc*)
     ;;
 
   *)
-    # Assume MSVC and ICC wrapper
+    # Assume MSVC wrapper
     library_names_spec='$libname`echo $release | $SED -e 's/[.]/-/g'`$versuffix$shared_ext $libname.lib'
     dynamic_linker='Win32 ld.exe'
     ;;
@@ -13237,7 +13232,7 @@ dgux*)
   shlibpath_var=LD_LIBRARY_PATH
   ;;
 
-freebsd* | dragonfly* | midnightbsd*)
+freebsd* | dragonfly*)
   # DragonFly does not have aout.  When/if they implement a new
   # versioning mechanism, adjust this.
   if test -x /usr/bin/objformat; then
@@ -14402,41 +14397,30 @@ striplib=
 old_striplib=
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking whether stripping libraries is possible" >&5
 printf %s "checking whether stripping libraries is possible... " >&6; }
-if test -z "$STRIP"; then
-  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
-printf "%s\n" "no" >&6; }
-else
-  if $STRIP -V 2>&1 | $GREP "GNU strip" >/dev/null; then
-    old_striplib="$STRIP --strip-debug"
-    striplib="$STRIP --strip-unneeded"
-    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+if test -n "$STRIP" && $STRIP -V 2>&1 | $GREP "GNU strip" >/dev/null; then
+  test -z "$old_striplib" && old_striplib="$STRIP --strip-debug"
+  test -z "$striplib" && striplib="$STRIP --strip-unneeded"
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 printf "%s\n" "yes" >&6; }
-  else
-    case $host_os in
-    darwin*)
-      # FIXME - insert some real tests, host_os isn't really good enough
+else
+# FIXME - insert some real tests, host_os isn't really good enough
+  case $host_os in
+  darwin*)
+    if test -n "$STRIP"; then
       striplib="$STRIP -x"
       old_striplib="$STRIP -S"
       { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 printf "%s\n" "yes" >&6; }
-      ;;
-    freebsd*)
-      if $STRIP -V 2>&1 | $GREP "elftoolchain" >/dev/null; then
-        old_striplib="$STRIP --strip-debug"
-        striplib="$STRIP --strip-unneeded"
-        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
-printf "%s\n" "yes" >&6; }
-      else
-        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
-printf "%s\n" "no" >&6; }
-      fi
-      ;;
-    *)
+    else
       { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 printf "%s\n" "no" >&6; }
-      ;;
-    esac
-  fi
+    fi
+    ;;
+  *)
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+    ;;
+  esac
 fi
 
 
@@ -14706,9 +14690,975 @@ fi
 
 
 
-XDT_I18N()
 
-XDT_CHECK_LIBX11_REQUIRE
+    GETTEXT_PACKAGE=xfwm4
+
+printf "%s\n" "#define GETTEXT_PACKAGE \"$GETTEXT_PACKAGE\"" >>confdefs.h
+
+
+
+    ALL_LINGUAS="am ar ast be be@tarask bg bn ca cs da de el en_AU en_CA en_GB eo es et eu fa_IR fi fr gl he hr hu hy_AM hye id ie is it ja ka kk ko lt lv ms nb nl nn oc pa pl pt pt_BR ro ru si sk sl sq sr sv te th tr ug uk ur ur_PK vi zh_CN zh_HK zh_TW"
+
+    ac_fn_c_check_func "$LINENO" "bind_textdomain_codeset" "ac_cv_func_bind_textdomain_codeset"
+if test "x$ac_cv_func_bind_textdomain_codeset" = xyes
+then :
+
+fi
+
+
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for locales directory" >&5
+printf %s "checking for locales directory... " >&6; }
+
+# Check whether --with-locales-dir was given.
+if test ${with_locales_dir+y}
+then :
+  withval=$with_locales_dir; localedir=$withval
+else $as_nop
+
+    if test x"$CATOBJEXT" = x".mo"; then
+      localedir=$libdir/locale
+    else
+      localedir=$datarootdir/locale
+    fi
+
+fi
+
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $localedir" >&5
+printf "%s\n" "$localedir" >&6; }
+
+
+
+ac_ext=c
+ac_cpp='$CPP $CPPFLAGS'
+ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+ac_compiler_gnu=$ac_cv_c_compiler_gnu
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking how to run the C preprocessor" >&5
+printf %s "checking how to run the C preprocessor... " >&6; }
+# On Suns, sometimes $CPP names a directory.
+if test -n "$CPP" && test -d "$CPP"; then
+  CPP=
+fi
+if test -z "$CPP"; then
+  if test ${ac_cv_prog_CPP+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+      # Double quotes because $CC needs to be expanded
+    for CPP in "$CC -E" "$CC -E -traditional-cpp" cpp /lib/cpp
+    do
+      ac_preproc_ok=false
+for ac_c_preproc_warn_flag in '' yes
+do
+  # Use a header file that comes with gcc, so configuring glibc
+  # with a fresh cross-compiler works.
+  # On the NeXT, cc -E runs the code through the compiler's parser,
+  # not just through cpp. "Syntax error" is here to catch this case.
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+#include <limits.h>
+		     Syntax error
+_ACEOF
+if ac_fn_c_try_cpp "$LINENO"
+then :
+
+else $as_nop
+  # Broken: fails on valid input.
+continue
+fi
+rm -f conftest.err conftest.i conftest.$ac_ext
+
+  # OK, works on sane cases.  Now check whether nonexistent headers
+  # can be detected and how.
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+#include <ac_nonexistent.h>
+_ACEOF
+if ac_fn_c_try_cpp "$LINENO"
+then :
+  # Broken: success on invalid input.
+continue
+else $as_nop
+  # Passes both tests.
+ac_preproc_ok=:
+break
+fi
+rm -f conftest.err conftest.i conftest.$ac_ext
+
+done
+# Because of `break', _AC_PREPROC_IFELSE's cleaning code was skipped.
+rm -f conftest.i conftest.err conftest.$ac_ext
+if $ac_preproc_ok
+then :
+  break
+fi
+
+    done
+    ac_cv_prog_CPP=$CPP
+
+fi
+  CPP=$ac_cv_prog_CPP
+else
+  ac_cv_prog_CPP=$CPP
+fi
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $CPP" >&5
+printf "%s\n" "$CPP" >&6; }
+ac_preproc_ok=false
+for ac_c_preproc_warn_flag in '' yes
+do
+  # Use a header file that comes with gcc, so configuring glibc
+  # with a fresh cross-compiler works.
+  # On the NeXT, cc -E runs the code through the compiler's parser,
+  # not just through cpp. "Syntax error" is here to catch this case.
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+#include <limits.h>
+		     Syntax error
+_ACEOF
+if ac_fn_c_try_cpp "$LINENO"
+then :
+
+else $as_nop
+  # Broken: fails on valid input.
+continue
+fi
+rm -f conftest.err conftest.i conftest.$ac_ext
+
+  # OK, works on sane cases.  Now check whether nonexistent headers
+  # can be detected and how.
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+#include <ac_nonexistent.h>
+_ACEOF
+if ac_fn_c_try_cpp "$LINENO"
+then :
+  # Broken: success on invalid input.
+continue
+else $as_nop
+  # Passes both tests.
+ac_preproc_ok=:
+break
+fi
+rm -f conftest.err conftest.i conftest.$ac_ext
+
+done
+# Because of `break', _AC_PREPROC_IFELSE's cleaning code was skipped.
+rm -f conftest.i conftest.err conftest.$ac_ext
+if $ac_preproc_ok
+then :
+
+else $as_nop
+  { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+printf "%s\n" "$as_me: error: in \`$ac_pwd':" >&2;}
+as_fn_error $? "C preprocessor \"$CPP\" fails sanity check
+See \`config.log' for more details" "$LINENO" 5; }
+fi
+
+ac_ext=c
+ac_cpp='$CPP $CPPFLAGS'
+ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+ac_compiler_gnu=$ac_cv_c_compiler_gnu
+
+
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for X" >&5
+printf %s "checking for X... " >&6; }
+
+
+# Check whether --with-x was given.
+if test ${with_x+y}
+then :
+  withval=$with_x;
+fi
+
+# $have_x is `yes', `no', `disabled', or empty when we do not yet know.
+if test "x$with_x" = xno; then
+  # The user explicitly disabled X.
+  have_x=disabled
+else
+  case $x_includes,$x_libraries in #(
+    *\'*) as_fn_error $? "cannot use X directory names containing '" "$LINENO" 5;; #(
+    *,NONE | NONE,*) if test ${ac_cv_have_x+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  # One or both of the vars are not set, and there is no cached value.
+ac_x_includes=no
+ac_x_libraries=no
+# Do we need to do anything special at all?
+ac_save_LIBS=$LIBS
+LIBS="-lX11 $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+#include <X11/Xlib.h>
+int
+main (void)
+{
+XrmInitialize ()
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"
+then :
+  # We can compile and link X programs with no special options.
+  ac_x_includes=
+  ac_x_libraries=
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS="$ac_save_LIBS"
+# If that didn't work, only try xmkmf and file system searches
+# for native compilation.
+if test x"$ac_x_includes" = xno && test "$cross_compiling" = no
+then :
+  rm -f -r conftest.dir
+if mkdir conftest.dir; then
+  cd conftest.dir
+  cat >Imakefile <<'_ACEOF'
+incroot:
+	@echo incroot='${INCROOT}'
+usrlibdir:
+	@echo usrlibdir='${USRLIBDIR}'
+libdir:
+	@echo libdir='${LIBDIR}'
+_ACEOF
+  if (export CC; ${XMKMF-xmkmf}) >/dev/null 2>/dev/null && test -f Makefile; then
+    # GNU make sometimes prints "make[1]: Entering ...", which would confuse us.
+    for ac_var in incroot usrlibdir libdir; do
+      eval "ac_im_$ac_var=\`\${MAKE-make} $ac_var 2>/dev/null | sed -n 's/^$ac_var=//p'\`"
+    done
+    # Open Windows xmkmf reportedly sets LIBDIR instead of USRLIBDIR.
+    for ac_extension in a so sl dylib la dll; do
+      if test ! -f "$ac_im_usrlibdir/libX11.$ac_extension" &&
+	 test -f "$ac_im_libdir/libX11.$ac_extension"; then
+	ac_im_usrlibdir=$ac_im_libdir; break
+      fi
+    done
+    # Screen out bogus values from the imake configuration.  They are
+    # bogus both because they are the default anyway, and because
+    # using them would break gcc on systems where it needs fixed includes.
+    case $ac_im_incroot in
+	/usr/include) ac_x_includes= ;;
+	*) test -f "$ac_im_incroot/X11/Xos.h" && ac_x_includes=$ac_im_incroot;;
+    esac
+    case $ac_im_usrlibdir in
+	/usr/lib | /usr/lib64 | /lib | /lib64) ;;
+	*) test -d "$ac_im_usrlibdir" && ac_x_libraries=$ac_im_usrlibdir ;;
+    esac
+  fi
+  cd ..
+  rm -f -r conftest.dir
+fi
+
+  # Standard set of common directories for X headers.
+# Check X11 before X11Rn because it is often a symlink to the current release.
+ac_x_header_dirs='
+/usr/X11/include
+/usr/X11R7/include
+/usr/X11R6/include
+/usr/X11R5/include
+/usr/X11R4/include
+
+/usr/include/X11
+/usr/include/X11R7
+/usr/include/X11R6
+/usr/include/X11R5
+/usr/include/X11R4
+
+/usr/local/X11/include
+/usr/local/X11R7/include
+/usr/local/X11R6/include
+/usr/local/X11R5/include
+/usr/local/X11R4/include
+
+/usr/local/include/X11
+/usr/local/include/X11R7
+/usr/local/include/X11R6
+/usr/local/include/X11R5
+/usr/local/include/X11R4
+
+/opt/X11/include
+
+/usr/X386/include
+/usr/x386/include
+/usr/XFree86/include/X11
+
+/usr/include
+/usr/local/include
+/usr/unsupported/include
+/usr/athena/include
+/usr/local/x11r5/include
+/usr/lpp/Xamples/include
+
+/usr/openwin/include
+/usr/openwin/share/include'
+
+if test "$ac_x_includes" = no; then
+  # Guess where to find include files, by looking for Xlib.h.
+  # First, try using that file with no special directory specified.
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+#include <X11/Xlib.h>
+_ACEOF
+if ac_fn_c_try_cpp "$LINENO"
+then :
+  # We can compile using X headers with no special include directory.
+ac_x_includes=
+else $as_nop
+  for ac_dir in $ac_x_header_dirs; do
+  if test -r "$ac_dir/X11/Xlib.h"; then
+    ac_x_includes=$ac_dir
+    break
+  fi
+done
+fi
+rm -f conftest.err conftest.i conftest.$ac_ext
+fi # $ac_x_includes = no
+
+if test "$ac_x_libraries" = no; then
+  # Check for the libraries.
+  # See if we find them without any special options.
+  # Don't add to $LIBS permanently.
+  ac_save_LIBS=$LIBS
+  LIBS="-lX11 $LIBS"
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+#include <X11/Xlib.h>
+int
+main (void)
+{
+XrmInitialize ()
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"
+then :
+  LIBS=$ac_save_LIBS
+# We can link X programs with no special library path.
+ac_x_libraries=
+else $as_nop
+  LIBS=$ac_save_LIBS
+for ac_dir in `printf "%s\n" "$ac_x_includes $ac_x_header_dirs" | sed s/include/lib/g`
+do
+  # Don't even attempt the hair of trying to link an X program!
+  for ac_extension in a so sl dylib la dll; do
+    if test -r "$ac_dir/libX11.$ac_extension"; then
+      ac_x_libraries=$ac_dir
+      break 2
+    fi
+  done
+done
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam \
+    conftest$ac_exeext conftest.$ac_ext
+fi # $ac_x_libraries = no
+
+fi
+# Record the results.
+case $ac_x_includes,$ac_x_libraries in #(
+  no,* | *,no | *\'*) :
+    # Didn't find X, or a directory has "'" in its name.
+    ac_cv_have_x="have_x=no" ;; #(
+  *) :
+    # Record where we found X for the cache.
+    ac_cv_have_x="have_x=yes\
+	ac_x_includes='$ac_x_includes'\
+	ac_x_libraries='$ac_x_libraries'" ;;
+esac
+fi
+;; #(
+    *) have_x=yes;;
+  esac
+  eval "$ac_cv_have_x"
+fi # $with_x != no
+
+if test "$have_x" != yes; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $have_x" >&5
+printf "%s\n" "$have_x" >&6; }
+  no_x=yes
+else
+  # If each of the values was on the command line, it overrides each guess.
+  test "x$x_includes" = xNONE && x_includes=$ac_x_includes
+  test "x$x_libraries" = xNONE && x_libraries=$ac_x_libraries
+  # Update the cache value to reflect the command line values.
+  ac_cv_have_x="have_x=yes\
+	ac_x_includes='$x_includes'\
+	ac_x_libraries='$x_libraries'"
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: libraries $x_libraries, headers $x_includes" >&5
+printf "%s\n" "libraries $x_libraries, headers $x_includes" >&6; }
+fi
+
+if test "$no_x" = yes; then
+  # Not all programs may use this symbol, but it does not hurt to define it.
+
+printf "%s\n" "#define X_DISPLAY_MISSING 1" >>confdefs.h
+
+  X_CFLAGS= X_PRE_LIBS= X_LIBS= X_EXTRA_LIBS=
+else
+  if test -n "$x_includes"; then
+    X_CFLAGS="$X_CFLAGS -I$x_includes"
+  fi
+
+  # It would also be nice to do this for all -L options, not just this one.
+  if test -n "$x_libraries"; then
+    X_LIBS="$X_LIBS -L$x_libraries"
+    # For Solaris; some versions of Sun CC require a space after -R and
+    # others require no space.  Words are not sufficient . . . .
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking whether -R must be followed by a space" >&5
+printf %s "checking whether -R must be followed by a space... " >&6; }
+    ac_xsave_LIBS=$LIBS; LIBS="$LIBS -R$x_libraries"
+    ac_xsave_c_werror_flag=$ac_c_werror_flag
+    ac_c_werror_flag=yes
+    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+int
+main (void)
+{
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"
+then :
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+       X_LIBS="$X_LIBS -R$x_libraries"
+else $as_nop
+  LIBS="$ac_xsave_LIBS -R $x_libraries"
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+int
+main (void)
+{
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"
+then :
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+printf "%s\n" "yes" >&6; }
+	  X_LIBS="$X_LIBS -R $x_libraries"
+else $as_nop
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: neither works" >&5
+printf "%s\n" "neither works" >&6; }
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam \
+    conftest$ac_exeext conftest.$ac_ext
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam \
+    conftest$ac_exeext conftest.$ac_ext
+    ac_c_werror_flag=$ac_xsave_c_werror_flag
+    LIBS=$ac_xsave_LIBS
+  fi
+
+  # Check for system-dependent libraries X programs must link with.
+  # Do this before checking for the system-independent R6 libraries
+  # (-lICE), since we may need -lsocket or whatever for X linking.
+
+  if test "$ISC" = yes; then
+    X_EXTRA_LIBS="$X_EXTRA_LIBS -lnsl_s -linet"
+  else
+    # Martyn Johnson says this is needed for Ultrix, if the X
+    # libraries were built with DECnet support.  And Karl Berry says
+    # the Alpha needs dnet_stub (dnet does not exist).
+    ac_xsave_LIBS="$LIBS"; LIBS="$LIBS $X_LIBS -lX11"
+    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+char XOpenDisplay ();
+int
+main (void)
+{
+return XOpenDisplay ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"
+then :
+
+else $as_nop
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for dnet_ntoa in -ldnet" >&5
+printf %s "checking for dnet_ntoa in -ldnet... " >&6; }
+if test ${ac_cv_lib_dnet_dnet_ntoa+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-ldnet  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+char dnet_ntoa ();
+int
+main (void)
+{
+return dnet_ntoa ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"
+then :
+  ac_cv_lib_dnet_dnet_ntoa=yes
+else $as_nop
+  ac_cv_lib_dnet_dnet_ntoa=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_dnet_dnet_ntoa" >&5
+printf "%s\n" "$ac_cv_lib_dnet_dnet_ntoa" >&6; }
+if test "x$ac_cv_lib_dnet_dnet_ntoa" = xyes
+then :
+  X_EXTRA_LIBS="$X_EXTRA_LIBS -ldnet"
+fi
+
+    if test $ac_cv_lib_dnet_dnet_ntoa = no; then
+      { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for dnet_ntoa in -ldnet_stub" >&5
+printf %s "checking for dnet_ntoa in -ldnet_stub... " >&6; }
+if test ${ac_cv_lib_dnet_stub_dnet_ntoa+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-ldnet_stub  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+char dnet_ntoa ();
+int
+main (void)
+{
+return dnet_ntoa ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"
+then :
+  ac_cv_lib_dnet_stub_dnet_ntoa=yes
+else $as_nop
+  ac_cv_lib_dnet_stub_dnet_ntoa=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_dnet_stub_dnet_ntoa" >&5
+printf "%s\n" "$ac_cv_lib_dnet_stub_dnet_ntoa" >&6; }
+if test "x$ac_cv_lib_dnet_stub_dnet_ntoa" = xyes
+then :
+  X_EXTRA_LIBS="$X_EXTRA_LIBS -ldnet_stub"
+fi
+
+    fi
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam \
+    conftest$ac_exeext conftest.$ac_ext
+    LIBS="$ac_xsave_LIBS"
+
+    # msh@cis.ufl.edu says -lnsl (and -lsocket) are needed for his 386/AT,
+    # to get the SysV transport functions.
+    # Chad R. Larson says the Pyramis MIS-ES running DC/OSx (SVR4)
+    # needs -lnsl.
+    # The nsl library prevents programs from opening the X display
+    # on Irix 5.2, according to T.E. Dickey.
+    # The functions gethostbyname, getservbyname, and inet_addr are
+    # in -lbsd on LynxOS 3.0.1/i386, according to Lars Hecking.
+    ac_fn_c_check_func "$LINENO" "gethostbyname" "ac_cv_func_gethostbyname"
+if test "x$ac_cv_func_gethostbyname" = xyes
+then :
+
+fi
+
+    if test $ac_cv_func_gethostbyname = no; then
+      { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for gethostbyname in -lnsl" >&5
+printf %s "checking for gethostbyname in -lnsl... " >&6; }
+if test ${ac_cv_lib_nsl_gethostbyname+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lnsl  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+char gethostbyname ();
+int
+main (void)
+{
+return gethostbyname ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"
+then :
+  ac_cv_lib_nsl_gethostbyname=yes
+else $as_nop
+  ac_cv_lib_nsl_gethostbyname=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_nsl_gethostbyname" >&5
+printf "%s\n" "$ac_cv_lib_nsl_gethostbyname" >&6; }
+if test "x$ac_cv_lib_nsl_gethostbyname" = xyes
+then :
+  X_EXTRA_LIBS="$X_EXTRA_LIBS -lnsl"
+fi
+
+      if test $ac_cv_lib_nsl_gethostbyname = no; then
+	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for gethostbyname in -lbsd" >&5
+printf %s "checking for gethostbyname in -lbsd... " >&6; }
+if test ${ac_cv_lib_bsd_gethostbyname+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lbsd  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+char gethostbyname ();
+int
+main (void)
+{
+return gethostbyname ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"
+then :
+  ac_cv_lib_bsd_gethostbyname=yes
+else $as_nop
+  ac_cv_lib_bsd_gethostbyname=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_bsd_gethostbyname" >&5
+printf "%s\n" "$ac_cv_lib_bsd_gethostbyname" >&6; }
+if test "x$ac_cv_lib_bsd_gethostbyname" = xyes
+then :
+  X_EXTRA_LIBS="$X_EXTRA_LIBS -lbsd"
+fi
+
+      fi
+    fi
+
+    # lieder@skyler.mavd.honeywell.com says without -lsocket,
+    # socket/setsockopt and other routines are undefined under SCO ODT
+    # 2.0.  But -lsocket is broken on IRIX 5.2 (and is not necessary
+    # on later versions), says Simon Leinen: it contains gethostby*
+    # variants that don't use the name server (or something).  -lsocket
+    # must be given before -lnsl if both are needed.  We assume that
+    # if connect needs -lnsl, so does gethostbyname.
+    ac_fn_c_check_func "$LINENO" "connect" "ac_cv_func_connect"
+if test "x$ac_cv_func_connect" = xyes
+then :
+
+fi
+
+    if test $ac_cv_func_connect = no; then
+      { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for connect in -lsocket" >&5
+printf %s "checking for connect in -lsocket... " >&6; }
+if test ${ac_cv_lib_socket_connect+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lsocket $X_EXTRA_LIBS $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+char connect ();
+int
+main (void)
+{
+return connect ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"
+then :
+  ac_cv_lib_socket_connect=yes
+else $as_nop
+  ac_cv_lib_socket_connect=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_socket_connect" >&5
+printf "%s\n" "$ac_cv_lib_socket_connect" >&6; }
+if test "x$ac_cv_lib_socket_connect" = xyes
+then :
+  X_EXTRA_LIBS="-lsocket $X_EXTRA_LIBS"
+fi
+
+    fi
+
+    # Guillermo Gomez says -lposix is necessary on A/UX.
+    ac_fn_c_check_func "$LINENO" "remove" "ac_cv_func_remove"
+if test "x$ac_cv_func_remove" = xyes
+then :
+
+fi
+
+    if test $ac_cv_func_remove = no; then
+      { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for remove in -lposix" >&5
+printf %s "checking for remove in -lposix... " >&6; }
+if test ${ac_cv_lib_posix_remove+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lposix  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+char remove ();
+int
+main (void)
+{
+return remove ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"
+then :
+  ac_cv_lib_posix_remove=yes
+else $as_nop
+  ac_cv_lib_posix_remove=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_posix_remove" >&5
+printf "%s\n" "$ac_cv_lib_posix_remove" >&6; }
+if test "x$ac_cv_lib_posix_remove" = xyes
+then :
+  X_EXTRA_LIBS="$X_EXTRA_LIBS -lposix"
+fi
+
+    fi
+
+    # BSDI BSD/OS 2.1 needs -lipc for XOpenDisplay.
+    ac_fn_c_check_func "$LINENO" "shmat" "ac_cv_func_shmat"
+if test "x$ac_cv_func_shmat" = xyes
+then :
+
+fi
+
+    if test $ac_cv_func_shmat = no; then
+      { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for shmat in -lipc" >&5
+printf %s "checking for shmat in -lipc... " >&6; }
+if test ${ac_cv_lib_ipc_shmat+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lipc  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+char shmat ();
+int
+main (void)
+{
+return shmat ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"
+then :
+  ac_cv_lib_ipc_shmat=yes
+else $as_nop
+  ac_cv_lib_ipc_shmat=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_ipc_shmat" >&5
+printf "%s\n" "$ac_cv_lib_ipc_shmat" >&6; }
+if test "x$ac_cv_lib_ipc_shmat" = xyes
+then :
+  X_EXTRA_LIBS="$X_EXTRA_LIBS -lipc"
+fi
+
+    fi
+  fi
+
+  # Check for libraries that X11R6 Xt/Xaw programs need.
+  ac_save_LDFLAGS=$LDFLAGS
+  test -n "$x_libraries" && LDFLAGS="$LDFLAGS -L$x_libraries"
+  # SM needs ICE to (dynamically) link under SunOS 4.x (so we have to
+  # check for ICE first), but we must link in the order -lSM -lICE or
+  # we get undefined symbols.  So assume we have SM if we have ICE.
+  # These have to be linked with before -lX11, unlike the other
+  # libraries we check for below, so use a different variable.
+  # John Interrante, Karl Berry
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for IceConnectionNumber in -lICE" >&5
+printf %s "checking for IceConnectionNumber in -lICE... " >&6; }
+if test ${ac_cv_lib_ICE_IceConnectionNumber+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lICE $X_EXTRA_LIBS $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+char IceConnectionNumber ();
+int
+main (void)
+{
+return IceConnectionNumber ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"
+then :
+  ac_cv_lib_ICE_IceConnectionNumber=yes
+else $as_nop
+  ac_cv_lib_ICE_IceConnectionNumber=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_ICE_IceConnectionNumber" >&5
+printf "%s\n" "$ac_cv_lib_ICE_IceConnectionNumber" >&6; }
+if test "x$ac_cv_lib_ICE_IceConnectionNumber" = xyes
+then :
+  X_PRE_LIBS="$X_PRE_LIBS -lSM -lICE"
+fi
+
+  LDFLAGS=$ac_save_LDFLAGS
+
+fi
+
+
+
+
+  LIBX11_CFLAGS= LIBX11_LDFLAGS= LIBX11_LIBS=
+  if test x"$no_x" != x"yes"; then
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for main in -lX11" >&5
+printf %s "checking for main in -lX11... " >&6; }
+if test ${ac_cv_lib_X11_main+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lX11 $X_CFLAGS $X_PRE_LIBS $X_EXTRA_LIBS $X_LIBS $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+int
+main (void)
+{
+return main ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"
+then :
+  ac_cv_lib_X11_main=yes
+else $as_nop
+  ac_cv_lib_X11_main=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_X11_main" >&5
+printf "%s\n" "$ac_cv_lib_X11_main" >&6; }
+if test "x$ac_cv_lib_X11_main" = xyes
+then :
+
+
+printf "%s\n" "#define HAVE_LIBX11 1" >>confdefs.h
+
+      LIBX11_CFLAGS="$X_CFLAGS"
+      for option in $X_PRE_LIBS $X_EXTRA_LIBS $X_LIBS; do
+      	case "$option" in
+        -L*)
+          path=`echo $option | sed 's/^-L//'`
+          if test x"$path" != x""; then
+            LIBX11_LDFLAGS="$LIBX11_LDFLAGS -L$path"
+          fi
+          ;;
+        *)
+          LIBX11_LIBS="$LIBX11_LIBS $option"
+          ;;
+        esac
+      done
+      if ! echo $LIBX11_LIBS | grep -- '-lX11' >/dev/null; then
+        LIBX11_LIBS="$LIBX11_LIBS -lX11"
+      fi
+
+fi
+
+  fi
+
+
+
+
+
+
+
+  if test x"$no_x" = x"yes"; then
+    as_fn_error $? "X Window system libraries and header files are required" "$LINENO" 5
+  fi
+
 
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for XShapeCombineShape in -lXext" >&5
 printf %s "checking for XShapeCombineShape in -lXext... " >&6; }
@@ -14866,214 +15816,12 @@ printf "%s\n" "#define HAVE_XRES 1" >>confdefs.h
 fi
 
 
-XDT_CHECK_PACKAGE(GTK, gtk+-3.0, gtk_minimum_version)
-XDT_CHECK_PACKAGE(LIBXFCE4UTIL, libxfce4util-1.0, xfce_minimum_version)
-XDT_CHECK_PACKAGE(LIBXFCE4UI, libxfce4ui-2, libxfce4ui_minimum_version)
-XDT_CHECK_PACKAGE(LIBXFCE4KBD_PRIVATE, libxfce4kbd-private-3, libxfce4kbd_private_minimum_version)
-XDT_CHECK_PACKAGE(LIBXFCONF, libxfconf-0, xfconf_minimum_version,,
-
-  AC_DEFINE([XFCONF_LEGACY], [], [Use dbus-glib provided by xfconf 4.12 to obtain array type])
-  XDT_CHECK_PACKAGE([LIBXFCONF], [libxfconf-0], [xfconf_legacy_version])
-)
-XDT_CHECK_PACKAGE(LIBWNCK, libwnck-3.0, wnck_minimum_version)
-XDT_CHECK_PACKAGE(XINERAMA, xinerama, 0)
-
-if test "x$USE_MAINTAINER_MODE" = "xyes"
-then :
-
-  # Extract the first word of "xdt-csource", so it can be a program name with args.
-set dummy xdt-csource; ac_word=$2
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
-printf %s "checking for $ac_word... " >&6; }
-if test ${ac_cv_path_XDT_CSOURCE+y}
-then :
-  printf %s "(cached) " >&6
-else $as_nop
-  case $XDT_CSOURCE in
-  [\\/]* | ?:[\\/]*)
-  ac_cv_path_XDT_CSOURCE="$XDT_CSOURCE" # Let the user override the test with a path.
-  ;;
-  *)
-  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  case $as_dir in #(((
-    '') as_dir=./ ;;
-    */) ;;
-    *) as_dir=$as_dir/ ;;
-  esac
-    for ac_exec_ext in '' $ac_executable_extensions; do
-  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
-    ac_cv_path_XDT_CSOURCE="$as_dir$ac_word$ac_exec_ext"
-    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-  done
-IFS=$as_save_IFS
-
-  ;;
-esac
-fi
-XDT_CSOURCE=$ac_cv_path_XDT_CSOURCE
-if test -n "$XDT_CSOURCE"; then
-  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $XDT_CSOURCE" >&5
-printf "%s\n" "$XDT_CSOURCE" >&6; }
-else
-  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
-printf "%s\n" "no" >&6; }
-fi
 
 
-  if test -z "$XDT_CSOURCE"
-then :
-
-    echo '*** The program "xdt-csource" is required to build when --enable-maintainer-mode'
-    echo '*** is specified.'
-    exit 1
-
-fi
-  # Extract the first word of "glib-compile-resources", so it can be a program name with args.
-set dummy glib-compile-resources; ac_word=$2
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
-printf %s "checking for $ac_word... " >&6; }
-if test ${ac_cv_path_GLIB_COMPILE_RESOURCES+y}
-then :
-  printf %s "(cached) " >&6
-else $as_nop
-  case $GLIB_COMPILE_RESOURCES in
-  [\\/]* | ?:[\\/]*)
-  ac_cv_path_GLIB_COMPILE_RESOURCES="$GLIB_COMPILE_RESOURCES" # Let the user override the test with a path.
-  ;;
-  *)
-  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  case $as_dir in #(((
-    '') as_dir=./ ;;
-    */) ;;
-    *) as_dir=$as_dir/ ;;
-  esac
-    for ac_exec_ext in '' $ac_executable_extensions; do
-  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
-    ac_cv_path_GLIB_COMPILE_RESOURCES="$as_dir$ac_word$ac_exec_ext"
-    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-  done
-IFS=$as_save_IFS
-
-  ;;
-esac
-fi
-GLIB_COMPILE_RESOURCES=$ac_cv_path_GLIB_COMPILE_RESOURCES
-if test -n "$GLIB_COMPILE_RESOURCES"; then
-  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $GLIB_COMPILE_RESOURCES" >&5
-printf "%s\n" "$GLIB_COMPILE_RESOURCES" >&6; }
-else
-  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
-printf "%s\n" "no" >&6; }
-fi
+  # minimum supported version of pkg-config
+  xdt_cv_PKG_CONFIG_MIN_VERSION=0.9.0
 
 
-  if test -z "$GLIB_COMPILE_RESOURCES"
-then :
-
-    echo '*** The program "glib-compile-resources" is required to build when --enable-maintainer-mode'
-    echo '*** is specified.'
-    exit 1
-
-fi
-
-fi
-
-EPOXY_FOUND="no"
-XDT_CHECK_OPTIONAL_PACKAGE(EPOXY,
-                       epoxy, libepoxy_minimum_version,
-                       epoxy,
-                       library for handling OpenGL function pointer management, yes)
-
-LIBSTARTUP_NOTIFICATION_FOUND="no"
-XDT_CHECK_OPTIONAL_PACKAGE(LIBSTARTUP_NOTIFICATION,
-                       libstartup-notification-1.0, startup_notification_minimum_version,
-                       startup-notification,
-                       startup notification library, yes)
-
-
-XSYNC_LIBS=
-# Check whether --enable-xsync was given.
-if test ${enable_xsync+y}
-then :
-  enableval=$enable_xsync;
-else $as_nop
-  enable_xsync=yes
-fi
-
-have_xsync="no"
-if test x"$enable_xsync" = x"yes"; then
-  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for XSyncCreateFence in -lXext" >&5
-printf %s "checking for XSyncCreateFence in -lXext... " >&6; }
-if test ${ac_cv_lib_Xext_XSyncCreateFence+y}
-then :
-  printf %s "(cached) " >&6
-else $as_nop
-  ac_check_lib_save_LIBS=$LIBS
-LIBS="-lXext  $LIBS"
-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-
-/* Override any GCC internal prototype to avoid an error.
-   Use char because int might match the return type of a GCC
-   builtin and then its argument prototype would still apply.  */
-char XSyncCreateFence ();
-int
-main (void)
-{
-return XSyncCreateFence ();
-  ;
-  return 0;
-}
-_ACEOF
-if ac_fn_c_try_link "$LINENO"
-then :
-  ac_cv_lib_Xext_XSyncCreateFence=yes
-else $as_nop
-  ac_cv_lib_Xext_XSyncCreateFence=no
-fi
-rm -f core conftest.err conftest.$ac_objext conftest.beam \
-    conftest$ac_exeext conftest.$ac_ext
-LIBS=$ac_check_lib_save_LIBS
-fi
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_Xext_XSyncCreateFence" >&5
-printf "%s\n" "$ac_cv_lib_Xext_XSyncCreateFence" >&6; }
-if test "x$ac_cv_lib_Xext_XSyncCreateFence" = xyes
-then :
-   have_xsync="yes"
-        XSYNC_LIBS=" -lXext"
-
-printf "%s\n" "#define HAVE_XSYNC 1" >>confdefs.h
-
-
-fi
-
-fi
-
-
-# Check whether --enable-render was given.
-if test ${enable_render+y}
-then :
-  enableval=$enable_render;
-else $as_nop
-  enable_render=yes
-fi
-
-have_render="no"
-RENDER_LIBS=
-if test x"$enable_render" = x"yes"; then
-  if $PKG_CONFIG --print-errors --exists xrender 2>&1; then
 
 
 
@@ -15192,7 +15940,7 @@ fi
 
 fi
 if test -n "$PKG_CONFIG"; then
-	_pkg_min_version=0.9.0
+	_pkg_min_version=$xdt_cv_PKG_CONFIG_MIN_VERSION
 	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking pkg-config is at least version $_pkg_min_version" >&5
 printf %s "checking pkg-config is at least version $_pkg_min_version... " >&6; }
 	if $PKG_CONFIG --atleast-pkgconfig-version $_pkg_min_version; then
@@ -15204,6 +15952,2477 @@ printf "%s\n" "no" >&6; }
 		PKG_CONFIG=""
 	fi
 fi
+
+      if test x"$PKG_CONFIG" = x""; then
+        echo
+        echo "*** Your version of pkg-config is too old. You need atleast"
+        echo "*** pkg-config $xdt_cv_PKG_CONFIG_MIN_VERSION or newer. You can download pkg-config"
+        echo "*** from the freedesktop.org software repository at"
+        echo "***"
+        echo "***    https://www.freedesktop.org/wiki/Software/pkg-config/"
+        echo "***"
+        exit 1;
+      fi
+
+
+
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for gtk+-3.0 >= 3.24.0" >&5
+printf %s "checking for gtk+-3.0 >= 3.24.0... " >&6; }
+  if $PKG_CONFIG "--atleast-version=3.24.0" "gtk+-3.0" >/dev/null 2>&1; then
+    GTK_VERSION=`$PKG_CONFIG --modversion "gtk+-3.0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $GTK_VERSION" >&5
+printf "%s\n" "$GTK_VERSION" >&6; }
+
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking GTK_CFLAGS" >&5
+printf %s "checking GTK_CFLAGS... " >&6; }
+    GTK_CFLAGS=`$PKG_CONFIG --cflags "gtk+-3.0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $GTK_CFLAGS" >&5
+printf "%s\n" "$GTK_CFLAGS" >&6; }
+
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking GTK_LIBS" >&5
+printf %s "checking GTK_LIBS... " >&6; }
+    GTK_LIBS=`$PKG_CONFIG --libs "gtk+-3.0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $GTK_LIBS" >&5
+printf "%s\n" "$GTK_LIBS" >&6; }
+
+    GTK_REQUIRED_VERSION=3.24.0
+
+
+
+
+
+
+    if test x"GTK" = x"GLIB"; then
+
+printf "%s\n" "#define G_LOG_USE_STRUCTURED 1" >>confdefs.h
+
+    fi
+
+
+
+
+  elif $PKG_CONFIG --exists "gtk+-3.0" >/dev/null 2>&1; then
+    xdt_cv_version=`$PKG_CONFIG --modversion "gtk+-3.0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: found, but $xdt_cv_version" >&5
+printf "%s\n" "found, but $xdt_cv_version" >&6; }
+
+
+      echo "*** The required package gtk+-3.0 was found on your system,"
+      echo "*** but the installed version ($xdt_cv_version) is too old."
+      echo "*** Please upgrade gtk+-3.0 to atleast version 3.24.0, or adjust"
+      echo "*** the PKG_CONFIG_PATH environment variable if you installed"
+      echo "*** the new version of the package in a nonstandard prefix so"
+      echo "*** pkg-config is able to find it."
+      exit 1
+
+  else
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: not found" >&5
+printf "%s\n" "not found" >&6; }
+
+
+      echo "*** The required package gtk+-3.0 was not found on your system."
+      echo "*** Please install gtk+-3.0 (atleast version 3.24.0) or adjust"
+      echo "*** the PKG_CONFIG_PATH environment variable if you"
+      echo "*** installed the package in a nonstandard prefix so that"
+      echo "*** pkg-config is able to find it."
+      exit 1
+
+  fi
+
+
+
+  # minimum supported version of pkg-config
+  xdt_cv_PKG_CONFIG_MIN_VERSION=0.9.0
+
+
+
+
+
+
+
+
+
+if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
+	if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}pkg-config", so it can be a program name with args.
+set dummy ${ac_tool_prefix}pkg-config; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_path_PKG_CONFIG+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  case $PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_path_PKG_CONFIG="$as_dir$ac_word$ac_exec_ext"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+PKG_CONFIG=$ac_cv_path_PKG_CONFIG
+if test -n "$PKG_CONFIG"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $PKG_CONFIG" >&5
+printf "%s\n" "$PKG_CONFIG" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+
+fi
+if test -z "$ac_cv_path_PKG_CONFIG"; then
+  ac_pt_PKG_CONFIG=$PKG_CONFIG
+  # Extract the first word of "pkg-config", so it can be a program name with args.
+set dummy pkg-config; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_path_ac_pt_PKG_CONFIG+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  case $ac_pt_PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_ac_pt_PKG_CONFIG="$ac_pt_PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_path_ac_pt_PKG_CONFIG="$as_dir$ac_word$ac_exec_ext"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+ac_pt_PKG_CONFIG=$ac_cv_path_ac_pt_PKG_CONFIG
+if test -n "$ac_pt_PKG_CONFIG"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_pt_PKG_CONFIG" >&5
+printf "%s\n" "$ac_pt_PKG_CONFIG" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+  if test "x$ac_pt_PKG_CONFIG" = x; then
+    PKG_CONFIG=""
+  else
+    case $cross_compiling:$ac_tool_warned in
+yes:)
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
+printf "%s\n" "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
+ac_tool_warned=yes ;;
+esac
+    PKG_CONFIG=$ac_pt_PKG_CONFIG
+  fi
+else
+  PKG_CONFIG="$ac_cv_path_PKG_CONFIG"
+fi
+
+fi
+if test -n "$PKG_CONFIG"; then
+	_pkg_min_version=$xdt_cv_PKG_CONFIG_MIN_VERSION
+	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking pkg-config is at least version $_pkg_min_version" >&5
+printf %s "checking pkg-config is at least version $_pkg_min_version... " >&6; }
+	if $PKG_CONFIG --atleast-pkgconfig-version $_pkg_min_version; then
+		{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+printf "%s\n" "yes" >&6; }
+	else
+		{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+		PKG_CONFIG=""
+	fi
+fi
+
+      if test x"$PKG_CONFIG" = x""; then
+        echo
+        echo "*** Your version of pkg-config is too old. You need atleast"
+        echo "*** pkg-config $xdt_cv_PKG_CONFIG_MIN_VERSION or newer. You can download pkg-config"
+        echo "*** from the freedesktop.org software repository at"
+        echo "***"
+        echo "***    https://www.freedesktop.org/wiki/Software/pkg-config/"
+        echo "***"
+        exit 1;
+      fi
+
+
+
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for libxfce4util-1.0 >= 4.8.0" >&5
+printf %s "checking for libxfce4util-1.0 >= 4.8.0... " >&6; }
+  if $PKG_CONFIG "--atleast-version=4.8.0" "libxfce4util-1.0" >/dev/null 2>&1; then
+    LIBXFCE4UTIL_VERSION=`$PKG_CONFIG --modversion "libxfce4util-1.0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $LIBXFCE4UTIL_VERSION" >&5
+printf "%s\n" "$LIBXFCE4UTIL_VERSION" >&6; }
+
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking LIBXFCE4UTIL_CFLAGS" >&5
+printf %s "checking LIBXFCE4UTIL_CFLAGS... " >&6; }
+    LIBXFCE4UTIL_CFLAGS=`$PKG_CONFIG --cflags "libxfce4util-1.0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $LIBXFCE4UTIL_CFLAGS" >&5
+printf "%s\n" "$LIBXFCE4UTIL_CFLAGS" >&6; }
+
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking LIBXFCE4UTIL_LIBS" >&5
+printf %s "checking LIBXFCE4UTIL_LIBS... " >&6; }
+    LIBXFCE4UTIL_LIBS=`$PKG_CONFIG --libs "libxfce4util-1.0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $LIBXFCE4UTIL_LIBS" >&5
+printf "%s\n" "$LIBXFCE4UTIL_LIBS" >&6; }
+
+    LIBXFCE4UTIL_REQUIRED_VERSION=4.8.0
+
+
+
+
+
+
+    if test x"LIBXFCE4UTIL" = x"GLIB"; then
+
+printf "%s\n" "#define G_LOG_USE_STRUCTURED 1" >>confdefs.h
+
+    fi
+
+
+
+
+  elif $PKG_CONFIG --exists "libxfce4util-1.0" >/dev/null 2>&1; then
+    xdt_cv_version=`$PKG_CONFIG --modversion "libxfce4util-1.0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: found, but $xdt_cv_version" >&5
+printf "%s\n" "found, but $xdt_cv_version" >&6; }
+
+
+      echo "*** The required package libxfce4util-1.0 was found on your system,"
+      echo "*** but the installed version ($xdt_cv_version) is too old."
+      echo "*** Please upgrade libxfce4util-1.0 to atleast version 4.8.0, or adjust"
+      echo "*** the PKG_CONFIG_PATH environment variable if you installed"
+      echo "*** the new version of the package in a nonstandard prefix so"
+      echo "*** pkg-config is able to find it."
+      exit 1
+
+  else
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: not found" >&5
+printf "%s\n" "not found" >&6; }
+
+
+      echo "*** The required package libxfce4util-1.0 was not found on your system."
+      echo "*** Please install libxfce4util-1.0 (atleast version 4.8.0) or adjust"
+      echo "*** the PKG_CONFIG_PATH environment variable if you"
+      echo "*** installed the package in a nonstandard prefix so that"
+      echo "*** pkg-config is able to find it."
+      exit 1
+
+  fi
+
+
+
+  # minimum supported version of pkg-config
+  xdt_cv_PKG_CONFIG_MIN_VERSION=0.9.0
+
+
+
+
+
+
+
+
+
+if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
+	if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}pkg-config", so it can be a program name with args.
+set dummy ${ac_tool_prefix}pkg-config; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_path_PKG_CONFIG+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  case $PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_path_PKG_CONFIG="$as_dir$ac_word$ac_exec_ext"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+PKG_CONFIG=$ac_cv_path_PKG_CONFIG
+if test -n "$PKG_CONFIG"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $PKG_CONFIG" >&5
+printf "%s\n" "$PKG_CONFIG" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+
+fi
+if test -z "$ac_cv_path_PKG_CONFIG"; then
+  ac_pt_PKG_CONFIG=$PKG_CONFIG
+  # Extract the first word of "pkg-config", so it can be a program name with args.
+set dummy pkg-config; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_path_ac_pt_PKG_CONFIG+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  case $ac_pt_PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_ac_pt_PKG_CONFIG="$ac_pt_PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_path_ac_pt_PKG_CONFIG="$as_dir$ac_word$ac_exec_ext"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+ac_pt_PKG_CONFIG=$ac_cv_path_ac_pt_PKG_CONFIG
+if test -n "$ac_pt_PKG_CONFIG"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_pt_PKG_CONFIG" >&5
+printf "%s\n" "$ac_pt_PKG_CONFIG" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+  if test "x$ac_pt_PKG_CONFIG" = x; then
+    PKG_CONFIG=""
+  else
+    case $cross_compiling:$ac_tool_warned in
+yes:)
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
+printf "%s\n" "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
+ac_tool_warned=yes ;;
+esac
+    PKG_CONFIG=$ac_pt_PKG_CONFIG
+  fi
+else
+  PKG_CONFIG="$ac_cv_path_PKG_CONFIG"
+fi
+
+fi
+if test -n "$PKG_CONFIG"; then
+	_pkg_min_version=$xdt_cv_PKG_CONFIG_MIN_VERSION
+	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking pkg-config is at least version $_pkg_min_version" >&5
+printf %s "checking pkg-config is at least version $_pkg_min_version... " >&6; }
+	if $PKG_CONFIG --atleast-pkgconfig-version $_pkg_min_version; then
+		{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+printf "%s\n" "yes" >&6; }
+	else
+		{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+		PKG_CONFIG=""
+	fi
+fi
+
+      if test x"$PKG_CONFIG" = x""; then
+        echo
+        echo "*** Your version of pkg-config is too old. You need atleast"
+        echo "*** pkg-config $xdt_cv_PKG_CONFIG_MIN_VERSION or newer. You can download pkg-config"
+        echo "*** from the freedesktop.org software repository at"
+        echo "***"
+        echo "***    https://www.freedesktop.org/wiki/Software/pkg-config/"
+        echo "***"
+        exit 1;
+      fi
+
+
+
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for libxfce4ui-2 >= 4.12.0" >&5
+printf %s "checking for libxfce4ui-2 >= 4.12.0... " >&6; }
+  if $PKG_CONFIG "--atleast-version=4.12.0" "libxfce4ui-2" >/dev/null 2>&1; then
+    LIBXFCE4UI_VERSION=`$PKG_CONFIG --modversion "libxfce4ui-2"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $LIBXFCE4UI_VERSION" >&5
+printf "%s\n" "$LIBXFCE4UI_VERSION" >&6; }
+
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking LIBXFCE4UI_CFLAGS" >&5
+printf %s "checking LIBXFCE4UI_CFLAGS... " >&6; }
+    LIBXFCE4UI_CFLAGS=`$PKG_CONFIG --cflags "libxfce4ui-2"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $LIBXFCE4UI_CFLAGS" >&5
+printf "%s\n" "$LIBXFCE4UI_CFLAGS" >&6; }
+
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking LIBXFCE4UI_LIBS" >&5
+printf %s "checking LIBXFCE4UI_LIBS... " >&6; }
+    LIBXFCE4UI_LIBS=`$PKG_CONFIG --libs "libxfce4ui-2"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $LIBXFCE4UI_LIBS" >&5
+printf "%s\n" "$LIBXFCE4UI_LIBS" >&6; }
+
+    LIBXFCE4UI_REQUIRED_VERSION=4.12.0
+
+
+
+
+
+
+    if test x"LIBXFCE4UI" = x"GLIB"; then
+
+printf "%s\n" "#define G_LOG_USE_STRUCTURED 1" >>confdefs.h
+
+    fi
+
+
+
+
+  elif $PKG_CONFIG --exists "libxfce4ui-2" >/dev/null 2>&1; then
+    xdt_cv_version=`$PKG_CONFIG --modversion "libxfce4ui-2"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: found, but $xdt_cv_version" >&5
+printf "%s\n" "found, but $xdt_cv_version" >&6; }
+
+
+      echo "*** The required package libxfce4ui-2 was found on your system,"
+      echo "*** but the installed version ($xdt_cv_version) is too old."
+      echo "*** Please upgrade libxfce4ui-2 to atleast version 4.12.0, or adjust"
+      echo "*** the PKG_CONFIG_PATH environment variable if you installed"
+      echo "*** the new version of the package in a nonstandard prefix so"
+      echo "*** pkg-config is able to find it."
+      exit 1
+
+  else
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: not found" >&5
+printf "%s\n" "not found" >&6; }
+
+
+      echo "*** The required package libxfce4ui-2 was not found on your system."
+      echo "*** Please install libxfce4ui-2 (atleast version 4.12.0) or adjust"
+      echo "*** the PKG_CONFIG_PATH environment variable if you"
+      echo "*** installed the package in a nonstandard prefix so that"
+      echo "*** pkg-config is able to find it."
+      exit 1
+
+  fi
+
+
+
+  # minimum supported version of pkg-config
+  xdt_cv_PKG_CONFIG_MIN_VERSION=0.9.0
+
+
+
+
+
+
+
+
+
+if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
+	if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}pkg-config", so it can be a program name with args.
+set dummy ${ac_tool_prefix}pkg-config; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_path_PKG_CONFIG+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  case $PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_path_PKG_CONFIG="$as_dir$ac_word$ac_exec_ext"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+PKG_CONFIG=$ac_cv_path_PKG_CONFIG
+if test -n "$PKG_CONFIG"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $PKG_CONFIG" >&5
+printf "%s\n" "$PKG_CONFIG" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+
+fi
+if test -z "$ac_cv_path_PKG_CONFIG"; then
+  ac_pt_PKG_CONFIG=$PKG_CONFIG
+  # Extract the first word of "pkg-config", so it can be a program name with args.
+set dummy pkg-config; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_path_ac_pt_PKG_CONFIG+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  case $ac_pt_PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_ac_pt_PKG_CONFIG="$ac_pt_PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_path_ac_pt_PKG_CONFIG="$as_dir$ac_word$ac_exec_ext"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+ac_pt_PKG_CONFIG=$ac_cv_path_ac_pt_PKG_CONFIG
+if test -n "$ac_pt_PKG_CONFIG"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_pt_PKG_CONFIG" >&5
+printf "%s\n" "$ac_pt_PKG_CONFIG" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+  if test "x$ac_pt_PKG_CONFIG" = x; then
+    PKG_CONFIG=""
+  else
+    case $cross_compiling:$ac_tool_warned in
+yes:)
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
+printf "%s\n" "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
+ac_tool_warned=yes ;;
+esac
+    PKG_CONFIG=$ac_pt_PKG_CONFIG
+  fi
+else
+  PKG_CONFIG="$ac_cv_path_PKG_CONFIG"
+fi
+
+fi
+if test -n "$PKG_CONFIG"; then
+	_pkg_min_version=$xdt_cv_PKG_CONFIG_MIN_VERSION
+	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking pkg-config is at least version $_pkg_min_version" >&5
+printf %s "checking pkg-config is at least version $_pkg_min_version... " >&6; }
+	if $PKG_CONFIG --atleast-pkgconfig-version $_pkg_min_version; then
+		{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+printf "%s\n" "yes" >&6; }
+	else
+		{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+		PKG_CONFIG=""
+	fi
+fi
+
+      if test x"$PKG_CONFIG" = x""; then
+        echo
+        echo "*** Your version of pkg-config is too old. You need atleast"
+        echo "*** pkg-config $xdt_cv_PKG_CONFIG_MIN_VERSION or newer. You can download pkg-config"
+        echo "*** from the freedesktop.org software repository at"
+        echo "***"
+        echo "***    https://www.freedesktop.org/wiki/Software/pkg-config/"
+        echo "***"
+        exit 1;
+      fi
+
+
+
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for libxfce4kbd-private-3 >= 4.12.0" >&5
+printf %s "checking for libxfce4kbd-private-3 >= 4.12.0... " >&6; }
+  if $PKG_CONFIG "--atleast-version=4.12.0" "libxfce4kbd-private-3" >/dev/null 2>&1; then
+    LIBXFCE4KBD_PRIVATE_VERSION=`$PKG_CONFIG --modversion "libxfce4kbd-private-3"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $LIBXFCE4KBD_PRIVATE_VERSION" >&5
+printf "%s\n" "$LIBXFCE4KBD_PRIVATE_VERSION" >&6; }
+
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking LIBXFCE4KBD_PRIVATE_CFLAGS" >&5
+printf %s "checking LIBXFCE4KBD_PRIVATE_CFLAGS... " >&6; }
+    LIBXFCE4KBD_PRIVATE_CFLAGS=`$PKG_CONFIG --cflags "libxfce4kbd-private-3"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $LIBXFCE4KBD_PRIVATE_CFLAGS" >&5
+printf "%s\n" "$LIBXFCE4KBD_PRIVATE_CFLAGS" >&6; }
+
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking LIBXFCE4KBD_PRIVATE_LIBS" >&5
+printf %s "checking LIBXFCE4KBD_PRIVATE_LIBS... " >&6; }
+    LIBXFCE4KBD_PRIVATE_LIBS=`$PKG_CONFIG --libs "libxfce4kbd-private-3"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $LIBXFCE4KBD_PRIVATE_LIBS" >&5
+printf "%s\n" "$LIBXFCE4KBD_PRIVATE_LIBS" >&6; }
+
+    LIBXFCE4KBD_PRIVATE_REQUIRED_VERSION=4.12.0
+
+
+
+
+
+
+    if test x"LIBXFCE4KBD_PRIVATE" = x"GLIB"; then
+
+printf "%s\n" "#define G_LOG_USE_STRUCTURED 1" >>confdefs.h
+
+    fi
+
+
+
+
+  elif $PKG_CONFIG --exists "libxfce4kbd-private-3" >/dev/null 2>&1; then
+    xdt_cv_version=`$PKG_CONFIG --modversion "libxfce4kbd-private-3"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: found, but $xdt_cv_version" >&5
+printf "%s\n" "found, but $xdt_cv_version" >&6; }
+
+
+      echo "*** The required package libxfce4kbd-private-3 was found on your system,"
+      echo "*** but the installed version ($xdt_cv_version) is too old."
+      echo "*** Please upgrade libxfce4kbd-private-3 to atleast version 4.12.0, or adjust"
+      echo "*** the PKG_CONFIG_PATH environment variable if you installed"
+      echo "*** the new version of the package in a nonstandard prefix so"
+      echo "*** pkg-config is able to find it."
+      exit 1
+
+  else
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: not found" >&5
+printf "%s\n" "not found" >&6; }
+
+
+      echo "*** The required package libxfce4kbd-private-3 was not found on your system."
+      echo "*** Please install libxfce4kbd-private-3 (atleast version 4.12.0) or adjust"
+      echo "*** the PKG_CONFIG_PATH environment variable if you"
+      echo "*** installed the package in a nonstandard prefix so that"
+      echo "*** pkg-config is able to find it."
+      exit 1
+
+  fi
+
+
+
+  # minimum supported version of pkg-config
+  xdt_cv_PKG_CONFIG_MIN_VERSION=0.9.0
+
+
+
+
+
+
+
+
+
+if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
+	if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}pkg-config", so it can be a program name with args.
+set dummy ${ac_tool_prefix}pkg-config; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_path_PKG_CONFIG+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  case $PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_path_PKG_CONFIG="$as_dir$ac_word$ac_exec_ext"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+PKG_CONFIG=$ac_cv_path_PKG_CONFIG
+if test -n "$PKG_CONFIG"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $PKG_CONFIG" >&5
+printf "%s\n" "$PKG_CONFIG" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+
+fi
+if test -z "$ac_cv_path_PKG_CONFIG"; then
+  ac_pt_PKG_CONFIG=$PKG_CONFIG
+  # Extract the first word of "pkg-config", so it can be a program name with args.
+set dummy pkg-config; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_path_ac_pt_PKG_CONFIG+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  case $ac_pt_PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_ac_pt_PKG_CONFIG="$ac_pt_PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_path_ac_pt_PKG_CONFIG="$as_dir$ac_word$ac_exec_ext"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+ac_pt_PKG_CONFIG=$ac_cv_path_ac_pt_PKG_CONFIG
+if test -n "$ac_pt_PKG_CONFIG"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_pt_PKG_CONFIG" >&5
+printf "%s\n" "$ac_pt_PKG_CONFIG" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+  if test "x$ac_pt_PKG_CONFIG" = x; then
+    PKG_CONFIG=""
+  else
+    case $cross_compiling:$ac_tool_warned in
+yes:)
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
+printf "%s\n" "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
+ac_tool_warned=yes ;;
+esac
+    PKG_CONFIG=$ac_pt_PKG_CONFIG
+  fi
+else
+  PKG_CONFIG="$ac_cv_path_PKG_CONFIG"
+fi
+
+fi
+if test -n "$PKG_CONFIG"; then
+	_pkg_min_version=$xdt_cv_PKG_CONFIG_MIN_VERSION
+	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking pkg-config is at least version $_pkg_min_version" >&5
+printf %s "checking pkg-config is at least version $_pkg_min_version... " >&6; }
+	if $PKG_CONFIG --atleast-pkgconfig-version $_pkg_min_version; then
+		{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+printf "%s\n" "yes" >&6; }
+	else
+		{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+		PKG_CONFIG=""
+	fi
+fi
+
+      if test x"$PKG_CONFIG" = x""; then
+        echo
+        echo "*** Your version of pkg-config is too old. You need atleast"
+        echo "*** pkg-config $xdt_cv_PKG_CONFIG_MIN_VERSION or newer. You can download pkg-config"
+        echo "*** from the freedesktop.org software repository at"
+        echo "***"
+        echo "***    https://www.freedesktop.org/wiki/Software/pkg-config/"
+        echo "***"
+        exit 1;
+      fi
+
+
+
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for libxfconf-0 >= 4.13.0" >&5
+printf %s "checking for libxfconf-0 >= 4.13.0... " >&6; }
+  if $PKG_CONFIG "--atleast-version=4.13.0" "libxfconf-0" >/dev/null 2>&1; then
+    LIBXFCONF_VERSION=`$PKG_CONFIG --modversion "libxfconf-0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $LIBXFCONF_VERSION" >&5
+printf "%s\n" "$LIBXFCONF_VERSION" >&6; }
+
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking LIBXFCONF_CFLAGS" >&5
+printf %s "checking LIBXFCONF_CFLAGS... " >&6; }
+    LIBXFCONF_CFLAGS=`$PKG_CONFIG --cflags "libxfconf-0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $LIBXFCONF_CFLAGS" >&5
+printf "%s\n" "$LIBXFCONF_CFLAGS" >&6; }
+
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking LIBXFCONF_LIBS" >&5
+printf %s "checking LIBXFCONF_LIBS... " >&6; }
+    LIBXFCONF_LIBS=`$PKG_CONFIG --libs "libxfconf-0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $LIBXFCONF_LIBS" >&5
+printf "%s\n" "$LIBXFCONF_LIBS" >&6; }
+
+    LIBXFCONF_REQUIRED_VERSION=4.13.0
+
+
+
+
+
+
+    if test x"LIBXFCONF" = x"GLIB"; then
+
+printf "%s\n" "#define G_LOG_USE_STRUCTURED 1" >>confdefs.h
+
+    fi
+
+
+
+
+  elif $PKG_CONFIG --exists "libxfconf-0" >/dev/null 2>&1; then
+    xdt_cv_version=`$PKG_CONFIG --modversion "libxfconf-0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: found, but $xdt_cv_version" >&5
+printf "%s\n" "found, but $xdt_cv_version" >&6; }
+
+
+
+printf "%s\n" "#define XFCONF_LEGACY /**/" >>confdefs.h
+
+
+
+  # minimum supported version of pkg-config
+  xdt_cv_PKG_CONFIG_MIN_VERSION=0.9.0
+
+
+
+
+
+
+
+
+
+if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
+	if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}pkg-config", so it can be a program name with args.
+set dummy ${ac_tool_prefix}pkg-config; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_path_PKG_CONFIG+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  case $PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_path_PKG_CONFIG="$as_dir$ac_word$ac_exec_ext"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+PKG_CONFIG=$ac_cv_path_PKG_CONFIG
+if test -n "$PKG_CONFIG"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $PKG_CONFIG" >&5
+printf "%s\n" "$PKG_CONFIG" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+
+fi
+if test -z "$ac_cv_path_PKG_CONFIG"; then
+  ac_pt_PKG_CONFIG=$PKG_CONFIG
+  # Extract the first word of "pkg-config", so it can be a program name with args.
+set dummy pkg-config; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_path_ac_pt_PKG_CONFIG+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  case $ac_pt_PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_ac_pt_PKG_CONFIG="$ac_pt_PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_path_ac_pt_PKG_CONFIG="$as_dir$ac_word$ac_exec_ext"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+ac_pt_PKG_CONFIG=$ac_cv_path_ac_pt_PKG_CONFIG
+if test -n "$ac_pt_PKG_CONFIG"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_pt_PKG_CONFIG" >&5
+printf "%s\n" "$ac_pt_PKG_CONFIG" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+  if test "x$ac_pt_PKG_CONFIG" = x; then
+    PKG_CONFIG=""
+  else
+    case $cross_compiling:$ac_tool_warned in
+yes:)
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
+printf "%s\n" "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
+ac_tool_warned=yes ;;
+esac
+    PKG_CONFIG=$ac_pt_PKG_CONFIG
+  fi
+else
+  PKG_CONFIG="$ac_cv_path_PKG_CONFIG"
+fi
+
+fi
+if test -n "$PKG_CONFIG"; then
+	_pkg_min_version=$xdt_cv_PKG_CONFIG_MIN_VERSION
+	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking pkg-config is at least version $_pkg_min_version" >&5
+printf %s "checking pkg-config is at least version $_pkg_min_version... " >&6; }
+	if $PKG_CONFIG --atleast-pkgconfig-version $_pkg_min_version; then
+		{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+printf "%s\n" "yes" >&6; }
+	else
+		{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+		PKG_CONFIG=""
+	fi
+fi
+
+      if test x"$PKG_CONFIG" = x""; then
+        echo
+        echo "*** Your version of pkg-config is too old. You need atleast"
+        echo "*** pkg-config $xdt_cv_PKG_CONFIG_MIN_VERSION or newer. You can download pkg-config"
+        echo "*** from the freedesktop.org software repository at"
+        echo "***"
+        echo "***    https://www.freedesktop.org/wiki/Software/pkg-config/"
+        echo "***"
+        exit 1;
+      fi
+
+
+
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for libxfconf-0 >= 4.12.0" >&5
+printf %s "checking for libxfconf-0 >= 4.12.0... " >&6; }
+  if $PKG_CONFIG "--atleast-version=4.12.0" "libxfconf-0" >/dev/null 2>&1; then
+    LIBXFCONF_VERSION=`$PKG_CONFIG --modversion "libxfconf-0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $LIBXFCONF_VERSION" >&5
+printf "%s\n" "$LIBXFCONF_VERSION" >&6; }
+
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking LIBXFCONF_CFLAGS" >&5
+printf %s "checking LIBXFCONF_CFLAGS... " >&6; }
+    LIBXFCONF_CFLAGS=`$PKG_CONFIG --cflags "libxfconf-0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $LIBXFCONF_CFLAGS" >&5
+printf "%s\n" "$LIBXFCONF_CFLAGS" >&6; }
+
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking LIBXFCONF_LIBS" >&5
+printf %s "checking LIBXFCONF_LIBS... " >&6; }
+    LIBXFCONF_LIBS=`$PKG_CONFIG --libs "libxfconf-0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $LIBXFCONF_LIBS" >&5
+printf "%s\n" "$LIBXFCONF_LIBS" >&6; }
+
+    LIBXFCONF_REQUIRED_VERSION=4.12.0
+
+
+
+
+
+
+    if test x"LIBXFCONF" = x"GLIB"; then
+
+printf "%s\n" "#define G_LOG_USE_STRUCTURED 1" >>confdefs.h
+
+    fi
+
+
+
+
+  elif $PKG_CONFIG --exists "libxfconf-0" >/dev/null 2>&1; then
+    xdt_cv_version=`$PKG_CONFIG --modversion "libxfconf-0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: found, but $xdt_cv_version" >&5
+printf "%s\n" "found, but $xdt_cv_version" >&6; }
+
+
+      echo "*** The required package libxfconf-0 was found on your system,"
+      echo "*** but the installed version ($xdt_cv_version) is too old."
+      echo "*** Please upgrade libxfconf-0 to atleast version 4.12.0, or adjust"
+      echo "*** the PKG_CONFIG_PATH environment variable if you installed"
+      echo "*** the new version of the package in a nonstandard prefix so"
+      echo "*** pkg-config is able to find it."
+      exit 1
+
+  else
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: not found" >&5
+printf "%s\n" "not found" >&6; }
+
+
+      echo "*** The required package libxfconf-0 was not found on your system."
+      echo "*** Please install libxfconf-0 (atleast version 4.12.0) or adjust"
+      echo "*** the PKG_CONFIG_PATH environment variable if you"
+      echo "*** installed the package in a nonstandard prefix so that"
+      echo "*** pkg-config is able to find it."
+      exit 1
+
+  fi
+
+
+  else
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: not found" >&5
+printf "%s\n" "not found" >&6; }
+
+
+
+printf "%s\n" "#define XFCONF_LEGACY /**/" >>confdefs.h
+
+
+
+  # minimum supported version of pkg-config
+  xdt_cv_PKG_CONFIG_MIN_VERSION=0.9.0
+
+
+
+
+
+
+
+
+
+if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
+	if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}pkg-config", so it can be a program name with args.
+set dummy ${ac_tool_prefix}pkg-config; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_path_PKG_CONFIG+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  case $PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_path_PKG_CONFIG="$as_dir$ac_word$ac_exec_ext"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+PKG_CONFIG=$ac_cv_path_PKG_CONFIG
+if test -n "$PKG_CONFIG"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $PKG_CONFIG" >&5
+printf "%s\n" "$PKG_CONFIG" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+
+fi
+if test -z "$ac_cv_path_PKG_CONFIG"; then
+  ac_pt_PKG_CONFIG=$PKG_CONFIG
+  # Extract the first word of "pkg-config", so it can be a program name with args.
+set dummy pkg-config; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_path_ac_pt_PKG_CONFIG+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  case $ac_pt_PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_ac_pt_PKG_CONFIG="$ac_pt_PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_path_ac_pt_PKG_CONFIG="$as_dir$ac_word$ac_exec_ext"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+ac_pt_PKG_CONFIG=$ac_cv_path_ac_pt_PKG_CONFIG
+if test -n "$ac_pt_PKG_CONFIG"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_pt_PKG_CONFIG" >&5
+printf "%s\n" "$ac_pt_PKG_CONFIG" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+  if test "x$ac_pt_PKG_CONFIG" = x; then
+    PKG_CONFIG=""
+  else
+    case $cross_compiling:$ac_tool_warned in
+yes:)
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
+printf "%s\n" "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
+ac_tool_warned=yes ;;
+esac
+    PKG_CONFIG=$ac_pt_PKG_CONFIG
+  fi
+else
+  PKG_CONFIG="$ac_cv_path_PKG_CONFIG"
+fi
+
+fi
+if test -n "$PKG_CONFIG"; then
+	_pkg_min_version=$xdt_cv_PKG_CONFIG_MIN_VERSION
+	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking pkg-config is at least version $_pkg_min_version" >&5
+printf %s "checking pkg-config is at least version $_pkg_min_version... " >&6; }
+	if $PKG_CONFIG --atleast-pkgconfig-version $_pkg_min_version; then
+		{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+printf "%s\n" "yes" >&6; }
+	else
+		{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+		PKG_CONFIG=""
+	fi
+fi
+
+      if test x"$PKG_CONFIG" = x""; then
+        echo
+        echo "*** Your version of pkg-config is too old. You need atleast"
+        echo "*** pkg-config $xdt_cv_PKG_CONFIG_MIN_VERSION or newer. You can download pkg-config"
+        echo "*** from the freedesktop.org software repository at"
+        echo "***"
+        echo "***    https://www.freedesktop.org/wiki/Software/pkg-config/"
+        echo "***"
+        exit 1;
+      fi
+
+
+
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for libxfconf-0 >= 4.12.0" >&5
+printf %s "checking for libxfconf-0 >= 4.12.0... " >&6; }
+  if $PKG_CONFIG "--atleast-version=4.12.0" "libxfconf-0" >/dev/null 2>&1; then
+    LIBXFCONF_VERSION=`$PKG_CONFIG --modversion "libxfconf-0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $LIBXFCONF_VERSION" >&5
+printf "%s\n" "$LIBXFCONF_VERSION" >&6; }
+
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking LIBXFCONF_CFLAGS" >&5
+printf %s "checking LIBXFCONF_CFLAGS... " >&6; }
+    LIBXFCONF_CFLAGS=`$PKG_CONFIG --cflags "libxfconf-0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $LIBXFCONF_CFLAGS" >&5
+printf "%s\n" "$LIBXFCONF_CFLAGS" >&6; }
+
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking LIBXFCONF_LIBS" >&5
+printf %s "checking LIBXFCONF_LIBS... " >&6; }
+    LIBXFCONF_LIBS=`$PKG_CONFIG --libs "libxfconf-0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $LIBXFCONF_LIBS" >&5
+printf "%s\n" "$LIBXFCONF_LIBS" >&6; }
+
+    LIBXFCONF_REQUIRED_VERSION=4.12.0
+
+
+
+
+
+
+    if test x"LIBXFCONF" = x"GLIB"; then
+
+printf "%s\n" "#define G_LOG_USE_STRUCTURED 1" >>confdefs.h
+
+    fi
+
+
+
+
+  elif $PKG_CONFIG --exists "libxfconf-0" >/dev/null 2>&1; then
+    xdt_cv_version=`$PKG_CONFIG --modversion "libxfconf-0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: found, but $xdt_cv_version" >&5
+printf "%s\n" "found, but $xdt_cv_version" >&6; }
+
+
+      echo "*** The required package libxfconf-0 was found on your system,"
+      echo "*** but the installed version ($xdt_cv_version) is too old."
+      echo "*** Please upgrade libxfconf-0 to atleast version 4.12.0, or adjust"
+      echo "*** the PKG_CONFIG_PATH environment variable if you installed"
+      echo "*** the new version of the package in a nonstandard prefix so"
+      echo "*** pkg-config is able to find it."
+      exit 1
+
+  else
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: not found" >&5
+printf "%s\n" "not found" >&6; }
+
+
+      echo "*** The required package libxfconf-0 was not found on your system."
+      echo "*** Please install libxfconf-0 (atleast version 4.12.0) or adjust"
+      echo "*** the PKG_CONFIG_PATH environment variable if you"
+      echo "*** installed the package in a nonstandard prefix so that"
+      echo "*** pkg-config is able to find it."
+      exit 1
+
+  fi
+
+
+  fi
+
+
+
+  # minimum supported version of pkg-config
+  xdt_cv_PKG_CONFIG_MIN_VERSION=0.9.0
+
+
+
+
+
+
+
+
+
+if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
+	if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}pkg-config", so it can be a program name with args.
+set dummy ${ac_tool_prefix}pkg-config; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_path_PKG_CONFIG+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  case $PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_path_PKG_CONFIG="$as_dir$ac_word$ac_exec_ext"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+PKG_CONFIG=$ac_cv_path_PKG_CONFIG
+if test -n "$PKG_CONFIG"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $PKG_CONFIG" >&5
+printf "%s\n" "$PKG_CONFIG" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+
+fi
+if test -z "$ac_cv_path_PKG_CONFIG"; then
+  ac_pt_PKG_CONFIG=$PKG_CONFIG
+  # Extract the first word of "pkg-config", so it can be a program name with args.
+set dummy pkg-config; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_path_ac_pt_PKG_CONFIG+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  case $ac_pt_PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_ac_pt_PKG_CONFIG="$ac_pt_PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_path_ac_pt_PKG_CONFIG="$as_dir$ac_word$ac_exec_ext"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+ac_pt_PKG_CONFIG=$ac_cv_path_ac_pt_PKG_CONFIG
+if test -n "$ac_pt_PKG_CONFIG"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_pt_PKG_CONFIG" >&5
+printf "%s\n" "$ac_pt_PKG_CONFIG" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+  if test "x$ac_pt_PKG_CONFIG" = x; then
+    PKG_CONFIG=""
+  else
+    case $cross_compiling:$ac_tool_warned in
+yes:)
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
+printf "%s\n" "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
+ac_tool_warned=yes ;;
+esac
+    PKG_CONFIG=$ac_pt_PKG_CONFIG
+  fi
+else
+  PKG_CONFIG="$ac_cv_path_PKG_CONFIG"
+fi
+
+fi
+if test -n "$PKG_CONFIG"; then
+	_pkg_min_version=$xdt_cv_PKG_CONFIG_MIN_VERSION
+	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking pkg-config is at least version $_pkg_min_version" >&5
+printf %s "checking pkg-config is at least version $_pkg_min_version... " >&6; }
+	if $PKG_CONFIG --atleast-pkgconfig-version $_pkg_min_version; then
+		{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+printf "%s\n" "yes" >&6; }
+	else
+		{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+		PKG_CONFIG=""
+	fi
+fi
+
+      if test x"$PKG_CONFIG" = x""; then
+        echo
+        echo "*** Your version of pkg-config is too old. You need atleast"
+        echo "*** pkg-config $xdt_cv_PKG_CONFIG_MIN_VERSION or newer. You can download pkg-config"
+        echo "*** from the freedesktop.org software repository at"
+        echo "***"
+        echo "***    https://www.freedesktop.org/wiki/Software/pkg-config/"
+        echo "***"
+        exit 1;
+      fi
+
+
+
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for libwnck-3.0 >= 3.14" >&5
+printf %s "checking for libwnck-3.0 >= 3.14... " >&6; }
+  if $PKG_CONFIG "--atleast-version=3.14" "libwnck-3.0" >/dev/null 2>&1; then
+    LIBWNCK_VERSION=`$PKG_CONFIG --modversion "libwnck-3.0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $LIBWNCK_VERSION" >&5
+printf "%s\n" "$LIBWNCK_VERSION" >&6; }
+
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking LIBWNCK_CFLAGS" >&5
+printf %s "checking LIBWNCK_CFLAGS... " >&6; }
+    LIBWNCK_CFLAGS=`$PKG_CONFIG --cflags "libwnck-3.0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $LIBWNCK_CFLAGS" >&5
+printf "%s\n" "$LIBWNCK_CFLAGS" >&6; }
+
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking LIBWNCK_LIBS" >&5
+printf %s "checking LIBWNCK_LIBS... " >&6; }
+    LIBWNCK_LIBS=`$PKG_CONFIG --libs "libwnck-3.0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $LIBWNCK_LIBS" >&5
+printf "%s\n" "$LIBWNCK_LIBS" >&6; }
+
+    LIBWNCK_REQUIRED_VERSION=3.14
+
+
+
+
+
+
+    if test x"LIBWNCK" = x"GLIB"; then
+
+printf "%s\n" "#define G_LOG_USE_STRUCTURED 1" >>confdefs.h
+
+    fi
+
+
+
+
+  elif $PKG_CONFIG --exists "libwnck-3.0" >/dev/null 2>&1; then
+    xdt_cv_version=`$PKG_CONFIG --modversion "libwnck-3.0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: found, but $xdt_cv_version" >&5
+printf "%s\n" "found, but $xdt_cv_version" >&6; }
+
+
+      echo "*** The required package libwnck-3.0 was found on your system,"
+      echo "*** but the installed version ($xdt_cv_version) is too old."
+      echo "*** Please upgrade libwnck-3.0 to atleast version 3.14, or adjust"
+      echo "*** the PKG_CONFIG_PATH environment variable if you installed"
+      echo "*** the new version of the package in a nonstandard prefix so"
+      echo "*** pkg-config is able to find it."
+      exit 1
+
+  else
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: not found" >&5
+printf "%s\n" "not found" >&6; }
+
+
+      echo "*** The required package libwnck-3.0 was not found on your system."
+      echo "*** Please install libwnck-3.0 (atleast version 3.14) or adjust"
+      echo "*** the PKG_CONFIG_PATH environment variable if you"
+      echo "*** installed the package in a nonstandard prefix so that"
+      echo "*** pkg-config is able to find it."
+      exit 1
+
+  fi
+
+
+
+  # minimum supported version of pkg-config
+  xdt_cv_PKG_CONFIG_MIN_VERSION=0.9.0
+
+
+
+
+
+
+
+
+
+if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
+	if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}pkg-config", so it can be a program name with args.
+set dummy ${ac_tool_prefix}pkg-config; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_path_PKG_CONFIG+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  case $PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_path_PKG_CONFIG="$as_dir$ac_word$ac_exec_ext"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+PKG_CONFIG=$ac_cv_path_PKG_CONFIG
+if test -n "$PKG_CONFIG"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $PKG_CONFIG" >&5
+printf "%s\n" "$PKG_CONFIG" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+
+fi
+if test -z "$ac_cv_path_PKG_CONFIG"; then
+  ac_pt_PKG_CONFIG=$PKG_CONFIG
+  # Extract the first word of "pkg-config", so it can be a program name with args.
+set dummy pkg-config; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_path_ac_pt_PKG_CONFIG+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  case $ac_pt_PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_ac_pt_PKG_CONFIG="$ac_pt_PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_path_ac_pt_PKG_CONFIG="$as_dir$ac_word$ac_exec_ext"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+ac_pt_PKG_CONFIG=$ac_cv_path_ac_pt_PKG_CONFIG
+if test -n "$ac_pt_PKG_CONFIG"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_pt_PKG_CONFIG" >&5
+printf "%s\n" "$ac_pt_PKG_CONFIG" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+  if test "x$ac_pt_PKG_CONFIG" = x; then
+    PKG_CONFIG=""
+  else
+    case $cross_compiling:$ac_tool_warned in
+yes:)
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
+printf "%s\n" "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
+ac_tool_warned=yes ;;
+esac
+    PKG_CONFIG=$ac_pt_PKG_CONFIG
+  fi
+else
+  PKG_CONFIG="$ac_cv_path_PKG_CONFIG"
+fi
+
+fi
+if test -n "$PKG_CONFIG"; then
+	_pkg_min_version=$xdt_cv_PKG_CONFIG_MIN_VERSION
+	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking pkg-config is at least version $_pkg_min_version" >&5
+printf %s "checking pkg-config is at least version $_pkg_min_version... " >&6; }
+	if $PKG_CONFIG --atleast-pkgconfig-version $_pkg_min_version; then
+		{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+printf "%s\n" "yes" >&6; }
+	else
+		{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+		PKG_CONFIG=""
+	fi
+fi
+
+      if test x"$PKG_CONFIG" = x""; then
+        echo
+        echo "*** Your version of pkg-config is too old. You need atleast"
+        echo "*** pkg-config $xdt_cv_PKG_CONFIG_MIN_VERSION or newer. You can download pkg-config"
+        echo "*** from the freedesktop.org software repository at"
+        echo "***"
+        echo "***    https://www.freedesktop.org/wiki/Software/pkg-config/"
+        echo "***"
+        exit 1;
+      fi
+
+
+
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for xinerama >= 0" >&5
+printf %s "checking for xinerama >= 0... " >&6; }
+  if $PKG_CONFIG "--atleast-version=0" "xinerama" >/dev/null 2>&1; then
+    XINERAMA_VERSION=`$PKG_CONFIG --modversion "xinerama"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $XINERAMA_VERSION" >&5
+printf "%s\n" "$XINERAMA_VERSION" >&6; }
+
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking XINERAMA_CFLAGS" >&5
+printf %s "checking XINERAMA_CFLAGS... " >&6; }
+    XINERAMA_CFLAGS=`$PKG_CONFIG --cflags "xinerama"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $XINERAMA_CFLAGS" >&5
+printf "%s\n" "$XINERAMA_CFLAGS" >&6; }
+
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking XINERAMA_LIBS" >&5
+printf %s "checking XINERAMA_LIBS... " >&6; }
+    XINERAMA_LIBS=`$PKG_CONFIG --libs "xinerama"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $XINERAMA_LIBS" >&5
+printf "%s\n" "$XINERAMA_LIBS" >&6; }
+
+    XINERAMA_REQUIRED_VERSION=0
+
+
+
+
+
+
+    if test x"XINERAMA" = x"GLIB"; then
+
+printf "%s\n" "#define G_LOG_USE_STRUCTURED 1" >>confdefs.h
+
+    fi
+
+
+
+
+  elif $PKG_CONFIG --exists "xinerama" >/dev/null 2>&1; then
+    xdt_cv_version=`$PKG_CONFIG --modversion "xinerama"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: found, but $xdt_cv_version" >&5
+printf "%s\n" "found, but $xdt_cv_version" >&6; }
+
+
+      echo "*** The required package xinerama was found on your system,"
+      echo "*** but the installed version ($xdt_cv_version) is too old."
+      echo "*** Please upgrade xinerama to atleast version 0, or adjust"
+      echo "*** the PKG_CONFIG_PATH environment variable if you installed"
+      echo "*** the new version of the package in a nonstandard prefix so"
+      echo "*** pkg-config is able to find it."
+      exit 1
+
+  else
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: not found" >&5
+printf "%s\n" "not found" >&6; }
+
+
+      echo "*** The required package xinerama was not found on your system."
+      echo "*** Please install xinerama (atleast version 0) or adjust"
+      echo "*** the PKG_CONFIG_PATH environment variable if you"
+      echo "*** installed the package in a nonstandard prefix so that"
+      echo "*** pkg-config is able to find it."
+      exit 1
+
+  fi
+
+
+if test "x$USE_MAINTAINER_MODE" = "xyes"
+then :
+
+  # Extract the first word of "xdt-csource", so it can be a program name with args.
+set dummy xdt-csource; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_path_XDT_CSOURCE+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  case $XDT_CSOURCE in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_XDT_CSOURCE="$XDT_CSOURCE" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_path_XDT_CSOURCE="$as_dir$ac_word$ac_exec_ext"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+XDT_CSOURCE=$ac_cv_path_XDT_CSOURCE
+if test -n "$XDT_CSOURCE"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $XDT_CSOURCE" >&5
+printf "%s\n" "$XDT_CSOURCE" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+
+  if test -z "$XDT_CSOURCE"
+then :
+
+    echo '*** The program "xdt-csource" is required to build when --enable-maintainer-mode'
+    echo '*** is specified.'
+    exit 1
+
+fi
+  # Extract the first word of "glib-compile-resources", so it can be a program name with args.
+set dummy glib-compile-resources; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_path_GLIB_COMPILE_RESOURCES+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  case $GLIB_COMPILE_RESOURCES in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_GLIB_COMPILE_RESOURCES="$GLIB_COMPILE_RESOURCES" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_path_GLIB_COMPILE_RESOURCES="$as_dir$ac_word$ac_exec_ext"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+GLIB_COMPILE_RESOURCES=$ac_cv_path_GLIB_COMPILE_RESOURCES
+if test -n "$GLIB_COMPILE_RESOURCES"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $GLIB_COMPILE_RESOURCES" >&5
+printf "%s\n" "$GLIB_COMPILE_RESOURCES" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+
+  if test -z "$GLIB_COMPILE_RESOURCES"
+then :
+
+    echo '*** The program "glib-compile-resources" is required to build when --enable-maintainer-mode'
+    echo '*** is specified.'
+    exit 1
+
+fi
+
+fi
+
+EPOXY_FOUND="no"
+
+
+
+  # Check whether --enable-epoxy was given.
+if test ${enable_epoxy+y}
+then :
+  enableval=$enable_epoxy; xdt_cv_EPOXY_check=$enableval
+else $as_nop
+  xdt_cv_EPOXY_check=yes
+fi
+
+
+  if test x"$xdt_cv_EPOXY_check" = x"yes"; then
+    if $PKG_CONFIG --exists "epoxy >= 1.0" >/dev/null 2>&1; then
+
+
+  # minimum supported version of pkg-config
+  xdt_cv_PKG_CONFIG_MIN_VERSION=0.9.0
+
+
+
+
+
+
+
+
+
+if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
+	if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}pkg-config", so it can be a program name with args.
+set dummy ${ac_tool_prefix}pkg-config; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_path_PKG_CONFIG+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  case $PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_path_PKG_CONFIG="$as_dir$ac_word$ac_exec_ext"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+PKG_CONFIG=$ac_cv_path_PKG_CONFIG
+if test -n "$PKG_CONFIG"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $PKG_CONFIG" >&5
+printf "%s\n" "$PKG_CONFIG" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+
+fi
+if test -z "$ac_cv_path_PKG_CONFIG"; then
+  ac_pt_PKG_CONFIG=$PKG_CONFIG
+  # Extract the first word of "pkg-config", so it can be a program name with args.
+set dummy pkg-config; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_path_ac_pt_PKG_CONFIG+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  case $ac_pt_PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_ac_pt_PKG_CONFIG="$ac_pt_PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_path_ac_pt_PKG_CONFIG="$as_dir$ac_word$ac_exec_ext"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+ac_pt_PKG_CONFIG=$ac_cv_path_ac_pt_PKG_CONFIG
+if test -n "$ac_pt_PKG_CONFIG"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_pt_PKG_CONFIG" >&5
+printf "%s\n" "$ac_pt_PKG_CONFIG" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+  if test "x$ac_pt_PKG_CONFIG" = x; then
+    PKG_CONFIG=""
+  else
+    case $cross_compiling:$ac_tool_warned in
+yes:)
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
+printf "%s\n" "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
+ac_tool_warned=yes ;;
+esac
+    PKG_CONFIG=$ac_pt_PKG_CONFIG
+  fi
+else
+  PKG_CONFIG="$ac_cv_path_PKG_CONFIG"
+fi
+
+fi
+if test -n "$PKG_CONFIG"; then
+	_pkg_min_version=$xdt_cv_PKG_CONFIG_MIN_VERSION
+	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking pkg-config is at least version $_pkg_min_version" >&5
+printf %s "checking pkg-config is at least version $_pkg_min_version... " >&6; }
+	if $PKG_CONFIG --atleast-pkgconfig-version $_pkg_min_version; then
+		{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+printf "%s\n" "yes" >&6; }
+	else
+		{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+		PKG_CONFIG=""
+	fi
+fi
+
+      if test x"$PKG_CONFIG" = x""; then
+        echo
+        echo "*** Your version of pkg-config is too old. You need atleast"
+        echo "*** pkg-config $xdt_cv_PKG_CONFIG_MIN_VERSION or newer. You can download pkg-config"
+        echo "*** from the freedesktop.org software repository at"
+        echo "***"
+        echo "***    https://www.freedesktop.org/wiki/Software/pkg-config/"
+        echo "***"
+        exit 1;
+      fi
+
+
+
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for epoxy >= 1.0" >&5
+printf %s "checking for epoxy >= 1.0... " >&6; }
+  if $PKG_CONFIG "--atleast-version=1.0" "epoxy" >/dev/null 2>&1; then
+    EPOXY_VERSION=`$PKG_CONFIG --modversion "epoxy"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $EPOXY_VERSION" >&5
+printf "%s\n" "$EPOXY_VERSION" >&6; }
+
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking EPOXY_CFLAGS" >&5
+printf %s "checking EPOXY_CFLAGS... " >&6; }
+    EPOXY_CFLAGS=`$PKG_CONFIG --cflags "epoxy"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $EPOXY_CFLAGS" >&5
+printf "%s\n" "$EPOXY_CFLAGS" >&6; }
+
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking EPOXY_LIBS" >&5
+printf %s "checking EPOXY_LIBS... " >&6; }
+    EPOXY_LIBS=`$PKG_CONFIG --libs "epoxy"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $EPOXY_LIBS" >&5
+printf "%s\n" "$EPOXY_LIBS" >&6; }
+
+    EPOXY_REQUIRED_VERSION=1.0
+
+
+
+
+
+
+    if test x"EPOXY" = x"GLIB"; then
+
+printf "%s\n" "#define G_LOG_USE_STRUCTURED 1" >>confdefs.h
+
+    fi
+
+
+
+
+
+printf "%s\n" "#define HAVE_EPOXY 1" >>confdefs.h
+
+        EPOXY_FOUND="yes"
+
+  elif $PKG_CONFIG --exists "epoxy" >/dev/null 2>&1; then
+    xdt_cv_version=`$PKG_CONFIG --modversion "epoxy"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: found, but $xdt_cv_version" >&5
+printf "%s\n" "found, but $xdt_cv_version" >&6; }
+
+
+      echo "*** The required package epoxy was found on your system,"
+      echo "*** but the installed version ($xdt_cv_version) is too old."
+      echo "*** Please upgrade epoxy to atleast version 1.0, or adjust"
+      echo "*** the PKG_CONFIG_PATH environment variable if you installed"
+      echo "*** the new version of the package in a nonstandard prefix so"
+      echo "*** pkg-config is able to find it."
+      exit 1
+
+  else
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: not found" >&5
+printf "%s\n" "not found" >&6; }
+
+
+      echo "*** The required package epoxy was not found on your system."
+      echo "*** Please install epoxy (atleast version 1.0) or adjust"
+      echo "*** the PKG_CONFIG_PATH environment variable if you"
+      echo "*** installed the package in a nonstandard prefix so that"
+      echo "*** pkg-config is able to find it."
+      exit 1
+
+  fi
+
+    else
+      { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for optional package epoxy >= 1.0" >&5
+printf %s "checking for optional package epoxy >= 1.0... " >&6; }
+      { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: not found" >&5
+printf "%s\n" "not found" >&6; }
+    fi
+  else
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for optional package epoxy" >&5
+printf %s "checking for optional package epoxy... " >&6; }
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: disabled" >&5
+printf "%s\n" "disabled" >&6; }
+  fi
+
+   if test x"$EPOXY_FOUND" = x"yes"; then
+  HAVE_EPOXY_TRUE=
+  HAVE_EPOXY_FALSE='#'
+else
+  HAVE_EPOXY_TRUE='#'
+  HAVE_EPOXY_FALSE=
+fi
+
+
+
+LIBSTARTUP_NOTIFICATION_FOUND="no"
+
+
+
+  # Check whether --enable-startup-notification was given.
+if test ${enable_startup_notification+y}
+then :
+  enableval=$enable_startup_notification; xdt_cv_LIBSTARTUP_NOTIFICATION_check=$enableval
+else $as_nop
+  xdt_cv_LIBSTARTUP_NOTIFICATION_check=yes
+fi
+
+
+  if test x"$xdt_cv_LIBSTARTUP_NOTIFICATION_check" = x"yes"; then
+    if $PKG_CONFIG --exists "libstartup-notification-1.0 >= 0.5" >/dev/null 2>&1; then
+
+
+  # minimum supported version of pkg-config
+  xdt_cv_PKG_CONFIG_MIN_VERSION=0.9.0
+
+
+
+
+
+
+
+
+
+if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
+	if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}pkg-config", so it can be a program name with args.
+set dummy ${ac_tool_prefix}pkg-config; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_path_PKG_CONFIG+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  case $PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_path_PKG_CONFIG="$as_dir$ac_word$ac_exec_ext"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+PKG_CONFIG=$ac_cv_path_PKG_CONFIG
+if test -n "$PKG_CONFIG"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $PKG_CONFIG" >&5
+printf "%s\n" "$PKG_CONFIG" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+
+fi
+if test -z "$ac_cv_path_PKG_CONFIG"; then
+  ac_pt_PKG_CONFIG=$PKG_CONFIG
+  # Extract the first word of "pkg-config", so it can be a program name with args.
+set dummy pkg-config; ac_word=$2
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+printf %s "checking for $ac_word... " >&6; }
+if test ${ac_cv_path_ac_pt_PKG_CONFIG+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  case $ac_pt_PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_ac_pt_PKG_CONFIG="$ac_pt_PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  case $as_dir in #(((
+    '') as_dir=./ ;;
+    */) ;;
+    *) as_dir=$as_dir/ ;;
+  esac
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir$ac_word$ac_exec_ext"; then
+    ac_cv_path_ac_pt_PKG_CONFIG="$as_dir$ac_word$ac_exec_ext"
+    printf "%s\n" "$as_me:${as_lineno-$LINENO}: found $as_dir$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+ac_pt_PKG_CONFIG=$ac_cv_path_ac_pt_PKG_CONFIG
+if test -n "$ac_pt_PKG_CONFIG"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_pt_PKG_CONFIG" >&5
+printf "%s\n" "$ac_pt_PKG_CONFIG" >&6; }
+else
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
+  if test "x$ac_pt_PKG_CONFIG" = x; then
+    PKG_CONFIG=""
+  else
+    case $cross_compiling:$ac_tool_warned in
+yes:)
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
+printf "%s\n" "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
+ac_tool_warned=yes ;;
+esac
+    PKG_CONFIG=$ac_pt_PKG_CONFIG
+  fi
+else
+  PKG_CONFIG="$ac_cv_path_PKG_CONFIG"
+fi
+
+fi
+if test -n "$PKG_CONFIG"; then
+	_pkg_min_version=$xdt_cv_PKG_CONFIG_MIN_VERSION
+	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking pkg-config is at least version $_pkg_min_version" >&5
+printf %s "checking pkg-config is at least version $_pkg_min_version... " >&6; }
+	if $PKG_CONFIG --atleast-pkgconfig-version $_pkg_min_version; then
+		{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+printf "%s\n" "yes" >&6; }
+	else
+		{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+		PKG_CONFIG=""
+	fi
+fi
+
+      if test x"$PKG_CONFIG" = x""; then
+        echo
+        echo "*** Your version of pkg-config is too old. You need atleast"
+        echo "*** pkg-config $xdt_cv_PKG_CONFIG_MIN_VERSION or newer. You can download pkg-config"
+        echo "*** from the freedesktop.org software repository at"
+        echo "***"
+        echo "***    https://www.freedesktop.org/wiki/Software/pkg-config/"
+        echo "***"
+        exit 1;
+      fi
+
+
+
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for libstartup-notification-1.0 >= 0.5" >&5
+printf %s "checking for libstartup-notification-1.0 >= 0.5... " >&6; }
+  if $PKG_CONFIG "--atleast-version=0.5" "libstartup-notification-1.0" >/dev/null 2>&1; then
+    LIBSTARTUP_NOTIFICATION_VERSION=`$PKG_CONFIG --modversion "libstartup-notification-1.0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $LIBSTARTUP_NOTIFICATION_VERSION" >&5
+printf "%s\n" "$LIBSTARTUP_NOTIFICATION_VERSION" >&6; }
+
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking LIBSTARTUP_NOTIFICATION_CFLAGS" >&5
+printf %s "checking LIBSTARTUP_NOTIFICATION_CFLAGS... " >&6; }
+    LIBSTARTUP_NOTIFICATION_CFLAGS=`$PKG_CONFIG --cflags "libstartup-notification-1.0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $LIBSTARTUP_NOTIFICATION_CFLAGS" >&5
+printf "%s\n" "$LIBSTARTUP_NOTIFICATION_CFLAGS" >&6; }
+
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking LIBSTARTUP_NOTIFICATION_LIBS" >&5
+printf %s "checking LIBSTARTUP_NOTIFICATION_LIBS... " >&6; }
+    LIBSTARTUP_NOTIFICATION_LIBS=`$PKG_CONFIG --libs "libstartup-notification-1.0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $LIBSTARTUP_NOTIFICATION_LIBS" >&5
+printf "%s\n" "$LIBSTARTUP_NOTIFICATION_LIBS" >&6; }
+
+    LIBSTARTUP_NOTIFICATION_REQUIRED_VERSION=0.5
+
+
+
+
+
+
+    if test x"LIBSTARTUP_NOTIFICATION" = x"GLIB"; then
+
+printf "%s\n" "#define G_LOG_USE_STRUCTURED 1" >>confdefs.h
+
+    fi
+
+
+
+
+
+printf "%s\n" "#define HAVE_LIBSTARTUP_NOTIFICATION 1" >>confdefs.h
+
+        LIBSTARTUP_NOTIFICATION_FOUND="yes"
+
+  elif $PKG_CONFIG --exists "libstartup-notification-1.0" >/dev/null 2>&1; then
+    xdt_cv_version=`$PKG_CONFIG --modversion "libstartup-notification-1.0"`
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: found, but $xdt_cv_version" >&5
+printf "%s\n" "found, but $xdt_cv_version" >&6; }
+
+
+      echo "*** The required package libstartup-notification-1.0 was found on your system,"
+      echo "*** but the installed version ($xdt_cv_version) is too old."
+      echo "*** Please upgrade libstartup-notification-1.0 to atleast version 0.5, or adjust"
+      echo "*** the PKG_CONFIG_PATH environment variable if you installed"
+      echo "*** the new version of the package in a nonstandard prefix so"
+      echo "*** pkg-config is able to find it."
+      exit 1
+
+  else
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: not found" >&5
+printf "%s\n" "not found" >&6; }
+
+
+      echo "*** The required package libstartup-notification-1.0 was not found on your system."
+      echo "*** Please install libstartup-notification-1.0 (atleast version 0.5) or adjust"
+      echo "*** the PKG_CONFIG_PATH environment variable if you"
+      echo "*** installed the package in a nonstandard prefix so that"
+      echo "*** pkg-config is able to find it."
+      exit 1
+
+  fi
+
+    else
+      { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for optional package libstartup-notification-1.0 >= 0.5" >&5
+printf %s "checking for optional package libstartup-notification-1.0 >= 0.5... " >&6; }
+      { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: not found" >&5
+printf "%s\n" "not found" >&6; }
+    fi
+  else
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for optional package libstartup-notification-1.0" >&5
+printf %s "checking for optional package libstartup-notification-1.0... " >&6; }
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: disabled" >&5
+printf "%s\n" "disabled" >&6; }
+  fi
+
+   if test x"$LIBSTARTUP_NOTIFICATION_FOUND" = x"yes"; then
+  HAVE_LIBSTARTUP_NOTIFICATION_TRUE=
+  HAVE_LIBSTARTUP_NOTIFICATION_FALSE='#'
+else
+  HAVE_LIBSTARTUP_NOTIFICATION_TRUE='#'
+  HAVE_LIBSTARTUP_NOTIFICATION_FALSE=
+fi
+
+
+
+
+XSYNC_LIBS=
+# Check whether --enable-xsync was given.
+if test ${enable_xsync+y}
+then :
+  enableval=$enable_xsync;
+else $as_nop
+  enable_xsync=yes
+fi
+
+have_xsync="no"
+if test x"$enable_xsync" = x"yes"; then
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for XSyncCreateFence in -lXext" >&5
+printf %s "checking for XSyncCreateFence in -lXext... " >&6; }
+if test ${ac_cv_lib_Xext_XSyncCreateFence+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lXext  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+char XSyncCreateFence ();
+int
+main (void)
+{
+return XSyncCreateFence ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"
+then :
+  ac_cv_lib_Xext_XSyncCreateFence=yes
+else $as_nop
+  ac_cv_lib_Xext_XSyncCreateFence=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_Xext_XSyncCreateFence" >&5
+printf "%s\n" "$ac_cv_lib_Xext_XSyncCreateFence" >&6; }
+if test "x$ac_cv_lib_Xext_XSyncCreateFence" = xyes
+then :
+   have_xsync="yes"
+        XSYNC_LIBS=" -lXext"
+
+printf "%s\n" "#define HAVE_XSYNC 1" >>confdefs.h
+
+
+fi
+
+fi
+
+
+# Check whether --enable-render was given.
+if test ${enable_render+y}
+then :
+  enableval=$enable_render;
+else $as_nop
+  enable_render=yes
+fi
+
+have_render="no"
+RENDER_LIBS=
+if test x"$enable_render" = x"yes"; then
+  if $PKG_CONFIG --print-errors --exists xrender 2>&1; then
 
 pkg_failed=no
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for xrender" >&5
@@ -15256,14 +18475,14 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-                RENDER_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "xrender" 2>&1`
+	        RENDER_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "xrender" 2>&1`
         else
-                RENDER_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "xrender" 2>&1`
+	        RENDER_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "xrender" 2>&1`
         fi
-        # Put the nasty error message in config.log where it belongs
-        echo "$RENDER_PKG_ERRORS" >&5
+	# Put the nasty error message in config.log where it belongs
+	echo "$RENDER_PKG_ERRORS" >&5
 
-        as_fn_error $? "Package requirements (xrender) were not met:
+	as_fn_error $? "Package requirements (xrender) were not met:
 
 $RENDER_PKG_ERRORS
 
@@ -15276,7 +18495,7 @@ See the pkg-config man page for more details." "$LINENO" 5
 elif test $pkg_failed = untried; then
         { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 printf "%s\n" "no" >&6; }
-        { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+	{ { printf "%s\n" "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
 printf "%s\n" "$as_me: error: in \`$ac_pwd':" >&2;}
 as_fn_error $? "The pkg-config script could not be found or is too old.  Make sure it
 is in your PATH or set the PKG_CONFIG environment variable to the full
@@ -15289,8 +18508,8 @@ See the pkg-config man page for more details.
 To get pkg-config, see <http://pkg-config.freedesktop.org/>.
 See \`config.log' for more details" "$LINENO" 5; }
 else
-        RENDER_CFLAGS=$pkg_cv_RENDER_CFLAGS
-        RENDER_LIBS=$pkg_cv_RENDER_LIBS
+	RENDER_CFLAGS=$pkg_cv_RENDER_CFLAGS
+	RENDER_LIBS=$pkg_cv_RENDER_LIBS
         { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 printf "%s\n" "yes" >&6; }
 
@@ -15484,14 +18703,14 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-                PRESENT_EXTENSION_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "presentproto >= 1.1 xpresent" 2>&1`
+	        PRESENT_EXTENSION_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "presentproto >= 1.1 xpresent" 2>&1`
         else
-                PRESENT_EXTENSION_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "presentproto >= 1.1 xpresent" 2>&1`
+	        PRESENT_EXTENSION_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "presentproto >= 1.1 xpresent" 2>&1`
         fi
-        # Put the nasty error message in config.log where it belongs
-        echo "$PRESENT_EXTENSION_PKG_ERRORS" >&5
+	# Put the nasty error message in config.log where it belongs
+	echo "$PRESENT_EXTENSION_PKG_ERRORS" >&5
 
-        as_fn_error $? "Package requirements (presentproto >= 1.1 xpresent) were not met:
+	as_fn_error $? "Package requirements (presentproto >= 1.1 xpresent) were not met:
 
 $PRESENT_EXTENSION_PKG_ERRORS
 
@@ -15504,7 +18723,7 @@ See the pkg-config man page for more details." "$LINENO" 5
 elif test $pkg_failed = untried; then
         { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 printf "%s\n" "no" >&6; }
-        { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+	{ { printf "%s\n" "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
 printf "%s\n" "$as_me: error: in \`$ac_pwd':" >&2;}
 as_fn_error $? "The pkg-config script could not be found or is too old.  Make sure it
 is in your PATH or set the PKG_CONFIG environment variable to the full
@@ -15517,8 +18736,8 @@ See the pkg-config man page for more details.
 To get pkg-config, see <http://pkg-config.freedesktop.org/>.
 See \`config.log' for more details" "$LINENO" 5; }
 else
-        PRESENT_EXTENSION_CFLAGS=$pkg_cv_PRESENT_EXTENSION_CFLAGS
-        PRESENT_EXTENSION_LIBS=$pkg_cv_PRESENT_EXTENSION_LIBS
+	PRESENT_EXTENSION_CFLAGS=$pkg_cv_PRESENT_EXTENSION_CFLAGS
+	PRESENT_EXTENSION_LIBS=$pkg_cv_PRESENT_EXTENSION_LIBS
         { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 printf "%s\n" "yes" >&6; }
 
@@ -15598,14 +18817,14 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-                COMPOSITOR_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "xcomposite >= 0.2 xfixes xdamage" 2>&1`
+	        COMPOSITOR_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "xcomposite >= 0.2 xfixes xdamage" 2>&1`
         else
-                COMPOSITOR_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "xcomposite >= 0.2 xfixes xdamage" 2>&1`
+	        COMPOSITOR_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "xcomposite >= 0.2 xfixes xdamage" 2>&1`
         fi
-        # Put the nasty error message in config.log where it belongs
-        echo "$COMPOSITOR_PKG_ERRORS" >&5
+	# Put the nasty error message in config.log where it belongs
+	echo "$COMPOSITOR_PKG_ERRORS" >&5
 
-        as_fn_error $? "Package requirements (xcomposite >= 0.2 xfixes xdamage) were not met:
+	as_fn_error $? "Package requirements (xcomposite >= 0.2 xfixes xdamage) were not met:
 
 $COMPOSITOR_PKG_ERRORS
 
@@ -15618,7 +18837,7 @@ See the pkg-config man page for more details." "$LINENO" 5
 elif test $pkg_failed = untried; then
         { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 printf "%s\n" "no" >&6; }
-        { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+	{ { printf "%s\n" "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
 printf "%s\n" "$as_me: error: in \`$ac_pwd':" >&2;}
 as_fn_error $? "The pkg-config script could not be found or is too old.  Make sure it
 is in your PATH or set the PKG_CONFIG environment variable to the full
@@ -15631,8 +18850,8 @@ See the pkg-config man page for more details.
 To get pkg-config, see <http://pkg-config.freedesktop.org/>.
 See \`config.log' for more details" "$LINENO" 5; }
 else
-        COMPOSITOR_CFLAGS=$pkg_cv_COMPOSITOR_CFLAGS
-        COMPOSITOR_LIBS=$pkg_cv_COMPOSITOR_LIBS
+	COMPOSITOR_CFLAGS=$pkg_cv_COMPOSITOR_CFLAGS
+	COMPOSITOR_LIBS=$pkg_cv_COMPOSITOR_LIBS
         { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 printf "%s\n" "yes" >&6; }
 
@@ -15665,7 +18884,127 @@ printf "%s\n" "#define SHOW_POSITION 1" >>confdefs.h
 
 fi
 
-XDT_FEATURE_DEBUG(xfwm4_debug_default)
+
+    # Check whether --enable-debug was given.
+if test ${enable_debug+y}
+then :
+  enableval=$enable_debug; enable_debug=$enableval
+else $as_nop
+  enable_debug=minimum
+fi
+
+
+    xdt_cv_additional_COMMON_FLAGS="-Wall -Wextra \
+                                  -Wno-missing-field-initializers \
+                                  -Wno-unused-parameter \
+                                  -Wmissing-declarations \
+                                  -Wmissing-noreturn -Wpointer-arith \
+                                  -Wcast-align -Wformat -Wformat-security -Wformat-y2k \
+                                  -Winit-self -Wmissing-include-dirs -Wundef \
+                                  -Wredundant-decls"
+
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking whether to build with debugging support" >&5
+printf %s "checking whether to build with debugging support... " >&6; }
+  if test x"$enable_debug" = x"full" -o x"$enable_debug" = x"yes"; then
+
+printf "%s\n" "#define DEBUG 1" >>confdefs.h
+
+
+    CPPFLAGS="$CPPFLAGS"
+
+    if test x`uname` = x"Linux"; then
+      xdt_cv_additional_COMMON_FLAGS="$xdt_cv_additional_COMMON_FLAGS -fstack-protector"
+    fi
+
+    if test x"$enable_debug" = x"full"; then
+
+printf "%s\n" "#define DEBUG_TRACE 1" >>confdefs.h
+
+      xdt_cv_additional_COMMON_FLAGS="$xdt_cv_additional_COMMON_FLAGS -O0 -g"
+      CPPFLAGS="$CPPFLAGS -DG_ENABLE_DEBUG"
+      { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: full" >&5
+printf "%s\n" "full" >&6; }
+    else
+      xdt_cv_additional_COMMON_FLAGS="$xdt_cv_additional_COMMON_FLAGS -g -Wshadow"
+      { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+printf "%s\n" "yes" >&6; }
+    fi
+  else
+    xdt_cv_additional_COMMON_FLAGS="$xdt_cv_additional_COMMON_FLAGS -Wshadow"
+    CPPFLAGS="$CPPFLAGS -DNDEBUG"
+
+    if test x"$enable_debug" = x"no"; then
+      CPPFLAGS="$CPPFLAGS -DG_DISABLE_CAST_CHECKS -DG_DISABLE_ASSERT"
+      { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+    else
+      { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: minimum" >&5
+printf "%s\n" "minimum" >&6; }
+    fi
+  fi
+
+  xdt_cv_additional_CFLAGS="$xdt_cv_additional_COMMON_FLAGS \
+                            -Wdeclaration-after-statement \
+                            -Wnested-externs \
+                            -Wold-style-definition"
+  xdt_cv_additional_CXXFLAGS="$xdt_cv_additional_COMMON_FLAGS"
+
+
+  for flag in $xdt_cv_additional_CFLAGS; do
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking if $CC supports $flag" >&5
+printf %s "checking if $CC supports $flag... " >&6; }
+    saved_CFLAGS="$CFLAGS"
+    CFLAGS="$CFLAGS $flag"
+    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"
+then :
+  flag_supported=yes
+else $as_nop
+  flag_supported=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam conftest.$ac_ext
+    CFLAGS="$saved_CFLAGS"
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $flag_supported" >&5
+printf "%s\n" "$flag_supported" >&6; }
+
+    if test "x$flag_supported" = "xyes"; then
+      supported_CFLAGS="$supported_CFLAGS $flag"
+    fi
+  done
+
+
+  for flag in $xdt_cv_additional_CXXFLAGS; do
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking if $CC supports $flag" >&5
+printf %s "checking if $CC supports $flag... " >&6; }
+    saved_CFLAGS="$CFLAGS"
+    CFLAGS="$CFLAGS $flag"
+    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"
+then :
+  flag_supported=yes
+else $as_nop
+  flag_supported=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam conftest.$ac_ext
+    CFLAGS="$saved_CFLAGS"
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $flag_supported" >&5
+printf "%s\n" "$flag_supported" >&6; }
+
+    if test "x$flag_supported" = "xyes"; then
+      supported_CXXFLAGS="$supported_CXXFLAGS $flag"
+    fi
+  done
+
+
+  CFLAGS="$CFLAGS $supported_CFLAGS"
+  CXXFLAGS="$CXXFLAGS $supported_CXXFLAGS"
+
 
 REVISION=unknown
 if test x"7e7473c5b" != x""; then
@@ -15823,6 +19162,14 @@ fi
   ac_config_commands="$ac_config_commands po/stamp-it"
 
 
+if test -z "${HAVE_EPOXY_TRUE}" && test -z "${HAVE_EPOXY_FALSE}"; then
+  as_fn_error $? "conditional \"HAVE_EPOXY\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${HAVE_LIBSTARTUP_NOTIFICATION_TRUE}" && test -z "${HAVE_LIBSTARTUP_NOTIFICATION_FALSE}"; then
+  as_fn_error $? "conditional \"HAVE_LIBSTARTUP_NOTIFICATION\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
 
 : "${CONFIG_STATUS=./config.status}"
 ac_write_fail=0
@@ -16444,7 +19791,6 @@ lt_cv_to_host_file_cmd='`$ECHO "$lt_cv_to_host_file_cmd" | $SED "$delay_single_q
 lt_cv_to_tool_file_cmd='`$ECHO "$lt_cv_to_tool_file_cmd" | $SED "$delay_single_quote_subst"`'
 reload_flag='`$ECHO "$reload_flag" | $SED "$delay_single_quote_subst"`'
 reload_cmds='`$ECHO "$reload_cmds" | $SED "$delay_single_quote_subst"`'
-FILECMD='`$ECHO "$FILECMD" | $SED "$delay_single_quote_subst"`'
 OBJDUMP='`$ECHO "$OBJDUMP" | $SED "$delay_single_quote_subst"`'
 deplibs_check_method='`$ECHO "$deplibs_check_method" | $SED "$delay_single_quote_subst"`'
 file_magic_cmd='`$ECHO "$file_magic_cmd" | $SED "$delay_single_quote_subst"`'
@@ -16453,7 +19799,6 @@ want_nocaseglob='`$ECHO "$want_nocaseglob" | $SED "$delay_single_quote_subst"`'
 DLLTOOL='`$ECHO "$DLLTOOL" | $SED "$delay_single_quote_subst"`'
 sharedlib_from_linklib_cmd='`$ECHO "$sharedlib_from_linklib_cmd" | $SED "$delay_single_quote_subst"`'
 AR='`$ECHO "$AR" | $SED "$delay_single_quote_subst"`'
-lt_ar_flags='`$ECHO "$lt_ar_flags" | $SED "$delay_single_quote_subst"`'
 AR_FLAGS='`$ECHO "$AR_FLAGS" | $SED "$delay_single_quote_subst"`'
 archiver_list_spec='`$ECHO "$archiver_list_spec" | $SED "$delay_single_quote_subst"`'
 STRIP='`$ECHO "$STRIP" | $SED "$delay_single_quote_subst"`'
@@ -16574,7 +19919,6 @@ LN_S \
 lt_SP2NL \
 lt_NL2SP \
 reload_flag \
-FILECMD \
 OBJDUMP \
 deplibs_check_method \
 file_magic_cmd \
@@ -16583,6 +19927,7 @@ want_nocaseglob \
 DLLTOOL \
 sharedlib_from_linklib_cmd \
 AR \
+AR_FLAGS \
 archiver_list_spec \
 STRIP \
 RANLIB \
@@ -17544,9 +20889,6 @@ to_host_file_cmd=$lt_cv_to_host_file_cmd
 # convert \$build files to toolchain format.
 to_tool_file_cmd=$lt_cv_to_tool_file_cmd
 
-# A file(cmd) program that detects file types.
-FILECMD=$lt_FILECMD
-
 # An object symbol dumper.
 OBJDUMP=$lt_OBJDUMP
 
@@ -17571,11 +20913,8 @@ sharedlib_from_linklib_cmd=$lt_sharedlib_from_linklib_cmd
 # The archiver.
 AR=$lt_AR
 
-# Flags to create an archive (by configure).
-lt_ar_flags=$lt_ar_flags
-
 # Flags to create an archive.
-AR_FLAGS=\${ARFLAGS-"\$lt_ar_flags"}
+AR_FLAGS=$lt_AR_FLAGS
 
 # How to feed a file listing to the archiver.
 archiver_list_spec=$lt_archiver_list_spec
@@ -17951,7 +21290,7 @@ ltmain=$ac_aux_dir/ltmain.sh
   # if finds mixed CR/LF and LF-only lines.  Since sed operates in
   # text mode, it properly converts lines to CR/LF.  This bash problem
   # is reportedly fixed, but why not run on old versions too?
-  $SED '$q' "$ltmain" >> "$cfgfile" \
+  sed '$q' "$ltmain" >> "$cfgfile" \
      || (rm -f "$cfgfile"; exit 1)
 
    mv -f "$cfgfile" "$ofile" ||

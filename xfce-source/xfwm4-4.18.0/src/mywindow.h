@@ -49,7 +49,8 @@ struct _xfwmWindow
 #endif
     gint depth;
     Window window;
-    gint x, y;
+    gint x, y, z;
+    gdouble rot;
     gint width, height;
     gboolean map;
 };
