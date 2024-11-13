@@ -4,3 +4,5 @@
 **/my_*
 
 **/build/
+.buildxfce.swp
+/x11-source/resumefile
